@@ -12,6 +12,8 @@ or create it with `virtualenv`.
 ```sh
 $ virtualenv -p python3.6 venv
 $ source venv/bin/activate
+$ pip install -r requirements.txt
+$ pre-commit install
 ```
 
 In the same folder as `manage.py`:
@@ -22,8 +24,7 @@ $ python manage.py migrate # Sync your database for the first time
 
 ## Usual development setup to run backend
 
-Remember to do the usual git stuff at the start of each session, to keep you in
-sync with the `master` branch on GitLab.
+Remember to do the usual git stuff at the start of each session, to keep you in sync with the `master` branch on GitLab. Ved å bruke kommandoen `pip-sync` vil du synkronisere ditt virtual environment mot det som er definert i `requirements.txt` (som er viktig for å unngå feil).
 
 In the backend folder:
 
