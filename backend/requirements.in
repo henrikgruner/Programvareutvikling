@@ -1,0 +1,16 @@
+# ---------------------------------------- #
+#   Requirements for the auction backend   #
+# ---------------------------------------- #
+
+# Dependencies --------------------------- #
+django==2.1.5
+djangorestframework==3.9.1
+
+# Dev Dependencies ----------------------- #
+pre-commit==1.14.3
+pip-tools==3.3.2
+django-extensions==2.1.5
+django-debug-toolbar==1.11
+
+# Nice tools ----------------------------- #
+pipdeptree==0.13.2
