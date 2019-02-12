@@ -11,11 +11,13 @@
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
+.idea/
 .idea/**/shelf
 
 # Generated files
 .idea/**/contentModel.xml
-
+venv
+wenv
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
