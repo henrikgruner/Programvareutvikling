@@ -1,10 +1,12 @@
 # Auctioning application
 
-> Made for BuaBud AS \
-> by Gruppe 67
+> Made for Bua Bud AS \
+> by Gruppe 67 - Sigrid, Martin, Katrine, Viggo, Henrik, Håvard
 
-## Tech
+##### Technology:
 
-Python 3.6 \
-Django 2\
-React 16
+> - Python 3
+> - Django 2
+> - React 16
+
+Go into the respective folders to setup the backend and webapp.

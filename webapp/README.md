@@ -1,4 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Auctioning application - Frontend
+
+> Subfolder: `webapp`
+
+Made with React 16.8, Node >= 8 and `create-react-app`.
+
+## Initial setup
+
+Install `node`
+
+```sh
+$ npm i
+$ npm start
+```
+
+## Usual development setup to run the webapp
+
+Remember to do the usual git stuff at the start of each session, to keep you in sync with the `master` branch on GitLab. By using the command `npm i` you can install packages the project needs (defined in `package.json`).
+
+In the `webapp` folder:
+
+```sh
+$ npm start
+```
+
+## Git
+
+### Committing
+
+Important note: Since we use the `pre-commit` python package to check and format our files before
+committing, this means that if you ran the line `pre-commit install` in the
+setup, you have to be inside your `venv` to be able to commit (unless you install it globally). (`source ../backend/venv/bin/activate` from the webapp folder).
+
+#### General process
+
+1. `git status`. Check that you're committing what you think you are committing (through IDE or with `git diff` or something)
+2. `git add .`, or `git add example-file.py`, or `git add -A`
+3. `git status`
+4. `git commit -m "#4 a very good commit message"`
+5. `git push`
+6. Get conflict, try to fix but lie down and cry. You can avoid this step by working on
+   your own branch :)
 
 ## Available Scripts
 
@@ -27,42 +68,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
 ### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
