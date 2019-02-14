@@ -1,0 +1,48 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+/* VARIABLES */
+
+:root {
+  --background-color: #f4f4f4;
+  --font-color: #394b59;
+  --link-color: royalblue;
+  --primary-color: purple;
+  --green: darkgreen;
+}
+
+/* GLOBAL CSS */
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 1rem;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: var(--background-color);
+  color: var(--font-color);
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
