@@ -16,6 +16,7 @@ import LoginPage from "./routes/LoginPage";
 import SignUpPage from "./routes/SignUpPage";
 import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
+import CreateAuctionPage from "./routes/CreateAuctionPage";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -46,6 +47,11 @@ ReactDOM.render(
               render={({ match: { url } }) => (
                 <>
                   <Route exact path={`${url}/`} component={FrontPage} />
+                  <Route
+                    exact
+                    path={`${url}/new`}
+                    component={CreateAuctionPage}
+                  />
                   <Route path={`${url}/:auctionId`} component={AuctionPage} />
                 </>
               )}
