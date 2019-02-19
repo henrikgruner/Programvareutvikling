@@ -7,6 +7,7 @@ import { EmailField, PasswordField } from "../../components/form";
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import { StyledLink } from "./styles";
+import Footer from "../../components/Footer";
 
 const LoginForm = ({
   touched,
@@ -34,6 +35,8 @@ const LoginForm = ({
         Logg in
       </SubmitButton>
       <StyledLink to="/"> Avbryt</StyledLink>
+
+      <Footer></Footer>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../components/Header"
+import Footer from "../../components/Footer";
 
 class AuctionPage extends Component {
     render() {
@@ -7,8 +8,7 @@ class AuctionPage extends Component {
             <div>
                 <Header>
                 </Header>
-
-
+                <Footer></Footer>
             </div>
         )
     }

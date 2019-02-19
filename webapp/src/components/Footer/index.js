@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { styledFooter } from "./styles.js";
+import { FooterWrapper } from "./styles.js";
 
 
 class Footer extends Component {
     render() {
         return (
             <div>
-                <styledFooter>
-                    <title>Auksjonsbua eies av Budbua AS</title>
-                    <title>Alle rettighetere jgeuegeghgenuige</title>
-                </styledFooter>
+                <FooterWrapper>
+                    <text>Auksjonsbua eies av Budbua AS.
+                    Alle rettigheter eies av BudBua AS
+                    </text>
+
+
+
+                </FooterWrapper>
 
             </div>
         )

@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
-export const styledFooter = styled.footer`
-display:flex;
-background-color:gray;
-opacity:10;
-width:100%;
-height:6000;
-justify-content:center;
-  justify-content:space-around;
-`;
+
+export const FooterWrapper = styled.footer`
+  display:flex;
+  background: #525966;
+  align-items:center;
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  right:0;
+  left:0;
+  height:80px;
+  padding: 1rem;
+  text-align: center;
+  color:gray;
+  opacity:9;
+`

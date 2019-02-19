@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from 'react-router-dom';
 
 export const Title = styled.h1`
   display:flex;
@@ -9,13 +9,7 @@ export const Title = styled.h1`
   
 `;
 
-export const CompanyLogo = styled.h1`
-  display:flex;
-  font-weight: bold;
-  font-size:25px;
-  font-color:yellow;
- 
-`;
+
 export const CompanyHeader = styled.header`
   display:flex;
   justify-content:center;
@@ -27,4 +21,16 @@ export const CompanyHeader = styled.header`
  
 `;
 
+export const CompanyLogo = styled(Link)`
+display:flex;
+  font-weight: bold;
+  font-size:30px;
+  color:#001a7a;
+ 
+&:Hover{
+  text-decoration:none;
+  opacity:20;
+  color:gray;
+}
+`;
 

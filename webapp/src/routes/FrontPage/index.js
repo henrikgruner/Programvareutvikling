@@ -11,7 +11,7 @@ import { StyledLink } from "./styles.js";
 class FrontPage extends Component {
   render() {
     return (
-      <div>
+      <div style={{ overflow: 'hidden', paddingBottom: '60px', position: 'relative', minHeight: '110vh', display: 'block' }}>
 
         <Header>
           <StyledLink to="/login">  Logg inn</StyledLink>
@@ -39,10 +39,12 @@ class FrontPage extends Component {
           </AuctionPreview>
           <AuctionPreview>
           </AuctionPreview>
-          <Footer> </Footer>
-        </div>
+        </div >
 
-      </div >
+        <Footer></Footer>
+      </div>
+
+
 
     );
   }

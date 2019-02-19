@@ -18,6 +18,7 @@ const SignUpForm = ({
   return (
     <div>
       <Header></Header>
+
       <Title>Sign up</Title>
 
       <Form>
