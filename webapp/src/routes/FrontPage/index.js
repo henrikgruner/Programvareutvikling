@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Header from "../../components/Header";
-import { Link } from 'react-router-dom';
 import AuctionPreview from "../../components/AuctionPreview";
 import Footer from "../../components/Footer";
-import { StyledLink } from "./styles.js";
+import { StyledLink, styledDivAuction } from "./styles.js";
+import { StyledDiv } from "./styles.js";
 
 
 
@@ -11,11 +11,11 @@ import { StyledLink } from "./styles.js";
 class FrontPage extends Component {
   render() {
     return (
-      <div style={{ overflow: 'hidden', paddingBottom: '60px', position: 'relative', minHeight: '110vh', display: 'block' }}>
+      <StyledDiv >
 
         <Header>
-          <StyledLink to="/login">  Logg inn</StyledLink>
-          <text>|</text>
+          <StyledLink to="/login"> Logg inn</StyledLink>
+          <span>|</span>
           <StyledLink to="/signup">Ny bruker</StyledLink>
         </Header>
 
@@ -23,7 +23,9 @@ class FrontPage extends Component {
 
         </div>
 
-        <div style={{ display: 'flex', flexdirection: 'column', justifyContent: 'center' }}  >
+
+
+        <div style={{ display: 'flex', flexdirection: 'column', justifyContent: 'center' }} >
           <AuctionPreview>
           </AuctionPreview>
           <AuctionPreview>
@@ -32,7 +34,7 @@ class FrontPage extends Component {
           </AuctionPreview>
 
         </div>
-        <div style={{ display: 'flex', flexdirection: 'column', justifyContent: 'center' }} >
+        <div style={{ display: 'flex', flexdirection: 'column', justifyContent: 'center' }}>
           <AuctionPreview>
           </AuctionPreview>
           <AuctionPreview>
@@ -42,7 +44,7 @@ class FrontPage extends Component {
         </div >
 
         <Footer></Footer>
-      </div>
+      </StyledDiv>
 
 
 

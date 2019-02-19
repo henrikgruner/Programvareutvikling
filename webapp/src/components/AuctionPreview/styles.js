@@ -15,7 +15,7 @@ color:black;
 `;
 
 
-export const Test = styled.div`
+export const StyledDiv = styled.div`
     background-color: #e0e4e5;
     width: 250px;
     min-height: 225px;

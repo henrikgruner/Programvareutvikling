@@ -18,7 +18,7 @@ const LoginForm = ({
 }) => {
   return (
     <div>
-      <Header></Header>
+      <Header />
       <Title>Logg in</Title>
 
       <Form>
@@ -36,7 +36,7 @@ const LoginForm = ({
       </SubmitButton>
       <StyledLink to="/"> Avbryt</StyledLink>
 
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

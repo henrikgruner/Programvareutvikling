@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -13,7 +12,7 @@ export const StyledLink = styled(Link)`
 
 text-decoration: none;
 color:black;
-margin-Left:50px;
+margin-left:50px;
 
 
     &:hover {

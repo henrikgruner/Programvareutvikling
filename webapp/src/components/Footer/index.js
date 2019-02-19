@@ -7,9 +7,9 @@ class Footer extends Component {
         return (
             <div>
                 <FooterWrapper>
-                    <text>Auksjonsbua eies av Budbua AS.
+                    <span>Auksjonsbua eies av Budbua AS.
                     Alle rettigheter eies av BudBua AS
-                    </text>
+                    </span>
 
 
 

@@ -12,7 +12,7 @@ class Header extends Component {
             <div>
                 <CompanyHeader>
                     <CompanyLogo to="/">Budbua</CompanyLogo>
-                    <Title> Velkommen til norges største og eldste auksjonsmarked</Title>
+                    <Title> Velkommen til Norges største og eldste auksjonsmarked</Title>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         {this.props.children}
                     </div>

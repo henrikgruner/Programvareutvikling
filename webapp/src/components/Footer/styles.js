@@ -14,5 +14,5 @@ export const FooterWrapper = styled.footer`
   padding: 1rem;
   text-align: center;
   color:gray;
-  opacity:9;
+
 `
