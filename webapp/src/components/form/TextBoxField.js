@@ -2,9 +2,9 @@ import React from "react";
 
 import InputValidationFeedback from "./InputValidationFeedback";
 
-import { StyledTextArea } from "./styles";
+import { StyledField } from "./styles";
 
-const TextAreaField = ({
+const TextBoxField = ({
   placeholder,
   label,
   field: { name, onChange, value },
@@ -19,18 +19,16 @@ const TextAreaField = ({
         <InputValidationFeedback error={error} />
       </span>
 
-      <StyledTextArea
-        type="textarea"
+      <StyledField
+        type="text"
         name={name}
-        id={name}
+        value={value}
+        placeholder={placeholder}
         onChange={onChange}
         onBlur={handleBlur}
-        placeholder={placeholder}
-        value={value}
-        rows="5"
       />
     </div>
   );
 };
 
-export default TextAreaField;
+export default TextBoxField;
