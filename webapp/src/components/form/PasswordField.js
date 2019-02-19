@@ -13,7 +13,7 @@ const PasswordField = ({
   return (
     <div>
       <span>
-        Password
+        Passord
         <InputValidationFeedback error={error} />
       </span>
 
@@ -21,7 +21,7 @@ const PasswordField = ({
         type="password"
         name={name}
         value={value}
-        placeholder="Enter a password .."
+        placeholder="Skriv inn et passord"
         onChange={onChange}
         onBlur={handleBlur}
       />

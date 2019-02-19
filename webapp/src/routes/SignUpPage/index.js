@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import callApi from "../../utils/callApi";
 import Header from "../../components/Header"
 import { StyledLink } from "./styles";
-import { EmailField, PasswordField } from "../../components/form";
+import { EmailField, PasswordField, TextBoxField } from "../../components/form";
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 
@@ -22,8 +22,11 @@ const SignUpForm = ({
       <Title>Sign up</Title>
 
       <Form>
-        <Field name="email" component={EmailField} />
-        <Field name="password" component={PasswordField} />
+        <Field name="firstname" component={TextBoxField} label="Fornavn" placeholder="Ola" />
+        <Field name="lastname" component={TextBoxField} label="Etternavn" placeholder="Nordmann" />
+        <Field name="phone" component={TextBoxField} label="Telefonnummer" placeholder="Telefonnummer" ></Field>
+        <Field name="email" component={EmailField} label="Email" />
+        <Field name="passord" component={PasswordField} />
       </Form>
 
       <SubmitButton
@@ -50,7 +53,7 @@ const SignUpPage = withFormik({
   mapPropsToValues() {
     return {
       email: "",
-      password: ""
+      passoord: ""
     };
   },
 
@@ -58,7 +61,7 @@ const SignUpPage = withFormik({
   handleSubmit(values, { setSubmitting }) {
     var submission = {
       email: values.email,
-      password: values.password
+      passord: values.passord
     };
 
     return callApi("/signup", {
@@ -77,13 +80,29 @@ const SignUpPage = withFormik({
 
   // Validation of the form
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .required("Please enter an email")
-      .email("Well, that's not an email"),
 
-    password: Yup.string()
-      .required("Enter a password")
-      .min(4, "Password should be longer than 4 characters")
+    firstname: Yup.string("Fornavn")
+      .required("Fornavn")
+      .min(2, "må være lenger enn 2"),
+
+    lastname: Yup.string("Ettenavn")
+      .required("Etternavn")
+      .min(2, "må være lenger enn 2"),
+
+
+    email: Yup.string("Email")
+      .required("Skriv inn en Email")
+      .email("Skriv inn en Email"),
+
+    passord: Yup.string("Passord")
+      .required("Passord må være lenger enn fire bokstaver")
+      .min(4, "Passord må være lenger enn fire bokstaver"),
+
+    phone: Yup.number("Skriv inn ett telefonnummer")
+      .required("Skriv inn ett telefonnummber")
+
+
+
   })
 })(SignUpForm);
 
