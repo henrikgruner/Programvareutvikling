@@ -11,6 +11,7 @@ import ProfilePage from "./routes/ProfilePage";
 import LoginPage from "./routes/LoginPage";
 import SignUpPage from "./routes/SignUpPage";
 import NotFoundPage from "./routes/NotFoundPage";
+import AuctionPage from "./routes/AuctionPage";
 
 ReactDOM.render(
   <Router>
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/auction" component={AuctionPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </ScrollToTop>

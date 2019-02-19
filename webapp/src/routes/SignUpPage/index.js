@@ -2,7 +2,8 @@ import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
-
+import Header from "../../components/Header"
+import { StyledLink } from "./styles";
 import { EmailField, PasswordField } from "../../components/form";
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
@@ -16,6 +17,7 @@ const SignUpForm = ({
 }) => {
   return (
     <div>
+      <Header></Header>
       <Title>Sign up</Title>
 
       <Form>
@@ -31,6 +33,7 @@ const SignUpForm = ({
       >
         Sign up
       </SubmitButton>
+      <StyledLink to="/"> Avbryt</StyledLink>
     </div>
   );
 };

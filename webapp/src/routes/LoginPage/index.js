@@ -2,10 +2,11 @@ import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
-
+import Header from "../../components/Header"
 import { EmailField, PasswordField } from "../../components/form";
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
+import { StyledLink } from "./styles";
 
 const LoginForm = ({
   touched,
@@ -16,7 +17,8 @@ const LoginForm = ({
 }) => {
   return (
     <div>
-      <Title>Log in</Title>
+      <Header></Header>
+      <Title>Logg in</Title>
 
       <Form>
         <Field name="email" component={EmailField} />
@@ -29,8 +31,9 @@ const LoginForm = ({
         disabled={isSubmitting}
         valid={isValid}
       >
-        Log in
+        Logg in
       </SubmitButton>
+      <StyledLink to="/"> Avbryt</StyledLink>
     </div>
   );
 };
