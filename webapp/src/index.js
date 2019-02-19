@@ -10,6 +10,7 @@ import FrontPage from "./routes/FrontPage";
 import ProfilePage from "./routes/ProfilePage";
 import LoginPage from "./routes/LoginPage";
 import SignUpPage from "./routes/SignUpPage";
+import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/auction" component={AuctionPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </ScrollToTop>
