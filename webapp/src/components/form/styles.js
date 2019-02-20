@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Textarea from "react-textarea-autosize";
 import { Field } from "formik";
 

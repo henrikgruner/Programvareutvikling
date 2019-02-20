@@ -1,26 +1,29 @@
 import React, { Component } from "react";
-import { CompanyLogo } from "./styles.js";
-import { CompanyHeader } from "./styles.js"
-import { Title } from "./styles.js";
-import { Link } from 'react-router-dom';
-
-
+import {
+  Title,
+  HeaderWrapper,
+  CompanyLogo,
+  AuthLink,
+  AuthLinkWrapper
+} from "./styles.js";
 
 class Header extends Component {
-    render() {
-        return (
-            <div>
-                <CompanyHeader>
-                    <CompanyLogo to="/">Budbua</CompanyLogo>
-                    <Title> Velkommen til Norges største og eldste auksjonsmarked</Title>
-                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {this.props.children}
-                    </div>
+  render() {
+    return (
+      <HeaderWrapper>
+        <CompanyLogo to="/">BudBua AS</CompanyLogo>
+        <Title>Velkommen til Norges største og eldste auksjonsmarked</Title>
 
-                </CompanyHeader>
-            </div >
-        );
-    }
+        <AuthLinkWrapper>
+          <AuthLink to="/login">Logg inn </AuthLink>
+          <span>|</span>
+          <AuthLink to="/signup"> Ny bruker</AuthLink>
+        </AuthLinkWrapper>
+
+        {this.props.children}
+      </HeaderWrapper>
+    );
+  }
 }
 
 export default Header;

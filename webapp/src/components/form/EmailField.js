@@ -1,5 +1,4 @@
 import React from "react";
-
 import InputValidationFeedback from "./InputValidationFeedback";
 import { StyledField } from "./styles";
 
@@ -11,19 +10,18 @@ const EmailField = ({
 
   return (
     <div>
-      <span>
+      <label>
         Email
         <InputValidationFeedback error={error} />
-      </span>
-
-      <StyledField
-        type="email"
-        name={name}
-        value={value}
-        placeholder="ola.nordmann@example.com"
-        onChange={onChange}
-        onBlur={handleBlur}
-      />
+        <StyledField
+          type="email"
+          name={name}
+          value={value}
+          placeholder="ola.nordmann@example.com"
+          onChange={onChange}
+          onBlur={handleBlur}
+        />
+      </label>
     </div>
   );
 };

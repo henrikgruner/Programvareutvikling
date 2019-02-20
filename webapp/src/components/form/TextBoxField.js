@@ -1,7 +1,5 @@
 import React from "react";
-
 import InputValidationFeedback from "./InputValidationFeedback";
-
 import { StyledField } from "./styles";
 
 const TextBoxField = ({
@@ -14,19 +12,19 @@ const TextBoxField = ({
 
   return (
     <div>
-      <span>
+      <label>
         {label}
         <InputValidationFeedback error={error} />
-      </span>
 
-      <StyledField
-        type="text"
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-        onBlur={handleBlur}
-      />
+        <StyledField
+          type="text"
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={handleBlur}
+        />
+      </label>
     </div>
   );
 };

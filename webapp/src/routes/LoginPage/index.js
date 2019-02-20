@@ -2,12 +2,10 @@ import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
-import Header from "../../components/Header"
 import { EmailField, PasswordField } from "../../components/form";
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
-import { StyledLink } from "./styles";
-import Footer from "../../components/Footer";
+import { CancelButton } from "../../components/CancelButton";
 
 const LoginForm = ({
   touched,
@@ -18,8 +16,7 @@ const LoginForm = ({
 }) => {
   return (
     <div>
-      <Header />
-      <Title>Logg in</Title>
+      <Title>Logg inn</Title>
 
       <Form>
         <Field name="email" component={EmailField} />
@@ -32,11 +29,9 @@ const LoginForm = ({
         disabled={isSubmitting}
         valid={isValid}
       >
-        Logg in
+        Logg inn
       </SubmitButton>
-      <StyledLink to="/"> Avbryt</StyledLink>
-
-      <Footer />
+      <CancelButton to="/">Avbryt</CancelButton>
     </div>
   );
 };
@@ -80,12 +75,12 @@ const LoginPage = withFormik({
   // Validation of the form
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .required("Please enter an email")
-      .email("Well, that's not an email"),
+      .required("Skriv inn en e-mail")
+      .email("Skriv inn en e-mail"),
 
     password: Yup.string()
-      .required("Enter a password")
-      .min(4, "Password should be longer than 4 characters")
+      .required("Passordet må være lengre enn 4 bokstaver")
+      .min(4, "Passordet må være lengre enn 4 bokstaver")
   })
 })(LoginForm);
 

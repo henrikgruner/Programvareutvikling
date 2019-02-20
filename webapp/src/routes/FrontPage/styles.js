@@ -1,22 +1,12 @@
-import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import styled from "styled-components/macro";
 
-export const StyledLink = styled(Link)`
-display:flex;
-text-decoration:'none';
-color:black;
-font-size:12pt;
-&:hover{
-  opacity:20;
-  color:gray;
-}
+export const ContentWrapper = styled.div`
+  overflow: hidden;
+  padding-bottom: 60px;
 `;
 
-export const StyledDiv = styled.div`
-over-flow:hidden;
-padding-bottom:60px;
-position:relative;
-min-height:110vh;
-display:block;
-`
-
+export const AuctionList = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;

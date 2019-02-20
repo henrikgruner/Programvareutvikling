@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import Header from "../../components/Header"
-import Footer from "../../components/Footer";
 
 class AuctionPage extends Component {
-    render() {
-        return (
-            <div>
-                <Header>
-                </Header>
-                <Footer></Footer>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Auction page</h1>
+      </div>
+    );
+  }
 }
 export default AuctionPage;

@@ -1,18 +1,13 @@
-import styled from "styled-components";
-
+import styled from "styled-components/macro";
 
 export const FooterWrapper = styled.footer`
-  display:flex;
+  flex-shrink: 0;
+  display: flex;
   background: #525966;
-  align-items:center;
-  position: absolute;
-  bottom:0;
-  width: 100%;
-  right:0;
-  left:0;
-  height:80px;
+  align-items: center;
+  height: 80px;
   padding: 1rem;
   text-align: center;
-  color:gray;
-
-`
+  color: gray;
+  margin-top: auto;
+`;
