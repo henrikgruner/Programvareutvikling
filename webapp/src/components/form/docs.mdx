@@ -1,0 +1,62 @@
+---
+name: Form elements
+---
+
+# Form elements
+
+All of these fields must be inside a `formik` form.
+
+## TextBoxField
+
+```js
+import { Field } from "formik";
+import { TextBoxField } from "../../components/form";`
+
+<Field name="firstname" component={TextBoxField} label="Fornavn" placeholder="Ola" />
+```
+
+## PasswordField
+
+```js
+import { Field } from "formik";
+import { PasswordField } from "../../components/form";`
+
+<Field name="text" component={PasswordField}/>
+```
+
+## EmailField
+
+```js
+import { Field } from "formik";
+import { EmailField } from "../../components/form";
+
+<Field name="text" component={EmailField} />;
+```
+
+## TextAreaField
+
+```js
+import { Field } from "formik";
+import { TextAreaField } from "../../components/form";
+
+<Field
+  name="description"
+  component={TextAreaField}
+  label="Beskrivelse"
+  placeholder="Beskrivelse av produktet ..."
+/>;
+```
+
+## TelBoxField
+
+```js
+import { Field } from "formik";
+import { TelBoxField } from "../../components/form";
+
+<Field
+  name="phonenumber"
+  component={TelBoxField}
+  label="Telefonnummer"
+  placeholder="Telefonnummer ..."
+/>;
+```

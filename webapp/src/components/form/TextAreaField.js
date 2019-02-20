@@ -1,7 +1,5 @@
 import React from "react";
-
 import InputValidationFeedback from "./InputValidationFeedback";
-
 import { StyledTextArea } from "./styles";
 
 const TextAreaField = ({
@@ -14,21 +12,21 @@ const TextAreaField = ({
 
   return (
     <div>
-      <span>
+      <label>
         {label}
         <InputValidationFeedback error={error} />
-      </span>
 
-      <StyledTextArea
-        type="textarea"
-        name={name}
-        id={name}
-        onChange={onChange}
-        onBlur={handleBlur}
-        placeholder={placeholder}
-        value={value}
-        rows="5"
-      />
+        <StyledTextArea
+          type="textarea"
+          name={name}
+          id={name}
+          onChange={onChange}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          value={value}
+          rows="5"
+        />
+      </label>
     </div>
   );
 };

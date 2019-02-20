@@ -1,13 +1,26 @@
 import React, { Component } from "react";
+import AuctionPreview from "../../components/AuctionPreview";
+import { ContentWrapper, AuctionList } from "./styles.js";
 
 class FrontPage extends Component {
   render() {
     return (
-      <div>
-        <header>
-          <h1>Velkommen til Auksjonsbua</h1>
-        </header>
-      </div>
+      <ContentWrapper>
+        <AuctionList>
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+          <AuctionPreview />
+        </AuctionList>
+      </ContentWrapper>
     );
   }
 }
