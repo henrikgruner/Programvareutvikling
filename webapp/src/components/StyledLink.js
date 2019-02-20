@@ -1,18 +1,13 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
-export const Title = styled.h1`
-  font-weight: bold;
-`;
-
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: black;
-  margin-left: 50px;
+  color: var(--link-color);
 
   &:hover {
-    opacity: 20;
+    opacity: 0.5;
     text-decoration: none;
-    color: gray;
+    transition: opacity 0.2s;
   }
 `;

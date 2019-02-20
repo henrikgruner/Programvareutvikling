@@ -5,7 +5,7 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
 
-const Test = ({ label, text }) => {
+const NumbersWithTitle = ({ label, text }) => {
   return (
     <div
       style={{
@@ -48,8 +48,8 @@ const AuctionForm = ({
 
         <div>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <Test label="Lederbud" text="110,-" />
-            <Test label="Slutter om" text="15 min 13 sek" />
+            <NumbersWithTitle label="Lederbud" text="110,-" />
+            <NumbersWithTitle label="Slutter om" text="15 min 13 sek" />
           </div>
           <div style={{ marginTop: "50px" }}>
             <Form>
@@ -62,7 +62,7 @@ const AuctionForm = ({
               disabled={isSubmitting}
               valid={isValid}
             >
-              Log in
+              Gi bud
             </SubmitButton>
           </div>
           <div style={{ marginTop: "10px" }}>
@@ -91,7 +91,7 @@ const AuctionPage = withFormik({
       bid: values.bid
     };
 
-    return callApi("/login", {
+    return callApi("/auction", {
       method: "POST",
       body: JSON.stringify(submission)
     })
@@ -107,10 +107,12 @@ const AuctionPage = withFormik({
 
   // Validation of the form
   validationSchema: Yup.object().shape({
-    bid: Yup.number("Skriv inn et bud")
+    bid: Yup.number()
+      .typeError("Skriv inn et bud")
       .required("Skriv inn et bud")
       .positive("Budet må være positivt")
       .integer("Budet må være et heltall")
+      .min(15 + 110, "Budet må være over budøkningen")
   })
 })(AuctionForm);
 

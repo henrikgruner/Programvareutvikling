@@ -2,7 +2,9 @@ import React from "react";
 import InputValidationFeedback from "./InputValidationFeedback";
 import { StyledField } from "./styles";
 
-const PasswordField = ({
+const TelBoxField = ({
+  placeholder,
+  label,
   field: { name, onChange, value },
   form: { touched, errors, handleBlur }
 }) => {
@@ -11,13 +13,14 @@ const PasswordField = ({
   return (
     <div>
       <label>
-        Passord
+        {label}
         <InputValidationFeedback error={error} />
+
         <StyledField
-          type="password"
+          type="tel"
           name={name}
           value={value}
-          placeholder="Skriv inn et passord"
+          placeholder="Telefonnummer"
           onChange={onChange}
           onBlur={handleBlur}
         />
@@ -26,4 +29,4 @@ const PasswordField = ({
   );
 };
 
-export default PasswordField;
+export default TelBoxField;
