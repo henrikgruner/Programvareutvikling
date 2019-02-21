@@ -4,6 +4,7 @@ import { SubmitButton } from "../../components/SubmitButton";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
+import styled from "styled-components/macro";
 
 const NumbersWithTitle = ({ label, text }) => {
   return (
@@ -15,11 +16,40 @@ const NumbersWithTitle = ({ label, text }) => {
         margin: "auto"
       }}
     >
-      <span>{label}</span>
+      <span>
+        <i>{label}</i>
+      </span>
       <span>{text}</span>
     </div>
   );
 };
+
+const Title = ({ label }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        fontWeight: "bold"
+      }}
+    >
+      <h1>{label}</h1>
+    </div>
+  );
+};
+
+/*
+const Title = styled.h1`
+  margin-bottom: 50px;
+  font-weight: bold;
+`;
+*/
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+`;
 
 const AuctionForm = ({
   touched,
@@ -37,21 +67,18 @@ const AuctionForm = ({
         alignItems: "center"
       }}
     >
-      <div style={{ marginBottom: "50px" }}>
-        <span style={{ fontSize: "2em" }}>Øreplugger fra Grundig</span>
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ marginRight: "20px" }}>
-          <img src="url" alt="Bilde" />
-        </div>
+      <ContentWrapper>
+        <img src="url" alt="Bilde" width="150" height="150" />
 
         <div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <NumbersWithTitle label="Lederbud" text="110,-" />
+          <Title label="Øreplugger fra Grundig" />
+
+          <ContentWrapper>
+            <NumbersWithTitle label="Lederbud" text="18,-" />
             <NumbersWithTitle label="Slutter om" text="15 min 13 sek" />
-          </div>
-          <div style={{ marginTop: "50px" }}>
+          </ContentWrapper>
+
+          <div>
             <Form>
               <Field name="bid" component={TextBoxField} />
             </Form>
@@ -65,11 +92,9 @@ const AuctionForm = ({
               Gi bud
             </SubmitButton>
           </div>
-          <div style={{ marginTop: "10px" }}>
-            <span>Budøkning: 15</span>
-          </div>
+          <span>Budøkning: 15</span>
         </div>
-      </div>
+      </ContentWrapper>
     </div>
   );
 };
@@ -112,7 +137,7 @@ const AuctionPage = withFormik({
       .required("Skriv inn et bud")
       .positive("Budet må være positivt")
       .integer("Budet må være et heltall")
-      .min(15 + 110, "Budet må være over budøkningen")
+      .min(15 + 18, "Budet må være over budøkningen")
   })
 })(AuctionForm);
 
