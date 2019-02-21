@@ -2,14 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField()
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profiles")
+    address = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    approved_terms = models.BooleanField(default=False)
 
-
-class Reports(models.Model):
-    reason = models.CharField()
-    author = models.ForeignKey(User, default=0, on_delete=models.CASCADE)
-    criminal = models.ForeignKey(
-        User, default=0, on_delete=models.CASCADE
-    )  # Skal kunne rapportere både brukere og auctionItems
+    def __str__(self):
+        return (
+            f"{self.user.get_full_name()} has been a user since {self.user.date_joined}"
+        )
