@@ -1,101 +1,53 @@
-import React, { Component } from "react";
-import { TextBoxField } from "../../components/form";
-import { SubmitButton } from "../../components/SubmitButton";
-import { Form, Field, withFormik } from "formik";
+import React from "react";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
-import styled from "styled-components/macro";
+import { Form, Field, withFormik } from "formik";
 
-const NumbersWithTitle = ({ label, text }) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "auto"
-      }}
-    >
-      <span>
-        <i>{label}</i>
-      </span>
-      <span>{text}</span>
-    </div>
-  );
-};
-
-const Title = ({ label }) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        fontWeight: "bold"
-      }}
-    >
-      <h1>{label}</h1>
-    </div>
-  );
-};
-
-/*
-const Title = styled.h1`
-  margin-bottom: 50px;
-  font-weight: bold;
-`;
-*/
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 50px;
-`;
+import imgPlaceholder from "../../assets/auction_image_placeholder.png";
+import { TextBoxField } from "../../components/form";
+import { SubmitButton } from "../../components/SubmitButton";
+import NumbersWithTitle from "./NumbersWithTitle";
+import { ContentWrapper, Title, AuctionImage, InfoWrapper } from "./styles";
 
 const AuctionForm = ({
   touched,
   error,
   isSubmitting,
   handleSubmit,
-  isValid
+  isValid,
+  img
 }) => {
+  const imageSrc = img ? img : imgPlaceholder;
+
   return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}
-    >
-      <ContentWrapper>
-        <img src="url" alt="Bilde" width="150" height="150" />
+    <ContentWrapper>
+      <AuctionImage src={imageSrc} alt="Bilde" />
 
+      <div>
+        <Title>Øreplugger fra Grundig</Title>
+
+        <InfoWrapper>
+          <NumbersWithTitle label="Lederbud" text="18,-" />
+          <NumbersWithTitle label="Slutter om" text="15 min 13 sek" />
+        </InfoWrapper>
+
+        <span>Minste budøkning: 15</span>
         <div>
-          <Title label="Øreplugger fra Grundig" />
+          <Form>
+            <Field name="bid" component={TextBoxField} />
+          </Form>
 
-          <ContentWrapper>
-            <NumbersWithTitle label="Lederbud" text="18,-" />
-            <NumbersWithTitle label="Slutter om" text="15 min 13 sek" />
-          </ContentWrapper>
-
-          <div>
-            <Form>
-              <Field name="bid" component={TextBoxField} />
-            </Form>
-
-            <SubmitButton
-              onClick={handleSubmit}
-              type="submit"
-              disabled={isSubmitting}
-              valid={isValid}
-            >
-              Gi bud
-            </SubmitButton>
-          </div>
-          <span>Budøkning: 15</span>
+          <SubmitButton
+            onClick={handleSubmit}
+            type="submit"
+            disabled={isSubmitting}
+            valid={isValid}
+          >
+            Gi bud
+          </SubmitButton>
         </div>
-      </ContentWrapper>
-    </div>
+      </div>
+    </ContentWrapper>
   );
 };
 
