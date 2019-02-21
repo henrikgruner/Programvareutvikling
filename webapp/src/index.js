@@ -14,8 +14,8 @@ import FrontPage from "./routes/FrontPage";
 import ProfilePage from "./routes/ProfilePage";
 import LoginPage from "./routes/LoginPage";
 import SignUpPage from "./routes/SignUpPage";
-import NotFoundPage from "./routes/NotFoundPage";
 import AuctionPage from "./routes/AuctionPage";
+import NotFoundPage from "./routes/NotFoundPage";
 
 export const PageWrapper = styled.div`
   display: flex;
