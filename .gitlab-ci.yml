@@ -1,24 +1,22 @@
-# .gitlab-ci.yml 
-image: node:11
-# pipeline will use this image unless specifed in the stage definition
-
-# Define the stages
-stages:
-  - test
-  - build
-
-
-# Define the process for each stage
-test:
-  stage: test
+python:
+  image: python:3.7
   script:
-  - cd webapp/
-  - npm install 
-  - npm test
-  
+    - apt-get update -q -y
+    - cd matega_backend
+    - pip install -r requirements.txt
+    - python manage.py test
+  except:
+    - /^junk.*$/
 
-build:
-    stage: build
-    script:
-    - npm install
-    - npm build
+yarn:
+  image: node:11
+  script:
+    - cd matega_webapp
+    - yarn
+    - yarn lint:prettier
+    - yarn lint:eslint
+    - yarn build
+  except:
+    - /^junk.*$/
+
+
