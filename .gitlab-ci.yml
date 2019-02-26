@@ -12,5 +12,5 @@ stages:
 test:
   stage: test
   script:
-  - npm init
-  - npm test
+  - npm install <webapp>
+  - npm test <webapp>
