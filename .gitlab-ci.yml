@@ -12,5 +12,5 @@ stages:
 test:
   stage: test
   script:
-  - npm install
+  - npm init
   - npm test
