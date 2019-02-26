@@ -1,7 +1,12 @@
-image: node:11
+stages:
+  - test
+  
+  
 
-
-
+# Define the process for each stage
+test:
+  stage: test
   script:
-   - npm install
-   
+  - npm install
+  - npm test
+
