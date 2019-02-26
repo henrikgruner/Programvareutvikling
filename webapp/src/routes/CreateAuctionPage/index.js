@@ -11,6 +11,7 @@ import {
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import FileUpload from "../../components/form/FileUpload";
+import { CancelButton } from "../../components/CancelButton";
 
 const CreateAuctionForm = ({
   touched,
@@ -30,7 +31,6 @@ const CreateAuctionForm = ({
           label="Tittel"
           placeholder="Skriv inn tittel.."
         />
-        <FileUpload name="file" label="Bilde" />
         <Field
           name="descripiton"
           component={TextAreaField}
@@ -47,6 +47,7 @@ const CreateAuctionForm = ({
       >
         Last opp
       </SubmitButton>
+      <CancelButton to="/">Avbryt</CancelButton>
     </div>
   );
 };
