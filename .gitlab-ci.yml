@@ -13,7 +13,6 @@ yarn:
   script:
     - cd webapp
     - yarn
-    - yarn lint:eslint
     - yarn build
   except:
     - /^junk.*$/
