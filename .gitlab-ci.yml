@@ -6,11 +6,17 @@ image: node:11
 # Define the stages
 stages:
   - test
+  - build
 
 
 # Define the process for each stage
 test:
   stage: test
   script:
-  - npm install <webapp>
-  - npm test <webapp>
+  - npm install <webapp/package.json>
+  
+
+build:
+    stage: build
+    script: 
+    -npm install
