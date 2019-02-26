@@ -13,16 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from auction.auctions.views import AuctionViewSet, BidViewSet
-from auction.users.views import GroupViewSet, UserViewSet
-from django.conf.urls import include, url
+from django.conf import settings
+from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
+from auction.auctions.views import AuctionViewSet, BidViewSet
+from auction.users.views import BaseUserViewSet, GroupViewSet, UserProfileViewSet
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r"users", UserViewSet)
+router.register(r"userprofiles", UserProfileViewSet)
+router.register(r"users", BaseUserViewSet)
 router.register(r"groups", GroupViewSet)
 router.register(r"auctions", AuctionViewSet)
 router.register(r"bids", BidViewSet)
@@ -35,3 +38,12 @@ urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    urlpatterns += staticfiles_urlpatterns()

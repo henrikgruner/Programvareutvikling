@@ -55,3 +55,28 @@ setup, you have to be inside your `venv` to be able to commit (unless you instal
 5. `git push`
 6. Get conflict, try to fix but lie down and cry. You can avoid this step by working on
    your own branch :)
+
+## Loading fixtures
+
+Creates 10 standard users
+
+```python
+from auction.users.factories import UserProfileFactory
+users = UserProfileFactory.create_batch(size=10)
+```
+
+Creates 15 auctions
+
+```python
+from auction.auctions.factories import AuctionFactory
+auctions = AuctionFactory.create_batch(size=15)
+```
+
+Total initialize script:
+
+```python
+from auction.users.factories import UserProfileFactory
+from auction.auctions.factories import AuctionFactory
+users = UserProfileFactory.create_batch(size=10)
+auctions = AuctionFactory.create_batch(size=15)
+```
