@@ -13,7 +13,7 @@ stages:
 test:
   stage: test
   script:
-  - npm install <webapp/package.json>
+  - npm install webapp/package.json
   
 
 build:
