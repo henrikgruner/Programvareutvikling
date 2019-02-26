@@ -28,6 +28,16 @@ class Auction(models.Model):
     img = models.ImageField(upload_to="auctions", default=None)
     pickup_address = models.CharField(max_length=200)
 
+    @property
+    def leading_bid(self):
+        try:
+            bid = self.bids.latest("reg_time").amount
+
+        except Bid.DoesNotExist:
+            bid = self.start_price
+
+        return bid
+
     def __str__(self):
         return f"{self.title}, {self.author.get_full_name()}"
 
@@ -36,7 +46,7 @@ class Auction(models.Model):
 
 
 class Bid(models.Model):
-    reg_date = models.DateTimeField(auto_now_add=True, blank=True)
+    reg_time = models.DateTimeField(auto_now_add=True, blank=True)
     amount = models.PositiveIntegerField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE, related_name="bids")
@@ -45,4 +55,4 @@ class Bid(models.Model):
         return f"{self.amount}, {self.reg_date}, {self.author.get_full_name()},  {self.auction.title}"
 
     class Meta:
-        ordering = ("reg_date",)
+        ordering = ("reg_time",)

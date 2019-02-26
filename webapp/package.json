@@ -5,10 +5,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "lint": "npm run lint:prettier",
+    "lint:prettier": "prettier '**/*.{js,css,md}' --list-different",
+    "prettier": "prettier '**/*.{js,css,md}' --write"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,6 +27,7 @@
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.1",
+    "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.5",

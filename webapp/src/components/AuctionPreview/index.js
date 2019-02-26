@@ -7,10 +7,12 @@ class AuctionPreview extends Component {
   render() {
     return (
       <StyledDiv>
-        <Text>Auksjonstittel</Text>
-        <StyledLink to="/auction">Legg inn bud</StyledLink>
+        <Text>{this.props.title}</Text>
+        <span>Høyeste bud: ... kr</span>
+        <StyledLink to={`/auctions/${this.props.id}`}>Legg inn bud</StyledLink>
       </StyledDiv>
     );
   }
 }
+
 export default AuctionPreview;

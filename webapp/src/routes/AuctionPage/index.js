@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
-import callApi from "../../utils/callApi";
+import Countdown from "react-countdown-now";
 import { Form, Field, withFormik } from "formik";
+import callApi from "../../utils/callApi";
 
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
@@ -15,23 +16,49 @@ const AuctionForm = ({
   isSubmitting,
   handleSubmit,
   isValid,
-  img
+  img,
+  match
 }) => {
-  const imageSrc = img ? img : imgPlaceholder;
+  const [initialized, setInitialized] = useState(false);
+  const [auction, setAuction] = useState();
 
-  return (
+  useEffect(() => {
+    if (!initialized) {
+      callApi(`/auctions/1/`, {})
+        .then(result => {
+          setAuction(result.jsonData);
+          console.log("Successful fetch :)", result);
+        })
+        .catch(err => {
+          console.error("Det skjedde en feil når vi hentet data.... ");
+          throw err;
+        });
+      setInitialized(true);
+    }
+  });
+
+  console.log("pllls work", match);
+  return auction ? (
     <ContentWrapper>
-      <AuctionImage src={imageSrc} alt="Bilde" />
-
+      <AuctionImage
+        src={auction.img ? auction.img : imgPlaceholder}
+        alt="Bilde"
+      />
       <div>
-        <Title>Øreplugger fra Grundig</Title>
+        <Title>{auction.title}</Title>
 
         <InfoWrapper>
-          <NumbersWithTitle label="Lederbud" text="18,-" />
-          <NumbersWithTitle label="Slutter om" text="15 min 13 sek" />
+          <NumbersWithTitle
+            label="Lederbud"
+            text={`${auction.leading_bid} kr`}
+          />
+          <NumbersWithTitle
+            label="Slutter om"
+            text={<Countdown date={auction.end_time} />}
+          />
         </InfoWrapper>
-
-        <span>Minste budøkning: 15</span>
+        <div>{auction.description}</div>
+        <span>Du må øke budet med minst {auction.min_bid_increase} kr</span>
         <div>
           <Form>
             <Field name="bid" component={TextBoxField} />
@@ -48,6 +75,8 @@ const AuctionForm = ({
         </div>
       </div>
     </ContentWrapper>
+  ) : (
+    <div>Loading...</div>
   );
 };
 

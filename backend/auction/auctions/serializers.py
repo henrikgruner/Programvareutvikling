@@ -6,9 +6,28 @@ from .models import Auction, Bid
 
 
 class AuctionSerializer(serializers.ModelSerializer):
+    leading_bid = serializers.SerializerMethodField()
+
+    def get_leading_bid(self, obj):
+        return obj.leading_bid
+
     class Meta:
         model = Auction
-        fields = "__all__"
+        fields = (
+            "created",
+            "title",
+            "author",
+            "winner",
+            "is_active",
+            "description",
+            "start_time",
+            "end_time",
+            "start_price",
+            "min_bid_increase",
+            "img",
+            "pickup_address",
+            "leading_bid",
+        )
 
 
 class BidSerializer(serializers.HyperlinkedModelSerializer):
