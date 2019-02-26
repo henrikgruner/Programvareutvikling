@@ -12,7 +12,7 @@ stages:
 test:
   stage: test
   script:
-  - cd webapp
+  - cd webapp/package.json
   - npm install 
   - npm test
   
