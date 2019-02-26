@@ -1,11 +1,16 @@
+# .gitlab-ci.yml 
+# Docker Image location on hub.docker.com, its normally your-username/repo-name
 image: node:11
+# pipeline will use this image unless specifed in the stage definition
 
-Stages: 
-    -test
-    -build
-    
+# Define the stages
+stages:
+  - test
+
+
+# Define the process for each stage
 test:
-    script:
-    -npm install
-    -npm test
-    
+  stage: test
+  script:
+  - npm install
+  - npm test
