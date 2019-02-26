@@ -8,12 +8,12 @@ python:
   except:
     - /^junk.*$/
 
-yarn:
+npm:
   image: node:11
   script:
     - cd webapp
-    - yarn
-    - yarn build
+    - npm install
+    - npm build
   except:
     - /^junk.*$/
 
