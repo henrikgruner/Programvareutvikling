@@ -1,0 +1,11 @@
+image: node:11
+
+Stages: 
+    -test
+    -build
+    
+test:
+    script:
+    -npm install
+    -npm test
+    
