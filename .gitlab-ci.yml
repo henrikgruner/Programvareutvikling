@@ -1,0 +1,23 @@
+
+# Define the stages
+stages:
+  - test
+  - build
+
+# Define the process for each stage
+test:
+  stage: test
+  script:
+  - npm install
+  - npm test
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+    - ls -la build
+    - zip build.zip -r ./build
+  artifacts:
+    paths:
+    - build.zip
