@@ -1,8 +1,7 @@
 
-
 # Announce the URL as per CRA docs
 
-  PUBLIC_URL: /code
+  PUBLIC_URL: /webapp
 # Cache node modules - speeds up future builds
 cache:
   paths:
