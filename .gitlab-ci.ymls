@@ -1,0 +1,12 @@
+image: node:11
+
+stages:
+  - test
+  
+
+# Define the process for each stage
+test:
+  stage: test
+  script:
+  - npm test /webapp
+  - npm install /webapp
