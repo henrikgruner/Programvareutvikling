@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Menu } from "antd";
 import {
   Title,
   HeaderWrapper,
@@ -17,9 +18,17 @@ class Header extends Component {
         <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
 
         <AuthLinkWrapper>
-          <AuthLink to="/login">Logg inn </AuthLink>
-          <span>|</span>
-          <AuthLink to="/signup"> Ny bruker</AuthLink>
+          {this.props.isAuthenticataed ? (
+            <Menu.Item key="2" onClick={this.props.logout}>
+              Logout
+            </Menu.Item>
+          ) : (
+            <React.Fragment>
+              <AuthLink to="/login">Logg inn </AuthLink>
+              <span>|</span>
+              <AuthLink to="/signup"> Ny bruker</AuthLink>
+            </React.Fragment>
+          )}
         </AuthLinkWrapper>
 
         {this.props.children}

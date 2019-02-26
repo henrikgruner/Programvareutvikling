@@ -40,6 +40,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
 
 THIRD_PARTY_APPS = [
@@ -47,6 +48,12 @@ THIRD_PARTY_APPS = [
     "django_extensions",
     "debug_toolbar",
     "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "rest_auth",
+    "rest_auth.registration",
 ]
 
 
@@ -74,7 +81,8 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        #"rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+        "rest_framework.permissions.AllowAny"
     ]
 }
 
@@ -172,6 +180,8 @@ CORS_ORIGIN_WHITELIST = [
     "127.0.0.1:8000",
 ]
 CORS_ORIGIN_ALLOW_ALL = True
-
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_EMAIL_REQUIRED = False
 
 LOGIN_REDIRECT = "/"
