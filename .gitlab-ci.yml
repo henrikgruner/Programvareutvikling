@@ -1,3 +1,5 @@
+image: node: 11
+
 stages:
   - test
   
@@ -7,6 +9,5 @@ stages:
 test:
   stage: test
   script:
-  - npm install
   - npm test
 
