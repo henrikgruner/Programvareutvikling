@@ -1,0 +1,18 @@
+python:
+  image: python:3.7
+  script:
+    - apt-get update -q -y
+    - cd backend
+    - pip install -r requirements.txt
+    - python manage.py test
+  except:
+    - /^junk.*$/
+
+npm:
+  image: node:11
+  script:
+    - cd webapp
+    - npm install
+    - npm build
+  except:
+    - /^junk.*$/
