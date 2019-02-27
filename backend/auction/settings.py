@@ -27,16 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-INTERNAL_IPS = ["127.0.0.1"]
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-    "127.0.0.1:3000",
-    "localhost:3000",
-    "localhost:8000",
-    "127.0.0.1:8000",
-]
-
 
 # Application definition =======================================================
 
@@ -49,17 +39,12 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = [
-    "corsheaders",
-    "django_extensions",
-    "debug_toolbar",
-    "rest_framework",
-]
+THIRD_PARTY_APPS = ["django_extensions", "debug_toolbar", "rest_framework"]
 
-LOCAL_APPS = ["auction.users", "auction.auctions"]
+
+LOCAL_APPS = ["auction.users", "auction.auctions", "corsheaders"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
 
 # Middleware ==================================================================
 
@@ -167,3 +152,15 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.logging.LoggingPanel",
     "debug_toolbar.panels.redirects.RedirectsPanel",
 ]
+
+
+INTERNAL_IPS = ["127.0.0.1"]
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+    "127.0.0.1:3000",
+    "localhost:3000",
+    "localhost:8000",
+    "127.0.0.1:8000",
+]
+CORS_ORIGIN_ALLOW_ALL = True

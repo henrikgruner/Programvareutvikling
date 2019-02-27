@@ -41,7 +41,15 @@ ReactDOM.render(
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
-            <Route exact path="/auction" component={AuctionPage} />
+            <Route
+              path="/auctions"
+              render={({ match: { url } }) => (
+                <>
+                  <Route exact path={`${url}/`} component={FrontPage} />
+                  <Route path={`${url}/:auctionId`} component={AuctionPage} />
+                </>
+              )}
+            />
             <Route component={NotFoundPage} />
           </Switch>
         </ContentWrapper>

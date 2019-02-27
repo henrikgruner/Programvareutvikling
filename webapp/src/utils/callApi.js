@@ -1,4 +1,3 @@
-import Cookie from "js-cookie";
 import config from "./config";
 import "whatwg-fetch";
 
@@ -40,12 +39,9 @@ const callApi = async (url, { method = "GET", body = null } = {}) => {
     method,
     headers: new Headers({
       Accept: "application/json",
-      "Content-Type": "application/json",
-      "X-CSRFToken": Cookie.get("csrftoken"),
-      "Access-Control-Allow-Credentials": true
+      "Content-Type": "application/json"
     }),
     redirect: "manual",
-    credentials: "include",
     // IE don't support body equal to null
     ...(body ? { body } : {})
   });

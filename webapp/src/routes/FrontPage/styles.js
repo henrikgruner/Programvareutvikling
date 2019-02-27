@@ -5,7 +5,7 @@ export const ContentWrapper = styled.div`
   padding-bottom: 60px;
 `;
 
-export const AuctionList = styled.div`
+export const AuctionListWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
