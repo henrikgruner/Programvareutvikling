@@ -13,7 +13,7 @@ npm:
   script:
     - cd webapp
     - npm install
-    - npm check-prettier #evt check-prettier 
+    - npm prettier 
     - npm build
   except:
     - /^junk.*$/
