@@ -8,7 +8,7 @@ from .serializers import AuctionSerializer, BidSerializer
 class AuctionViewSet(viewsets.ModelViewSet):
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
-    permission_classes = (IsOwnerOrReadOnly, permissions.IsAuthenticated)
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
 class BidViewSet(viewsets.ModelViewSet):
