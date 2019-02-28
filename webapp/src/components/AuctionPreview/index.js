@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { StyledDiv } from "./styles.js";
-import { Text } from "./styles.js";
+import React from "react";
+import { Text, AuctionImage, StyledDiv } from "./styles.js";
 import { StyledLink } from "../StyledLink";
 
-class AuctionPreview extends Component {
-  render() {
-    return (
+const AuctionPreview = ({ title, highestBid, id, mainImage }) => {
+  return (
+    <StyledLink to={`/auctions/${id}`}>
       <StyledDiv>
-        <Text>{this.props.title}</Text>
-        <span>Høyeste bud: ... kr</span>
-        <StyledLink to={`/auctions/${this.props.id}`}>Legg inn bud</StyledLink>
+        {mainImage && <AuctionImage src={mainImage} alt={title} />}
+        <Text>{title}</Text>
+        <span>Høyeste bud: {highestBid} kr</span>
+        Gå til auksjon
       </StyledDiv>
-    );
-  }
-}
+    </StyledLink>
+  );
+};
 
 export default AuctionPreview;

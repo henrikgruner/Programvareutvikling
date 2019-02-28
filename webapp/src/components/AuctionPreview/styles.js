@@ -21,3 +21,9 @@ export const Text = styled.h1`
   font-size: 20px;
   color: yellow;
 `;
+
+export const AuctionImage = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: scale-down;
+`;

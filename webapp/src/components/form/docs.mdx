@@ -60,3 +60,26 @@ import { TelBoxField } from "../../components/form";
   placeholder="Telefonnummer ..."
 />;
 ```
+
+## DateTimePickerField
+
+```js
+import { Field } from "formik";
+import { DateTimePickerField } from "../../components/form";
+
+<Field
+  name="endtime"
+  component={DateTimePickerField}
+  label="Slutttid"
+  placeholder="Velg når auksjonen skal stenge .."
+/>;
+```
+
+## FileUploadField
+
+```js
+import { Field } from "formik";
+import { FileUploadField } from "../../components/form";
+
+<Field name="images" component={FileUploadField} label="Bilde av gjenstand" />;
+```

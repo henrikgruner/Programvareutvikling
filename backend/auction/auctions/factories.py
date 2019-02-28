@@ -22,5 +22,4 @@ class AuctionFactory(factory.DjangoModelFactory):
     end_time = datetime.now(pytz.utc) + timedelta(days=randint(3, 17))
     start_price = factory.fuzzy.FuzzyInteger(low=10, high=3000)
     min_bid_increase = factory.fuzzy.FuzzyInteger(low=10, high=300)
-    img = factory.django.ImageField(color="blue")
     pickup_address = factory.Faker("address", locale="no_NO")

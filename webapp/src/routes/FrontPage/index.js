@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
 import AuctionPreview from "../../components/AuctionPreview";
 import { ContentWrapper, AuctionListWrapper } from "./styles.js";
 import callApi from "../../utils/callApi";
-
-import AuctionPage from "../AuctionPage";
 
 class FrontPage extends Component {
   state = {
@@ -28,9 +25,20 @@ class FrontPage extends Component {
       <ContentWrapper>
         <AuctionListWrapper>
           {this.state.auctions &&
-            this.state.auctions.map((auction, i) => (
-              <AuctionPreview title={auction.title} id={auction.id} key={i} />
-            ))}
+            this.state.auctions.map((auction, i) => {
+              console.log(auction);
+              return (
+                <AuctionPreview
+                  title={auction.title}
+                  mainImage={
+                    auction.images.length > 0 ? auction.images[0].image : null
+                  }
+                  highestBid={auction.leading_bid}
+                  id={auction.id}
+                  key={i}
+                />
+              );
+            })}
         </AuctionListWrapper>
       </ContentWrapper>
     );

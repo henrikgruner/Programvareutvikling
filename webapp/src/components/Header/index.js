@@ -14,6 +14,8 @@ class Header extends Component {
         <CompanyLogo to="/">BudBua AS</CompanyLogo>
         <Title>Velkommen til Norges største og eldste auksjonsmarked</Title>
 
+        <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
+
         <AuthLinkWrapper>
           <AuthLink to="/login">Logg inn </AuthLink>
           <span>|</span>
