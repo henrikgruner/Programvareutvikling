@@ -104,10 +104,13 @@ const AuctionPage = withFormik({
   // What happens when you submit the form
   handleSubmit(values, { setSubmitting }) {
     var submission = {
-      bid: values.bid
+      amount: values.bid,
+      auction: "http://127.0.0.1:8000/auctions/1/"
     };
 
-    return callApi("/auction", {
+    console.log("bid submission", submission);
+
+    return callApi("/bids/", {
       method: "POST",
       body: JSON.stringify(submission)
     })
