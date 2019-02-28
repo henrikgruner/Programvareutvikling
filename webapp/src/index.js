@@ -23,7 +23,7 @@ import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
 
-const composeEnhances = Window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer, composeEnhances(applyMiddleware(thunk)));
 
