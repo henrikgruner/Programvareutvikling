@@ -18,11 +18,14 @@ class Header extends React.Component {
         <CompanyLogo to="/">BudBua AS</CompanyLogo>
         <Title>Velkommen til Norges største og eldste auksjonsmarked</Title>
 
-        <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
 
         <AuthLinkWrapper>
           {this.props.isAuthenticated ? (
             <React.Fragment>
+              <span>
+                <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
+              </span>
+              <span>|</span>
               <span onClick={this.props.logout}>
                 <AuthLink to="/"> Logout </AuthLink>
               </span>
