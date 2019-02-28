@@ -105,7 +105,9 @@ const AuctionPage = withFormik({
   handleSubmit(values, { setSubmitting }) {
     var submission = {
       amount: values.bid,
-      auction: "http://127.0.0.1:8000/auctions/1/"
+      auction: `http://127.0.0.1:8000/auctions/${
+        window.location.pathname.split("/")[2]
+      }/`
     };
 
     console.log("bid submission", submission);
