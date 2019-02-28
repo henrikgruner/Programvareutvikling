@@ -106,7 +106,7 @@ const AuctionPage = withFormik({
     var submission = {
       amount: values.bid,
       auction: `http://127.0.0.1:8000/auctions/${
-        window.location.pathname.split("/")[2]
+        window.location.pathname.split("/")[2] // Vil ha auction.url
       }/`
     };
 
@@ -133,7 +133,7 @@ const AuctionPage = withFormik({
       .required("Skriv inn et bud")
       .positive("Budet må være positivt")
       .integer("Budet må være et heltall")
-      .min(15 + 18, "Budet må være over budøkningen")
+    //.min(15 + 18, "Budet må være over budøkningen") Vil ha `auction.min_bid_increase + auction.leading_bid`
   })
 })(AuctionForm);
 
