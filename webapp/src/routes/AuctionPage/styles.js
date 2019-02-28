@@ -1,8 +1,13 @@
 import styled from "styled-components";
+import { media } from "../../utils/mediaQueries";
 
 export const ContentWrapper = styled.div`
   display: flex;
   padding: 50px;
+
+  ${media.tablet`
+    flex-wrap: wrap;
+  `};
 `;
 
 export const InfoWrapper = styled.div`

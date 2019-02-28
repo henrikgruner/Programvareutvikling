@@ -19,13 +19,12 @@ class Auction(models.Model):
         default=True, help_text="If the auction is open or finished"
     )
     description = models.CharField(max_length=280)
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField()
     start_price = models.PositiveIntegerField(default=0)
     min_bid_increase = models.PositiveIntegerField(
         help_text="How much the bid must increase each time"
     )
-    img = models.ImageField(upload_to="auctions", default=None)
     pickup_address = models.CharField(max_length=200)
 
     @property
@@ -45,6 +44,16 @@ class Auction(models.Model):
         ordering = ("created",)
 
 
+class AuctionImage(models.Model):
+    auction = models.ForeignKey(
+        Auction, related_name="images", on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to="auctions", default=None)
+
+    def __str__(self):
+        return f"{self.image}, {self.auction_id}"
+
+
 class Bid(models.Model):
     reg_time = models.DateTimeField(auto_now_add=True, blank=True)
     amount = models.PositiveIntegerField()
@@ -52,7 +61,7 @@ class Bid(models.Model):
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE, related_name="bids")
 
     def __str__(self):
-        return f"{self.amount}, {self.reg_date}, {self.author.get_full_name()},  {self.auction.title}"
+        return f"{self.amount}, {self.reg_time}, {self.author.get_full_name()},  {self.auction.title}"
 
     class Meta:
         ordering = ("reg_time",)

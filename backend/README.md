@@ -58,6 +58,8 @@ setup, you have to be inside your `venv` to be able to commit (unless you instal
 
 ## Loading fixtures
 
+Use the command `python manage.py shell_plus` to enter the enhanced python shell.
+
 Creates 10 standard users
 
 ```python
@@ -79,4 +81,19 @@ from auction.users.factories import UserProfileFactory
 from auction.auctions.factories import AuctionFactory
 users = UserProfileFactory.create_batch(size=10)
 auctions = AuctionFactory.create_batch(size=15)
+```
+
+Scripts I use often
+
+```python
+a = Auction.objects.latest("created")
+for image in a.images.all():
+    print(image.image)
+
+auction = Auction.objects.get(pk=1)
+image_list = auction.images.all()
+
+images = AuctionImage.objects.all()
+images
+
 ```

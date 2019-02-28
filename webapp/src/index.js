@@ -42,25 +42,24 @@ ReactDOM.render(
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
-<<<<<<< HEAD
             <Route
               path="/auctions"
               render={({ match: { url } }) => (
-                <>
+                <Switch>
                   <Route exact path={`${url}/`} component={FrontPage} />
                   <Route
                     exact
                     path={`${url}/new`}
                     component={CreateAuctionPage}
                   />
-                  <Route path={`${url}/:auctionId`} component={AuctionPage} />
-                </>
+                  <Route
+                    exact
+                    path={`${url}/:auctionId`}
+                    component={AuctionPage}
+                  />
+                </Switch>
               )}
             />
-=======
-            <Route exact path="/auction" component={AuctionPage} />
-            <Route exact path="/auction/create" component={CreateAuctionPage} />
->>>>>>> creating auctionpage and problems with fileupload
             <Route component={NotFoundPage} />
           </Switch>
         </ContentWrapper>

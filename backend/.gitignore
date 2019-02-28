@@ -37,7 +37,7 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-
+files/
 # CMake
 cmake-build-*/
 
@@ -182,6 +182,7 @@ ENV/
 env.bak/
 venv.bak/
 
+auction/files/
 # Spyder project settings
 .spyderproject
 .spyproject

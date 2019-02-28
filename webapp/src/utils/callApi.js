@@ -39,7 +39,9 @@ const callApi = async (url, { method = "GET", body = null } = {}) => {
     method,
     headers: new Headers({
       Accept: "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      // Hardcoded in basic authentication for agent_000
+      Authorization: "Basic YWdlbnRfMDAwOnBhc3N3b3JkMTIz"
     }),
     redirect: "manual",
     // IE don't support body equal to null

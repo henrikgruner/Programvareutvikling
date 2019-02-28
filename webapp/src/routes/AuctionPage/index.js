@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import Countdown from "react-countdown-now";
 import { Form, Field, withFormik } from "formik";
 import callApi from "../../utils/callApi";
+import "react-image-gallery/styles/css/image-gallery.css";
+import ImageGallery from "react-image-gallery";
 
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
@@ -24,7 +26,7 @@ const AuctionForm = ({
 
   useEffect(() => {
     if (!initialized) {
-      callApi(`/auctions/1/`, {})
+      callApi(`/auctions/${match.params.auctionId}/`, {})
         .then(result => {
           setAuction(result.jsonData);
           console.log("Successful fetch :)", result);
@@ -37,13 +39,21 @@ const AuctionForm = ({
     }
   });
 
-  console.log("pllls work", match);
   return auction ? (
     <ContentWrapper>
-      <AuctionImage
-        src={auction.img ? auction.img : imgPlaceholder}
-        alt="Bilde"
-      />
+      {auction.images.length > 0 ? (
+        <ImageGallery
+          showIndex={true}
+          slideDuration={450}
+          showPlayButton={false}
+          items={auction.images.map(image => ({
+            original: image.image,
+            thumbnail: image.image
+          }))}
+        />
+      ) : (
+        <AuctionImage src={imgPlaceholder} alt="Placeholder" />
+      )}
       <div>
         <Title>{auction.title}</Title>
 

@@ -1,12 +1,19 @@
 from rest_framework import serializers
 
-from .models import Auction, Bid
+from .models import Auction, AuctionImage, Bid
 
 # Serializers define the API representation
 
 
-class AuctionSerializer(serializers.ModelSerializer):
+class AuctionImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = AuctionImage
+        fields = ("image",)
+
+
+class AuctionSerializer(serializers.HyperlinkedModelSerializer):
     leading_bid = serializers.SerializerMethodField()
+    images = AuctionImageSerializer(many=True, read_only=True)
 
     def get_leading_bid(self, obj):
         return obj.leading_bid
@@ -14,6 +21,7 @@ class AuctionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Auction
         fields = (
+            "id",
             "created",
             "title",
             "author",
@@ -24,13 +32,24 @@ class AuctionSerializer(serializers.ModelSerializer):
             "end_time",
             "start_price",
             "min_bid_increase",
-            "img",
             "pickup_address",
             "leading_bid",
+            "images",
         )
+        read_only_fields = ("id", "created", "author", "start_time")
+
+    def create(self, validated_data):
+        images_data = self.context.get("request").FILES
+        auction = Auction.objects.create(
+            author=self.context.get("request").user, **validated_data
+        )
+        for image_data in images_data.values():
+            AuctionImage.objects.create(auction=auction, image=image_data)
+        return auction
 
 
 class BidSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Bid
-        fields = "__all__"
+        fields = ("amount", "auction", "author", "reg_time")
+        read_only_fields = ("reg_time", "author")

@@ -12,9 +12,12 @@ import os
 
 import environ
 
+MANAGEPY_DIR = (
+    environ.Path(__file__) - 2
+)  # (backend/auction/settings.py - 2 = backend/)
 BASE_DIR = environ.Path(__file__) - 1  # (auction/settings.py - 1 = auction/)
 
-FILES_DIR = BASE_DIR.path("files")
+FILES_DIR = MANAGEPY_DIR.path("files")
 
 
 # Security =====================================================================
@@ -39,10 +42,15 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["django_extensions", "debug_toolbar", "rest_framework"]
+THIRD_PARTY_APPS = [
+    "corsheaders",
+    "django_extensions",
+    "debug_toolbar",
+    "rest_framework",
+]
 
 
-LOCAL_APPS = ["auction.users", "auction.auctions", "corsheaders"]
+LOCAL_APPS = ["auction.users", "auction.auctions"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -95,7 +103,7 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "NAME": MANAGEPY_DIR.path("db.sqlite3")(),
     }
 }
 
@@ -164,3 +172,6 @@ CORS_ORIGIN_WHITELIST = [
     "127.0.0.1:8000",
 ]
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+LOGIN_REDIRECT = "/"
