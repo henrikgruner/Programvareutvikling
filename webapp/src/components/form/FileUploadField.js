@@ -1,5 +1,6 @@
 import React from "react";
 import ImageUploader from "react-images-upload";
+import { ImageUploaderWrapper } from "./styles";
 
 const FileUploadField = ({
   label,
@@ -14,14 +15,16 @@ const FileUploadField = ({
     <div>
       <label>{label}</label>
 
-      <ImageUploader
-        name={name}
-        withIcon={true}
-        buttonText="Last opp bilde(r)"
-        onChange={onSelectImages}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-        withPreview={true}
-      />
+      <ImageUploaderWrapper>
+        <ImageUploader
+          name={name}
+          withIcon={true}
+          buttonText="Last opp bilde(r)"
+          onChange={onSelectImages}
+          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+          withPreview={true}
+        />
+      </ImageUploaderWrapper>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const CreateAuctionForm = ({
         <Field
           name="endtime"
           component={DateTimePickerField}
-          label="Slutttid"
+          label="Sluttid"
           placeholder="Velg når auksjonen skal stenge .."
         />
         <Field
