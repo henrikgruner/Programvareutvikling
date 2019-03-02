@@ -52,7 +52,7 @@ const SignUpForm = ({
         disabled={isSubmitting}
         valid={isValid}
       >
-        Sign up
+        Logg inn
       </SubmitButton>
       <CancelButton to="/">Avbryt</CancelButton>
     </div>
