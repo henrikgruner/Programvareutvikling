@@ -59,4 +59,5 @@ class FrontPage extends Component {
   }
 }
 
-export default FrontPage
+
+export default(FrontPage);
