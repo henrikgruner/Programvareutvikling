@@ -104,10 +104,15 @@ const AuctionPage = withFormik({
   // What happens when you submit the form
   handleSubmit(values, { setSubmitting }) {
     var submission = {
-      bid: values.bid
+      amount: values.bid,
+      auction: `http://127.0.0.1:8000/auctions/${
+        window.location.pathname.split("/")[2] // Vil ha auction.url
+      }/`
     };
 
-    return callApi("/auction", {
+    console.log("bid submission", submission);
+
+    return callApi("/bids/", {
       method: "POST",
       body: JSON.stringify(submission)
     })
@@ -128,7 +133,7 @@ const AuctionPage = withFormik({
       .required("Skriv inn et bud")
       .positive("Budet må være positivt")
       .integer("Budet må være et heltall")
-      .min(15 + 18, "Budet må være over budøkningen")
+    //.min(15 + 18, "Budet må være over budøkningen") Vil ha `auction.min_bid_increase + auction.leading_bid`
   })
 })(AuctionForm);
 
