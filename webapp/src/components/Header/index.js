@@ -22,6 +22,10 @@ class Header extends React.Component {
         <AuthLinkWrapper>
           {this.props.isAuthenticated ? (
             <React.Fragment>
+            <span>
+              <span> </span>
+            </span>
+            <span>|</span>
               <span>
                 <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
               </span>
@@ -49,6 +53,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     isAuthenticated: state.token !== null
   };
