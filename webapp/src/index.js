@@ -9,6 +9,11 @@ import ScrollToTop from "./utils/scrollToTop";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+import reducer from "./store/reducers/auth";
+import { createStore, compose, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+
 // Routes
 import FrontPage from "./routes/FrontPage";
 import ProfilePage from "./routes/ProfilePage";
@@ -17,6 +22,10 @@ import SignUpPage from "./routes/SignUpPage";
 import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
+
+const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, composeEnhances(applyMiddleware(thunk)));
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -32,6 +41,8 @@ export const ContentWrapper = styled.div`
 `;
 
 ReactDOM.render(
+  
+<Provider store={store}>
   <Router>
     <ScrollToTop>
       <PageWrapper>
@@ -66,6 +77,7 @@ ReactDOM.render(
         <Footer />
       </PageWrapper>
     </ScrollToTop>
-  </Router>,
+  </Router>
+  </Provider>,
   document.getElementById("root")
 );

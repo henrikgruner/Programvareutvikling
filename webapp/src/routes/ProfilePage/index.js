@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import * as actions from "../../store/actions/auth";
+
+import { connect } from "react-redux";
 
 class ProfilePage extends Component {
   render() {
@@ -12,4 +15,10 @@ class ProfilePage extends Component {
   }
 }
 
-export default ProfilePage;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(ProfilePage);

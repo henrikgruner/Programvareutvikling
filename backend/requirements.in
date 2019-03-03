@@ -9,6 +9,10 @@ pillow==5.4.1
 pytz==2018.9
 django-environ==0.4.5
 django-cors-headers==2.4.0
+django-allauth==0.39.0
+django-rest-auth==0.9.3
+
+
 
 # Dev Dependencies ----------------------- #
 pre-commit==1.14.3

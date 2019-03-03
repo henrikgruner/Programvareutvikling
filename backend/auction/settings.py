@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition =======================================================
 
 DJANGO_APPS = [
+    "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,11 +43,19 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
+SITE_ID = 1
+
 THIRD_PARTY_APPS = [
     "corsheaders",
     "django_extensions",
     "debug_toolbar",
     "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "rest_auth",
+    "rest_auth.registration",
 ]
 
 
@@ -57,6 +66,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # Middleware ==================================================================
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -74,7 +84,8 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+        #"rest_framework.permissions.AllowAny"
     ]
 }
 
@@ -172,6 +183,8 @@ CORS_ORIGIN_WHITELIST = [
     "127.0.0.1:8000",
 ]
 CORS_ORIGIN_ALLOW_ALL = True
-
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_EMAIL_REQUIRED = False
 
 LOGIN_REDIRECT = "/"
