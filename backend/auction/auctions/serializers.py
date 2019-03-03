@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import reverse, serializers
 
 from .models import Auction, AuctionImage, Bid
 
@@ -21,6 +21,7 @@ class AuctionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Auction
         fields = (
+            "url",
             "id",
             "created",
             "title",
@@ -53,3 +54,9 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
         model = Bid
         fields = ("amount", "auction", "author", "reg_time")
         read_only_fields = ("reg_time", "author")
+
+    def create(self, validated_data):
+        bid = Bid.objects.create(
+            author=self.context.get("request").user, **validated_data
+        )
+        return bid
