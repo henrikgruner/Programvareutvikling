@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import { Text } from "../../components/AuctionPreview/styles";
 
 export const ContentWrapper = styled.div`
   overflow: hidden;
