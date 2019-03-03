@@ -10,3 +10,9 @@ export const AuctionListWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 `;
+
+export const Wrapper = styled.div`
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+`;

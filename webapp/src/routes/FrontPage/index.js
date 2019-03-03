@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import AuctionPreview from "../../components/AuctionPreview";
-import { ContentWrapper, AuctionListWrapper } from "./styles.js";
+import { Wrapper, ContentWrapper, AuctionListWrapper} from "./styles.js";
 import callApi from "../../utils/callApi";
 
 class FrontPage extends Component {
   state = {
-    auctions: null
+    auctions: null,
+    search: ""
   };
 
   componentDidMount() {
@@ -20,12 +21,25 @@ class FrontPage extends Component {
       });
   }
 
+  updateSearch(event){
+    this.setState({search:event.target.value})
+  }
+
   render() {
     return (
       <ContentWrapper>
+        <Wrapper>
+          <input
+            type = "text"
+            placeholder="Søk"
+            Value={this.state.search}  
+            onChange={this.updateSearch.bind(this)}
+          />
+        </Wrapper>
         <AuctionListWrapper>
           {this.state.auctions &&
-            this.state.auctions.map((auction, i) => {
+            this.state.auctions.filter((auction) => {return auction.title.toLowerCase().indexOf(
+              this.state.search.toLowerCase()) != -1;}).map((auction, i) => {
               console.log(auction);
               return (
                 <AuctionPreview
