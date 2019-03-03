@@ -6,6 +6,8 @@ import addDays from "date-fns/addDays";
 import setMinutes from "date-fns/setMinutes";
 import setHours from "date-fns/setHours";
 import nb from "date-fns/locale/nb";
+import "./styles.css";
+
 registerLocale("nb", nb);
 
 const DateTimePickerField = ({
@@ -27,6 +29,7 @@ const DateTimePickerField = ({
         <InputValidationFeedback error={error} />
 
         <DatePicker
+          className="dateTimePicker"
           selected={value}
           onChange={handleChange}
           placeholderText={placeholder}
