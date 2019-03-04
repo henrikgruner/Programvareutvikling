@@ -27,7 +27,7 @@ const Header = props => {
             <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
             <span>|</span>
             <AuthLink to="/" onClick={props.logout}>
-              Logout
+              Logg ut
             </AuthLink>
             <span>|</span>
             <AuthLink to="/profile">Min profil</AuthLink>
