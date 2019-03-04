@@ -7,7 +7,7 @@ class ProfilePage extends Component {
     return (
       <div>
         <header>
-          <h1>Welcome to the profile page</h1>
+          <h1>Velkommen til din profil</h1>
         </header>
       </div>
     );

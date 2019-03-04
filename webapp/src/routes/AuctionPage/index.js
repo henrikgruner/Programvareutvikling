@@ -153,7 +153,7 @@ const AuctionPage = withFormik({
         window.history.go(window.location.pathname);
       })
       .catch(err => {
-        alert("Det skjedde en feil.... ");
+        alert("Det skjedde en feil... ");
         setSubmitting(false);
         throw err;
       });

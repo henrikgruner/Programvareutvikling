@@ -124,7 +124,7 @@ class NormalLoginForm extends React.Component {
             <Form.Item>
               {getFieldDecorator("userName", {
                 rules: [
-                  { required: true, message: "Please input your username!" }
+                  { required: true, message: "Skriv inn ditt brukernavn" }
                 ]
               })(
                 <Input
@@ -137,9 +137,7 @@ class NormalLoginForm extends React.Component {
             </Form.Item>
             <Form.Item>
               {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your Password!" }
-                ]
+                rules: [{ required: true, message: "Skriv inn ditt passord" }]
               })(
                 <Input
                   prefix={
