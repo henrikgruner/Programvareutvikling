@@ -34,31 +34,31 @@ const CreateAuctionForm = ({
           name="description"
           component={TextAreaField}
           label="Beskrivelse"
-          placeholder="Skriv inn en beskrive av produktet.."
+          placeholder="Skriv inn en beskrivelse av produktet.."
         />
         <Field
           name="startprice"
           component={TextBoxField}
           label="Startpris (i kr)"
-          placeholder="Sett en startpris .."
+          placeholder="Sett en startpris.."
         />
         <Field
           name="minbidincrease"
           component={TextBoxField}
           label="Minste bud økning tillatt (i kr)"
-          placeholder="Sett en minste budøkning .."
+          placeholder="Sett en minste budøkning.."
         />
         <Field
           name="pickupaddress"
           component={TextBoxField}
           label="Henteaddresse"
-          placeholder="Skriv inn en addresse .."
+          placeholder="Skriv inn en addresse.."
         />
         <Field
           name="endtime"
           component={DateTimePickerField}
           label="Sluttid"
-          placeholder="Velg når auksjonen skal stenge .."
+          placeholder="Velg når auksjonen skal stenge.."
         />
         {/* <Field
           name="images"
@@ -123,7 +123,7 @@ const CreateAuctionPage = withFormik({
         setSubmitting(false);
       })
       .catch(err => {
-        alert("Det skjedde en feil.... ");
+        alert("Det skjedde en feil... ");
         setSubmitting(false);
         throw err;
       });
@@ -135,20 +135,20 @@ const CreateAuctionPage = withFormik({
       .required("Lag en tittel på auksjonen")
       .max(80, "Maks 80 bokstaver"),
 
-    description: Yup.string().required("Skriv noe om tingen"),
+    description: Yup.string().required("Skriv noe om gjenstanden"),
 
     startprice: Yup.number()
-      .typeError("Fyll inn et tall")
+      .typeError("Må være et tall")
       .required("Fyll inn en startpris")
       .moreThan(-1, "Kan ikke være negativt")
       .integer("Må være et heltall"),
 
-    endtime: Yup.date().required("Må fylle inn slutttid"),
+    endtime: Yup.date().required("Det må settes en sluttid"),
 
     pickupaddress: Yup.string().required("Skriv inn en henteaddresse"),
 
     minbidincrease: Yup.number()
-      .typeError("Fyll inn et tall")
+      .typeError("Må være et tall")
       .required("Fyll inn en minste budøkning, 0 for ingen")
       .moreThan(-1, "Kan ikke være negativt")
       .integer("Må være et heltall")

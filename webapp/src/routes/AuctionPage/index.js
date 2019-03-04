@@ -149,7 +149,7 @@ const AuctionPage = withFormik({
         setSubmitting(false);
       })
       .catch(err => {
-        alert("Det skjedde en feil.... ");
+        alert("Det skjedde en feil... ");
         setSubmitting(false);
         throw err;
       });

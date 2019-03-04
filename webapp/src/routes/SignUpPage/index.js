@@ -165,7 +165,7 @@ class RegistrationForm extends React.Component {
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Passordene må være like");
     } else {
       callback();
     }
@@ -186,7 +186,7 @@ class RegistrationForm extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Item>
           {getFieldDecorator("username", {
-            rules: [{ required: true, message: "Please input your username!" }]
+            rules: [{ required: true, message: "Skriv inn et brukernavn" }]
           })(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -199,11 +199,11 @@ class RegistrationForm extends React.Component {
             rules: [
               {
                 type: "email",
-                message: "The input is not valid E-mail!"
+                message: "Ugyldig e-post"
               },
               {
                 required: true,
-                message: "Please input your E-mail!"
+                message: "Skriv inn din e-post"
               }
             ]
           })(
@@ -218,7 +218,7 @@ class RegistrationForm extends React.Component {
             rules: [
               {
                 required: true,
-                message: "Please input your password!"
+                message: "Skriv inn et passord"
               },
               {
                 validator: this.validateToNextPassword
@@ -237,7 +237,7 @@ class RegistrationForm extends React.Component {
             rules: [
               {
                 required: true,
-                message: "Please confirm your password!"
+                message: "Gjenta ditt passord"
               },
               {
                 validator: this.compareToFirstPassword

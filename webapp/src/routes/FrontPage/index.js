@@ -31,7 +31,7 @@ class FrontPage extends Component {
         <Wrapper>
           <SearchField
             type="text"
-            placeholder="Søk etter auksjoner ..."
+            placeholder="Søk etter auksjoner .."
             value={this.state.search}
             onChange={this.updateSearch.bind(this)}
           />
