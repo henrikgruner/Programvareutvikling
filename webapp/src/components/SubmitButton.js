@@ -1,11 +1,17 @@
 import styled from "styled-components/macro";
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button.attrs({
+  width: props => props.width || "auto",
+  height: props => props.height || "auto",
+  padding: props => props.padding || "1.1em 3em",
+  fontSize: props => props.fontSize || "1.1em"
+})`
   background: ${props => (props.valid ? "var(--light-green)" : "gray")};
   border: 0px solid ${props => (props.valid ? "var(--dark-green)" : "darkgray")};
-  padding: 1.1em 3em;
+  padding: ${props => props.padding};
   border-radius: 30px;
-  width: 200px;
+  width: ${props => props.width};
+  height: ${props => props.height};
   color: white;
   text-align: center;
   font-weight: bold;

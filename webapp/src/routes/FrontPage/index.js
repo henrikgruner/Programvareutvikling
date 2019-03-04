@@ -14,7 +14,6 @@ class FrontPage extends Component {
     callApi("/auctions/", {})
       .then(result => {
         this.setState({ auctions: result.jsonData });
-        console.log("Successful fetch :)", result);
       })
       .catch(err => {
         console.error("Det skjedde en feil når vi hentet data.... ");

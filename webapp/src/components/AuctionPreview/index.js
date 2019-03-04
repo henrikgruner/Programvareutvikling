@@ -16,7 +16,7 @@ const AuctionPreview = ({ title, highestBid, id, mainImage }) => {
       <InfoWrapper>
         <Text>{title}</Text>
         <HighestBidText>{highestBid} kr</HighestBidText>
-        <SubmitButton as="span" type="submit" valid={true}>
+        <SubmitButton as="span" type="submit" valid={true} width="200px">
           Gi Bud
         </SubmitButton>
       </InfoWrapper>

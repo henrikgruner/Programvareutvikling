@@ -10,7 +10,13 @@ import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
 import { SubmitButton } from "../../components/SubmitButton";
 import NumbersWithTitle from "./NumbersWithTitle";
-import { ContentWrapper, Title, AuctionImage, InfoWrapper } from "./styles";
+import {
+  ContentWrapper,
+  DetailWrapper,
+  Title,
+  AuctionImage,
+  InfoWrapper
+} from "./styles";
 
 const AuctionForm = ({
   touched,
@@ -54,36 +60,59 @@ const AuctionForm = ({
       ) : (
         <AuctionImage src={imgPlaceholder} alt="Placeholder" />
       )}
-      <div>
+      <DetailWrapper>
         <Title>{auction.title}</Title>
-
         <InfoWrapper>
           <NumbersWithTitle
             label="Lederbud"
             text={`${auction.leading_bid} kr`}
+            subtextStyles={{
+              fontSize: "30px",
+              textAlign: "center",
+              color: "var(--dark-green)",
+              fontWeight: "bold"
+            }}
           />
           <NumbersWithTitle
             label="Slutter om"
             text={<Countdown date={auction.end_time} />}
+            subtextStyles={{
+              fontSize: "30px",
+              textAlign: "center",
+              fontWeight: "bold"
+            }}
           />
         </InfoWrapper>
-        <div>{auction.description}</div>
-        <span>Du må øke budet med minst {auction.min_bid_increase} kr</span>
-        <div>
-          <Form>
-            <Field name="bid" component={TextBoxField} />
-          </Form>
-
-          <SubmitButton
-            onClick={handleSubmit}
-            type="submit"
-            disabled={isSubmitting}
-            valid={isValid}
-          >
-            Gi bud
-          </SubmitButton>
+        <div style={{ marginBottom: "2rem", padding: "0 1em" }}>
+          {auction.description}
         </div>
-      </div>
+        <span style={{ fontStyle: "italic", marginLeft: "0.5em" }}>
+          Du må øke budet med minst <b>{auction.min_bid_increase} kr</b>
+        </span>
+        <div style={{ margin: "1rem auto" }}>
+          <Form>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Field
+                name="bid"
+                component={TextBoxField}
+                placeholder="Skriv inn ditt bud .."
+              />
+              <span style={{ marginRight: "20px" }} />
+              <SubmitButton
+                onClick={handleSubmit}
+                type="submit"
+                disabled={isSubmitting}
+                valid={isValid}
+                fontSize="1rem"
+                padding="0 2em"
+                height="50px"
+              >
+                Gi bud
+              </SubmitButton>
+            </div>
+          </Form>
+        </div>
+      </DetailWrapper>
     </ContentWrapper>
   ) : (
     <div>Loading...</div>
