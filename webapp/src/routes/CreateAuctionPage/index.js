@@ -12,6 +12,7 @@ import {
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
+import { resolve } from "path";
 
 const CreateAuctionForm = ({
   touched,
@@ -119,8 +120,10 @@ const CreateAuctionPage = withFormik({
       method: "POST",
       body: JSON.stringify(submission)
     })
-      .then(() => {
+      .then((res) => {
         setSubmitting(false);
+        console.log(res)
+        window.location.replace(`/auctions/${res.jsonData.id}`);
       })
       .catch(err => {
         alert("Det skjedde en feil... ");
