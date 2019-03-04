@@ -84,6 +84,9 @@ const AuctionForm = ({
           />
         </InfoWrapper>
         <div style={{ marginBottom: "2rem", padding: "0 1em" }}>
+          Henteaddresse: <b>{auction.pickup_address}</b>
+        </div>
+        <div style={{ marginBottom: "2rem", padding: "0 1em" }}>
           {auction.description}
         </div>
         <span style={{ fontStyle: "italic", marginLeft: "0.5em" }}>
@@ -147,6 +150,7 @@ const AuctionPage = withFormik({
     })
       .then(() => {
         setSubmitting(false);
+        window.history.go(window.location.pathname);
       })
       .catch(err => {
         alert("Det skjedde en feil.... ");
