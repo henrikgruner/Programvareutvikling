@@ -10,4 +10,5 @@ export const FooterWrapper = styled.footer`
   text-align: center;
   color: gray;
   margin-top: auto;
+  width: 100%;
 `;

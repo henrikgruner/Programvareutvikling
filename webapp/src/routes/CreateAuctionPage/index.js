@@ -6,7 +6,7 @@ import callApi from "../../utils/callApi";
 import {
   TextAreaField,
   TextBoxField,
-  FileUploadField,
+  //  FileUploadField,
   DateTimePickerField
 } from "../../components/form";
 import { Title } from "./styles";
@@ -60,11 +60,11 @@ const CreateAuctionForm = ({
           label="Sluttid"
           placeholder="Velg når auksjonen skal stenge .."
         />
-        <Field
+        {/* <Field
           name="images"
           component={FileUploadField}
           label="Bilde av gjenstand"
-        />
+        /> */}
       </Form>
       <SubmitButton
         onClick={handleSubmit}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as actions from "../../store/actions/auth";
 
 import { connect } from "react-redux";
 

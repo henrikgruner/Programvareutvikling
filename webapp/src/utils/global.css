@@ -4,12 +4,14 @@
 /* VARIABLES */
 
 :root {
-  --background-color: #f4f4f4;
+  --background-color: #fff;
   --font-color: #394b59;
-  --link-color: royalblue;
+  --link-color: #0532ff;
   --primary-color: #0532ff;
-  --light-green: #49c552;
-  --dark-green: #328c3e;
+  --secondary-blue: #1532b2;
+  --light-green: #6dcc18;
+  --dark-green: #5bb20c;
+  --warning-red: #ff541e;
   --page-max-width: 1000px;
 }
 

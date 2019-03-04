@@ -31,6 +31,7 @@ export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  align-items: center;
 `;
 
 export const ContentWrapper = styled.div`
@@ -41,43 +42,42 @@ export const ContentWrapper = styled.div`
 `;
 
 ReactDOM.render(
-  
-<Provider store={store}>
-  <Router>
-    <ScrollToTop>
-      <PageWrapper>
-        <Header />
-        <ContentWrapper>
-          <Switch>
-            <Route exact path="/" component={FrontPage} />
-            <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route
-              path="/auctions"
-              render={({ match: { url } }) => (
-                <Switch>
-                  <Route exact path={`${url}/`} component={FrontPage} />
-                  <Route
-                    exact
-                    path={`${url}/new`}
-                    component={CreateAuctionPage}
-                  />
-                  <Route
-                    exact
-                    path={`${url}/:auctionId`}
-                    component={AuctionPage}
-                  />
-                </Switch>
-              )}
-            />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </ContentWrapper>
-        <Footer />
-      </PageWrapper>
-    </ScrollToTop>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <ScrollToTop>
+        <PageWrapper>
+          <Header />
+          <ContentWrapper>
+            <Switch>
+              <Route exact path="/" component={FrontPage} />
+              <Route exact path="/profile" component={ProfilePage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignUpPage} />
+              <Route
+                path="/auctions"
+                render={({ match: { url } }) => (
+                  <Switch>
+                    <Route exact path={`${url}/`} component={FrontPage} />
+                    <Route
+                      exact
+                      path={`${url}/new`}
+                      component={CreateAuctionPage}
+                    />
+                    <Route
+                      exact
+                      path={`${url}/:auctionId`}
+                      component={AuctionPage}
+                    />
+                  </Switch>
+                )}
+              />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </ContentWrapper>
+          <Footer />
+        </PageWrapper>
+      </ScrollToTop>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

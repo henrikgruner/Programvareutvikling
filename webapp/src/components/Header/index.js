@@ -1,59 +1,51 @@
-import React, { Component } from "react";
-import { Menu } from "antd";
-import { Link, withRouter } from "react-router-dom";
+import React from "react";
+import { withRouter } from "react-router-dom";
 import {
-  Title,
+  SubTitle,
   HeaderWrapper,
+  CompanyLogoText,
   CompanyLogo,
+  CompanyLogoWrapper,
   AuthLink,
   AuthLinkWrapper
 } from "./styles.js";
+import logo from "../../assets/budBuaLogo.png";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/auth";
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper {...this.props}>
-        <CompanyLogo to="/">BudBua AS</CompanyLogo>
-        <Title>Velkommen til Norges største og eldste auksjonsmarked</Title>
-
-
-        <AuthLinkWrapper>
-          {this.props.isAuthenticated ? (
-            <React.Fragment>
-            <span>
-              <span> </span>
-            </span>
+const Header = props => {
+  return (
+    <HeaderWrapper {...props}>
+      <CompanyLogoWrapper to="/">
+        <CompanyLogo src={logo} alt="Budbua logo" />
+        <CompanyLogoText>Auksjonsbua</CompanyLogoText>
+      </CompanyLogoWrapper>
+      <SubTitle>Velkommen til Norges største og eldste auksjonsmarked</SubTitle>
+      <AuthLinkWrapper>
+        {props.isAuthenticated ? (
+          <>
+            <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
             <span>|</span>
-              <span>
-                <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
-              </span>
-              <span>|</span>
-              <span onClick={this.props.logout}>
-                <AuthLink to="/"> Logout </AuthLink>
-              </span>
-              <span>|</span>
-              <span>
-                <AuthLink to="/profile"> Profile </AuthLink>
-              </span>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <AuthLink to="/login">Logg inn </AuthLink>
-              <span>|</span>
-              <AuthLink to="/signup"> Ny bruker</AuthLink>
-            </React.Fragment>
-          )}
-        </AuthLinkWrapper>
-        {this.props.children}
-      </HeaderWrapper>
-    );
-  }
-}
+            <AuthLink to="/" onClick={props.logout}>
+              Logout
+            </AuthLink>
+            <span>|</span>
+            <AuthLink to="/profile">Min profil</AuthLink>
+          </>
+        ) : (
+          <>
+            <AuthLink to="/login">Logg inn</AuthLink>
+            <span>|</span>
+            <AuthLink to="/signup">Ny bruker</AuthLink>
+          </>
+        )}
+      </AuthLinkWrapper>
+      {props.children}
+    </HeaderWrapper>
+  );
+};
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     isAuthenticated: state.token !== null
   };

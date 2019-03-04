@@ -1,10 +1,10 @@
 import React from "react";
-import * as Yup from "yup";
-import callApi from "../../utils/callApi";
-import { EmailField, PasswordField } from "../../components/form";
-import { Title } from "./styles";
-import { SubmitButton } from "../../components/SubmitButton";
-import { CancelButton } from "../../components/CancelButton";
+// import * as Yup from "yup";
+// import callApi from "../../utils/callApi";
+// import { EmailField, PasswordField } from "../../components/form";
+// import { Title } from "./styles";
+// import { SubmitButton } from "../../components/SubmitButton";
+// import { CancelButton } from "../../components/CancelButton";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as actions from "../../store/actions/auth";
@@ -22,11 +22,11 @@ const LoginForm = ({
 
 
       <Form>
- 
-        
+
+
         <Field name="email" component={EmailField} />
         <Field name="password" component={PasswordField} />
-      
+
       </Form>
 
       <SubmitButton
