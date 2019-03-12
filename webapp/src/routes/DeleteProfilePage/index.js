@@ -3,42 +3,52 @@ import { StyledButton, WrapperDiv } from "./styles";
 import { connect } from "react-redux";
 
 
-
-
-
-
-
 class DeleteProfilePage extends Component {
 
 
-    submit = (e) => {
+    deleteUser = (e) => {
+        //Her skal brukeren deaktiveres, og senere anonymiseres. 
+
+
+    }
+
+    submit = () => {
 
         if (window.confirm("Er du helt sikker?")) {
-            this.props.history.push("/profile")
+
+            this.deleteUser(() => {
+                this.props.data.history.push("/");
+            });
+
         }
         else {
             this.props.history.push("/delete")
         }
 
     }
-   
+
+
+
+
+
+
 
 
     render() {
         return (
+
             <div>
                 <header>Ønsker du virkelig å slette brukeren din?</header>
                 <WrapperDiv>
-                    <span> I tråd med GDPR vil vi slette all informasjon om deg vi besitter. Dette inkluderer personlig informasjon og tidligere auksjoner</span>
+                    <span> I tråd med GDPR vil vi anonymisere all informasjon om deg vi besitter. Dette inkluderer personlig informasjon, men tidligere auksjoner vil fremdeles være synlige. Dette er for å forhindre svindel.</span>
+
+                    <StyledButton
+                        onClick={this.submit}
+                    >
+                        Slett bruker
+                       </StyledButton>
 
                 </WrapperDiv>
-
-
-                <StyledButton
-                    onClick={this.submit}
-                >res
-                    Slett bruker
-                </StyledButton>
 
 
 
