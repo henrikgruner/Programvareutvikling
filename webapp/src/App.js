@@ -22,6 +22,8 @@ import EditProfilePage from "./routes/EditProfilePage";
 import StatisticsPage from "./routes/StatisticsPage";
 import ChangePassword from "./routes/ChangePassword";
 
+
+
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,11 +75,14 @@ const App = () => (
                     path={`${url}/edit-me`}
                     component={EditProfilePage}
                   />
+
                   <PrivateRoute
                     exact
                     path={`${url}/change-password`}
                     component={ChangePassword}
                   />
+
+
                   <Route component={NotFoundPage} />
                 </Switch>
               )}
