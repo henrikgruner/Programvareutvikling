@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, User
 from rest_framework import serializers
 
 from auction.auctions.serializers import AuctionShortSerializer
-
+from rest_auth.registration.serializers import RegisterSerializer
 from .models import UserProfile
 
 
@@ -87,3 +87,18 @@ class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
             won_auctions, many=True, context={"request": self.context.get("request")}
         )
         return serialized.data
+
+
+class UserRegisterSerializer(RegisterSerializer):
+
+    profile = ShortUserProfileSerializer(required=True)
+
+    class Meta:
+        pass
+
+    def custom_signup(self, request, user):
+        UserProfile.objects.create(
+            user=user,
+            address=request.data["profile.address"],
+            phone_number=request.data["profile.phone_number"]
+        )
