@@ -5,9 +5,16 @@ import { Provider } from "react-redux";
 
 import App from "./App";
 import "./utils/global.css";
+import { authSuccess } from "./store/actions/auth";
 
 import store from "./store/configureStore";
 const redux = store();
+
+const token = localStorage.getItem("token");
+
+if (token) {
+  redux.store.dispatch(authSuccess(token));
+}
 
 ReactDOM.render(
   <Provider store={redux.store}>

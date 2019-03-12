@@ -1,4 +1,10 @@
-export const AUTH_START = "AUTH_START";
-export const AUTH_SUCCESS = "AUTH_SUCCESS";
-export const AUTH_FAIL = "AUTH_FAIL";
-export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const authTypes = {
+  INIT: "AUTH_INIT",
+  LOGIN: "AUTH_LOGIN",
+  FAIL: "AUTH_FAIL",
+  LOGOUT: "AUTH_LOGOUT"
+};
+
+export const userTypes = {
+  USER_PROFILE: "USER_PROFILE"
+};

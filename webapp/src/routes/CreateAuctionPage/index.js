@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import callApi from "../../utils/callApi";
+import { connect } from "react-redux";
 
 import {
   TextAreaField,
@@ -12,7 +13,6 @@ import {
 import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
-import { resolve } from "path";
 
 const CreateAuctionForm = ({
   touched,
@@ -83,79 +83,85 @@ const CreateAuctionForm = ({
 // Highest order component for login form.
 // Handles form values, submit post and form validation.
 
-const CreateAuctionPage = withFormik({
-  displayName: "LoginForm",
-  validateOnChange: true,
-  enableReinitialize: true,
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  };
+};
 
-  mapPropsToValues() {
-    return {
-      title: "",
-      description: "",
-      images: [],
-      startprice: "",
-      endtime: null,
-      pickupaddress: "",
-      minbidincrease: ""
-    };
-  },
+const CreateAuctionPage = connect(mapStateToProps)(
+  withFormik({
+    displayName: "LoginForm",
+    validateOnChange: true,
+    enableReinitialize: true,
 
-  // What happens when you submit the form
-  handleSubmit(values, { setSubmitting }) {
-    console.log(values.images);
-    var submission = {
-      // The keys must be the same as in the backend
-      title: values.title,
-      description: values.description,
-      start_price: values.startprice,
-      end_time: values.endtime,
-      pickup_address: values.pickupaddress,
-      min_bid_increase: values.minbidincrease,
-      image_1: values.images[0]
-    };
+    mapPropsToValues() {
+      return {
+        title: "",
+        description: "",
+        images: [],
+        startprice: "",
+        endtime: null,
+        pickupaddress: "",
+        minbidincrease: ""
+      };
+    },
 
-    console.log("submission", submission);
+    // What happens when you submit the form
+    handleSubmit(values, { setSubmitting, props }) {
+      var submission = {
+        // The keys must be the same as in the backend
+        title: values.title,
+        description: values.description,
+        start_price: values.startprice,
+        end_time: values.endtime,
+        pickup_address: values.pickupaddress,
+        min_bid_increase: values.minbidincrease,
+        image_1: values.images[0]
+      };
 
-    return callApi("/auctions/", {
-      method: "POST",
-      body: JSON.stringify(submission)
-    })
-      .then((res) => {
-        setSubmitting(false);
-        console.log(res)
-        window.location.replace(`/auctions/${res.jsonData.id}`);
+      console.log("submission", props, submission);
+
+      return callApi("/auctions/", {
+        method: "POST",
+        body: JSON.stringify(submission),
+        token: props.token
       })
-      .catch(err => {
-        alert("Det skjedde en feil... ");
-        setSubmitting(false);
-        throw err;
-      });
-  },
+        .then(() => {
+          setSubmitting(false);
+        })
+        .catch(err => {
+          alert("Det skjedde en feil.... ");
+          setSubmitting(false);
+          throw err;
+        });
+    },
 
-  // Validation of the form
-  validationSchema: Yup.object().shape({
-    title: Yup.string()
-      .required("Lag en tittel på auksjonen")
-      .max(80, "Maks 80 bokstaver"),
+    // Validation of the form
+    validationSchema: Yup.object().shape({
+      title: Yup.string()
+        .required("Lag en tittel på auksjonen")
+        .max(80, "Maks 80 bokstaver"),
 
-    description: Yup.string().required("Skriv noe om gjenstanden"),
+      description: Yup.string().required("Skriv noe om tingen"),
 
-    startprice: Yup.number()
-      .typeError("Må være et tall")
-      .required("Fyll inn en startpris")
-      .moreThan(-1, "Kan ikke være negativt")
-      .integer("Må være et heltall"),
+      startprice: Yup.number()
+        .typeError("Fyll inn et tall")
+        .required("Fyll inn en startpris")
+        .moreThan(-1, "Kan ikke være negativt")
+        .integer("Må være et heltall"),
 
-    endtime: Yup.date().required("Det må settes en sluttid"),
+      endtime: Yup.date().required("Må fylle inn slutttid"),
 
-    pickupaddress: Yup.string().required("Skriv inn en henteaddresse"),
+      pickupaddress: Yup.string().required("Skriv inn en henteaddresse"),
 
-    minbidincrease: Yup.number()
-      .typeError("Må være et tall")
-      .required("Fyll inn en minste budøkning, 0 for ingen")
-      .moreThan(-1, "Kan ikke være negativt")
-      .integer("Må være et heltall")
-  })
-})(CreateAuctionForm);
+      minbidincrease: Yup.number()
+        .typeError("Fyll inn et tall")
+        .required("Fyll inn en minste budøkning, 0 for ingen")
+        .moreThan(-1, "Kan ikke være negativt")
+        .integer("Må være et heltall")
+    })
+  })(CreateAuctionForm)
+);
 
 export default CreateAuctionPage;
