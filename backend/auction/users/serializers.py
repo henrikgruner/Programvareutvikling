@@ -15,7 +15,6 @@ class BaseUserSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     user = BaseUserSerializer(read_only=True)
-    leading_bid = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
