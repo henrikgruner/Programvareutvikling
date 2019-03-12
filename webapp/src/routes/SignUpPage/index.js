@@ -93,7 +93,7 @@ const SignUpPage = withFormik({
 
     passwordConfirm: Yup.string()
       .required("Gjenta passordet ditt")
-      .equalTo(Yup.ref("password"), "Passwords must match")
+      .equalTo(Yup.ref("password"), "Passordene må være like")
   })
 })(SignUpForm);
 
