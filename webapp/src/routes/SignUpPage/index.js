@@ -1,49 +1,38 @@
-/*import React from "react";
+import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import callApi from "../../utils/callApi";
 import { CancelButton } from "../../components/CancelButton";
 import { SubmitButton } from "../../components/SubmitButton";
-import {
-  EmailField,
-  PasswordField,
-  TextBoxField,
-  TelBoxField
-} from "../../components/form";
+import { EmailField, PasswordField, TextBoxField } from "../../components/form";
 import { Title } from "./styles";
+import { signupUser } from "../../store/actions/auth";
+import { connect } from "react-redux";
+import { equalTo } from "../../utils/validation";
 
 const SignUpForm = ({
   touched,
   errors,
   isSubmitting,
   handleSubmit,
-  isValid
+  isValid,
+  loading,
+  apiError
 }) => {
-  return (
+  return loading ? (
+    <span>Loading ...</span>
+  ) : (
     <div>
       <Title>Lag en ny bruker</Title>
-
       <Form>
         <Field
-          name="firstname"
+          name="username"
           component={TextBoxField}
-          label="Fornavn"
-          placeholder="Ola"
-        />
-        <Field
-          name="lastname"
-          component={TextBoxField}
-          label="Etternavn"
-          placeholder="Nordmann"
-        />
-        <Field
-          name="phonenumber"
-          component={TelBoxField}
-          label="Telefonnummer"
-          placeholder="Telefonnummer"
+          placeholder="Brukernavn.."
+          label="Brukernavn"
         />
         <Field name="email" component={EmailField} />
         <Field name="password" component={PasswordField} />
+        <Field name="passwordConfirm" component={PasswordField} />
       </Form>
 
       <SubmitButton
@@ -52,9 +41,10 @@ const SignUpForm = ({
         disabled={isSubmitting}
         valid={isValid}
       >
-        Logg inn
+        Registrer deg
       </SubmitButton>
-      <CancelButton to="/">Avbryt</CancelButton>
+
+      <CancelButton to="/">Logg inn</CancelButton>
     </div>
   );
 };
@@ -69,228 +59,57 @@ const SignUpPage = withFormik({
 
   mapPropsToValues() {
     return {
+      username: "",
       email: "",
       password: "",
-      firstname: "",
-      lastname: "",
-      phonenumber: ""
+      passwordConfirm: ""
     };
   },
 
   // What happens when you submit the form
-  handleSubmit(values, { setSubmitting }) {
-    var submission = {
+  handleSubmit(values, { setSubmitting, props }) {
+    var payload = {
+      username: values.username,
       email: values.email,
-      password: values.password,
-      firstname: values.firstname,
-      lastname: values.lastname,
-      phonenumber: values.phonenumber
+      password1: values.password,
+      password2: values.passwordConfirm
     };
 
-    return callApi("/signup", {
-      method: "POST",
-      body: JSON.stringify(submission)
-    })
-      .then(() => {
-        setSubmitting(false);
-      })
-      .catch(err => {
-        alert("Det skjedde en feil....");
-        setSubmitting(false);
-        throw err;
-      });
+    props.signupUser(payload);
+    setSubmitting(false);
   },
 
   // Validation of the form
   validationSchema: Yup.object().shape({
-    firstname: Yup.string("Navnet kan kun inneholde bokstaver")
-      .required("Skriv inn ditt fornavn")
-      .min(2, "Må være lengre enn 2 bokstaver"),
-
-    lastname: Yup.string("Navnet kan kun inneholde bokstaver")
-      .required("Skriv inn ditt etternavn")
-      .min(2, "Må være lengre enn 2 bokstaver"),
-
-    phonenumber: Yup.string("Skriv inn ett telefonnummer")
-      .matches(
-        /^(0047|\+47|47)?\d{8}$/,
-        "Skriv inn et gyldig norsk telefonnummer"
-      )
-      .required("Skriv inn ett telefonnummer"),
+    username: Yup.string().required("Skriv inn et brukernavn"),
 
     email: Yup.string()
-      .required("Skriv inn en e-mail")
-      .email("Skriv inn en e-mail"),
+      .required("Skriv inn en e-post")
+      .email("Skriv inn en e-post"),
 
     password: Yup.string()
-      .required("Passordet må være lengre enn 4 bokstaver")
-      .min(4, "Passordet må være lengre enn 4 bokstaver")
+      .required("Passordet må være minst 8 bokstaver")
+      .min(8, "Passordet må være minst 8 bokstaver"),
+
+    passwordConfirm: Yup.string()
+      .required("Gjenta passordet ditt")
+      .equalTo(Yup.ref("password"), "Passwords must match")
   })
 })(SignUpForm);
 
-export default SignUpPage;
-*/
-import React from "react";
-import * as actions from "../../store/actions/auth";
-import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-
-import { Form, Input, Icon, Button } from "antd";
-
-class RegistrationForm extends React.Component {
-  state = {
-    confirmDirty: false
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.onAuth(
-          values.username,
-          values.email,
-          values.password,
-          values.confirm
-        );
-      }
-      this.props.history.push("/");
-    });
-  };
-
-  handleConfirmBlur = e => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  };
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue("password")) {
-      callback("Passordene må være like");
-    } else {
-      callback();
-    }
-  };
-
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(["confirm"], { force: true });
-    }
-    callback();
-  };
-
-  render() {
-    const { getFieldDecorator } = this.props.form;
-
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Item>
-          {getFieldDecorator("username", {
-            rules: [{ required: true, message: "Skriv inn et brukernavn" }]
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="username"
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator("email", {
-            rules: [
-              {
-                type: "email",
-                message: "Ugyldig e-post"
-              },
-              {
-                required: true,
-                message: "Skriv inn din e-post"
-              }
-            ]
-          })(
-            <Input
-              prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="email"
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator("password", {
-            rules: [
-              {
-                required: true,
-                message: "Skriv inn et passord"
-              },
-              {
-                validator: this.validateToNextPassword
-              }
-            ]
-          })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-              type="password"
-              placeholder="Password"
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator("confirm", {
-            rules: [
-              {
-                required: true,
-                message: "Gjenta ditt passord"
-              },
-              {
-                validator: this.compareToFirstPassword
-              }
-            ]
-          })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-              type="password"
-              placeholder="Password"
-              onBlur={this.handleConfirmBlur}
-            />
-          )}
-        </Form.Item>
-
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ marginRight: "10px" }}
-          >
-            Register deg
-          </Button>
-          eller
-          <NavLink style={{ marginRight: "10 px" }} to="/login/">
-            {" "}
-            logg inn
-          </NavLink>
-        </Form.Item>
-      </Form>
-    );
-  }
-}
-
-const WrappedRegistrationForm = Form.create({ name: "register" })(
-  RegistrationForm
-);
-
 const mapStateToProps = state => {
   return {
-    loading: state.loading,
-    error: state.error
+    loading: state.auth.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (username, email, password1, password2) =>
-      dispatch(actions.authSignup(username, email, password1, password2))
+    signupUser: payload => dispatch(signupUser(payload))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WrappedRegistrationForm);
+)(SignUpPage);

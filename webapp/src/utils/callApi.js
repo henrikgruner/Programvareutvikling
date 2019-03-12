@@ -1,6 +1,7 @@
 import config from "./config";
 import "whatwg-fetch";
 
+// Helper functions
 export class HttpError extends Error {
   response: Response;
 }
@@ -34,22 +35,25 @@ function rejectOnHttpErrors(response) {
   throw error;
 }
 
-const callApi = async (url, { method = "GET", body = null } = {}) => {
+// The real MVP - Does the talking with the backend API
+const callApi = async (
+  url,
+  { method = "GET", body = null, token = null } = {}
+) => {
   const request = new Request(`${config.API_URL}${url}`, {
     method,
     headers: new Headers({
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Hardcoded in basic authentication for agent_000
-      Authorization: "Basic YWdlbnRfMDAwOnBhc3N3b3JkMTIz"
+      Authorization: token ? "Token " + token : ""
     }),
     redirect: "manual",
     // IE don't support body equal to null
     ...(body ? { body } : {})
   });
-  const res = await Promise.race([timeoutPromise(20000), fetch(request)]);
+  const res = await Promise.race([timeoutPromise(50000), fetch(request)]);
   if (res.status === 401) {
-    window.location = `/api/login/?next=${window.location.pathname}`;
+    window.location = `/login/?next=${window.location.pathname}`;
     throw res;
   }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import {
   SubTitle,
   HeaderWrapper,
@@ -11,7 +10,7 @@ import {
 } from "./styles.js";
 import logo from "../../assets/budBuaLogo.png";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions/auth";
+import { logoutUser } from "../../store/actions/auth";
 
 const Header = props => {
   return (
@@ -26,7 +25,7 @@ const Header = props => {
           <>
             <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
             <span>|</span>
-            <AuthLink to="/" onClick={props.logout}>
+            <AuthLink to="/" onClick={props.logoutUser}>
               Logg ut
             </AuthLink>
             <span>|</span>
@@ -47,19 +46,17 @@ const Header = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.token !== null
+    isAuthenticated: state.auth.authenticated
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(actions.logout())
+    logoutUser: () => dispatch(logoutUser())
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Header)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
