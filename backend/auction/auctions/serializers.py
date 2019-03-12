@@ -60,3 +60,9 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
             author=self.context.get("request").user, **validated_data
         )
         return bid
+
+
+class AuctionShortSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Auction
+        fields = ("url",)
