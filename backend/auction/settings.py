@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-import django_heroku
 import environ
 
 MANAGEPY_DIR = (
@@ -198,4 +197,8 @@ ACCOUNT_EMAIL_REQUIRED = False
 
 LOGIN_REDIRECT = "/"
 
-django_heroku.settings(locals())
+if "HEROKU" in os.environ:
+    # Configure Django App for Heroku.
+    import django_heroku
+
+    django_heroku.settings(locals())
