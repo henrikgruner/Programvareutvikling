@@ -32,12 +32,12 @@ const Header = props => {
             <AuthLink to="/profile">Min profil</AuthLink>
           </>
         ) : (
-            <>
-              <AuthLink to="/login">Logg inn</AuthLink>
-              <span>|</span>
-              <AuthLink to="/signup">Ny bruker</AuthLink>
-            </>
-          )}
+          <>
+            <AuthLink to="/login">Logg inn</AuthLink>
+            <span>|</span>
+            <AuthLink to="/signup">Ny bruker</AuthLink>
+          </>
+        )}
       </AuthLinkWrapper>
       {props.children}
     </HeaderWrapper>
