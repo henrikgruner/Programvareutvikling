@@ -21,32 +21,32 @@ const SignUpForm = ({
   return loading ? (
     <span>Loading ...</span>
   ) : (
-    <div>
-      <Title>Lag en ny bruker</Title>
-      <Form>
-        <Field
-          name="username"
-          component={TextBoxField}
-          placeholder="Brukernavn.."
-          label="Brukernavn"
-        />
-        <Field name="email" component={EmailField} />
-        <Field name="password" component={PasswordField} />
-        <Field name="passwordConfirm" component={PasswordField} />
-      </Form>
+      <div>
+        <Title>Lag en ny bruker</Title>
+        <Form>
+          <Field
+            name="username"
+            component={TextBoxField}
+            placeholder="Brukernavn.."
+            label="Brukernavn"
+          />
+          <Field name="email" component={EmailField} />
+          <Field name="password" component={PasswordField} />
+          <Field name="passwordConfirm" component={PasswordField} />
+        </Form>
 
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
-      >
-        Registrer deg
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+        >
+          Registrer deg
       </SubmitButton>
 
-      <CancelButton to="/">Logg inn</CancelButton>
-    </div>
-  );
+        <CancelButton to="/">Logg inn</CancelButton>
+      </div>
+    );
 };
 
 // Highest order component for signup form.

@@ -8,3 +8,7 @@ export const authTypes = {
 export const userTypes = {
   USER_PROFILE: "USER_PROFILE"
 };
+
+export const auctionTypes = {
+  CREATE_AUCTION: "CREATE_AUCTION"
+}

@@ -1,6 +1,7 @@
 import React, { Component, } from "react";
 import { StyledButton, WrapperDiv } from "./styles";
 import { connect } from "react-redux";
+import { deactivateUserProfile } from "../../store/actions/user"
 
 
 class DeleteProfilePage extends Component {
@@ -8,8 +9,7 @@ class DeleteProfilePage extends Component {
 
     deleteUser = (e) => {
         //Her skal brukeren deaktiveres, og senere anonymiseres. 
-
-
+        deactivateUserProfile(e); // ? token?
     }
 
     submit = () => {

@@ -21,6 +21,23 @@ export const getUserProfile = () => {
   };
 };
 
+export const deactivateUserProfile = () => {
+  const token = localStorage.getItem("token");
+  return dispatch => {
+    callApi(userUrls.USER_PROFILE, {
+      method: "DELETE",
+      body: JSON.stringify(),
+      token
+    })
+      .then(res => {
+        window.history.go(window.location.pathname);
+      })
+      .catch(err => {
+        console.log("Could not delete user profile", err);
+      });
+  };
+};
+
 export const updateUserProfile = payload => {
   const token = localStorage.getItem("token");
   return dispatch => {

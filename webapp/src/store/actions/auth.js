@@ -23,7 +23,6 @@ export const authSuccess = token => {
 };
 
 export const loginUser = payload => {
-  console.log("login", payload);
   return dispatch => {
     dispatch(authInit());
     callApi(authUrls.LOGIN, {

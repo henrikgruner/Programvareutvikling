@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import callApi from "../../utils/callApi";
 import { connect } from "react-redux";
+import { createAuction } from "../../store/actions/auction";
 
 import {
   TextAreaField,
@@ -109,8 +109,8 @@ const CreateAuctionPage = connect(mapStateToProps)(
 
     // What happens when you submit the form
     handleSubmit(values, { setSubmitting, props }) {
-      var submission = {
-        // The keys must be the same as in the backend
+
+      var payload = {
         title: values.title,
         description: values.description,
         start_price: values.startprice,
@@ -120,23 +120,28 @@ const CreateAuctionPage = connect(mapStateToProps)(
         image_1: values.images[0]
       };
 
-      console.log("submission", props, submission);
-
-      return callApi("/auctions/", {
-        method: "POST",
-        body: JSON.stringify(submission),
-        token: props.token
-      })
-        .then(() => {
-          setSubmitting(false);
-        })
-        .catch(err => {
-          alert("Det skjedde en feil.... ");
-          setSubmitting(false);
-          throw err;
-        });
+      props.createAuction(payload);
+      setSubmitting(false);
     },
 
+
+
+    /*
+          return callApi("/auctions/", {
+            method: "POST",
+            body: JSON.stringify(submission),
+            token: props.token
+          })
+            .then(() => {
+              setSubmitting(false);
+            })
+            .catch(err => {
+              alert("Det skjedde en feil.... ");
+              setSubmitting(false);
+              throw err;
+            });
+        },
+    */
     // Validation of the form
     validationSchema: Yup.object().shape({
       title: Yup.string()
@@ -164,4 +169,13 @@ const CreateAuctionPage = connect(mapStateToProps)(
   })(CreateAuctionForm)
 );
 
-export default CreateAuctionPage;
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createAuction: payload => dispatch(createAuction(payload))
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAuctionPage);
