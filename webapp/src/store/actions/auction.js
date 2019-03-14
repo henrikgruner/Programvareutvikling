@@ -18,3 +18,22 @@ export const createAuction = payload => {
       });
   };
 };
+
+const setAuction = payload => ({
+  type: auctionTypes.GET_AUCTION,
+  payload: payload
+});
+
+export const getAuction = () => {
+  return dispatch => {
+    const token = localStorage.getItem("token");
+
+    callApi(auctionsUrls.GET_AUCTION, { token })
+      .then(res => {
+        dispatch(setAuction(res.data));
+      })
+      .catch(err => {
+        console.log("Could not get Auction", err);
+      });
+  };
+};

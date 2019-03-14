@@ -6,6 +6,12 @@ import callApi from "../../utils/callApi";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 
+import { connect } from "react-redux";
+import { updateBid } from "../../store/actions/bids";
+import { getLeadingBid } from "../../store/actions/bids";
+import { getAuction } from "../../store/actions/auction";
+
+
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
 import { SubmitButton } from "../../components/SubmitButton";
@@ -29,6 +35,7 @@ const AuctionForm = ({
 }) => {
   const [initialized, setInitialized] = useState(false);
   const [auction, setAuction] = useState();
+  // erstattes med get auction
 
   useEffect(() => {
     if (!initialized) {
@@ -58,8 +65,8 @@ const AuctionForm = ({
           }))}
         />
       ) : (
-        <AuctionImage src={imgPlaceholder} alt="Placeholder" />
-      )}
+          <AuctionImage src={imgPlaceholder} alt="Placeholder" />
+        )}
       <DetailWrapper>
         <Title>{auction.title}</Title>
         <InfoWrapper>
@@ -118,14 +125,21 @@ const AuctionForm = ({
       </DetailWrapper>
     </ContentWrapper>
   ) : (
-    <div>Loading...</div>
-  );
+      <div>Loading...</div>
+    );
 };
 
+
+
+
+
+//Kode for å gi bud
 const AuctionPage = withFormik({
   displayName: "AuctionForm",
   validateOnChange: true,
   enableReinitialize: true,
+
+
 
   mapPropsToValues() {
     return {
@@ -134,40 +148,56 @@ const AuctionPage = withFormik({
   },
 
   // What happens when you submit the form
-  handleSubmit(values, { setSubmitting }) {
-    var submission = {
+  handleSubmit(values, { setSubmitting, props }) {
+
+    var payload = {
       amount: values.bid,
       auction: `http://127.0.0.1:8000/auctions/${
         window.location.pathname.split("/")[2] // Vil ha auction.url
-      }/`
+        }/`
     };
 
-    console.log("bid submission", submission);
-
-    return callApi("/bids/", {
-      method: "POST",
-      body: JSON.stringify(submission)
-    })
-      .then(() => {
-        setSubmitting(false);
-        window.history.go(window.location.pathname);
-      })
-      .catch(err => {
-        alert("Det skjedde en feil... ");
-        setSubmitting(false);
-        throw err;
-      });
+    props.updateBid(payload);
+    setSubmitting(false);
   },
 
+
+  //getLeadingBid
+
+  getBid() {
+
+
+  },
+
+
+
+
+
+
+
   // Validation of the form
-  validationSchema: Yup.object().shape({
+  validationSchema: props => Yup.object().shape({
     bid: Yup.number()
       .typeError("Skriv inn et bud")
       .required("Skriv inn et bud")
       .positive("Budet må være positivt")
       .integer("Budet må være et heltall")
-    //.min(15 + 18, "Budet må være over budøkningen") Vil ha `auction.min_bid_increase + auction.leading_bid`
+    //.min(props.auction.min_bid_increase, "Budet må være over budøkningen")
   })
 })(AuctionForm);
 
-export default AuctionPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    updateBid: payload => dispatch(updateBid(payload))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    token: state.token,
+    auction: state.auction
+
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuctionPage);
