@@ -14,6 +14,7 @@ import SignUpPage from "./routes/SignUpPage";
 import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
+import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ const App = () => (
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/userauctions" component={UsersAuctionsPage} />
             <Route
               path="/auctions"
               render={({ match: { url } }) => (

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-
-
-
+import { StyledLink } from "../../components/StyledLink";
 
 class ProfilePage extends Component {
 
@@ -17,6 +15,7 @@ class ProfilePage extends Component {
 
 
         </header>
+        <StyledLink to={`/userauctions/`}>Mine auksjoner</StyledLink>
       </div>
 
     );
