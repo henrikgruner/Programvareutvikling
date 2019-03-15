@@ -11,6 +11,10 @@ class BaseUserViewSet(viewsets.ModelViewSet):
     serializer_class = BaseUserSerializer
     permission_classes = (IsSameUserOrReadOnly,)
 
+    def destroy(self, request, pk=None, **kwargs):
+        request.user.is_active = False
+        request.user.save()
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()

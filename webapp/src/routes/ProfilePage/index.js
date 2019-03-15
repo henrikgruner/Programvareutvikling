@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 
+
+
+
+
 class ProfilePage extends Component {
+
+
+
   render() {
     return (
       <div>
         <header>
-          <h1>Velkommen til din profil</h1>
+          <h1>Welcome to the profile page</h1>
+
+
         </header>
       </div>
+
     );
   }
 }

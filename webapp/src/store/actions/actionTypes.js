@@ -8,3 +8,13 @@ export const authTypes = {
 export const userTypes = {
   USER_PROFILE: "USER_PROFILE"
 };
+
+export const auctionTypes = {
+  CREATE_AUCTION: "CREATE_AUCTION",
+  GET_AUCTION: "GET_AUCTION"
+}
+
+export const bidTypes = {
+  UPDATE_BID: "UPDATE_BID",
+  BID: "BID"
+}
