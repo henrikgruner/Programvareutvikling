@@ -20,21 +20,3 @@ export const updateBid = payload => {
     };
 };
 
-const setLeadingBid = payload => ({
-    type: bidTypes.BID,
-    payload: payload
-});
-
-export const getLeadingBid = () => {
-    return dispatch => {
-        const token = localStorage.getItem("token");
-
-        callApi(bidsUrls.GET_BID, { token })
-            .then(res => {
-                dispatch(setLeadingBid(res.data));
-            })
-            .catch(err => {
-                console.log("Could not get user leading bid", err);
-            });
-    };
-};

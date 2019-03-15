@@ -164,10 +164,10 @@ const AuctionPage = withFormik({
 
   //getLeadingBid
 
-  getBid() {
+  //getBid() {
 
 
-  },
+  //},
 
 
 

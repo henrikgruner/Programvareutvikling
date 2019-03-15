@@ -21,12 +21,12 @@ export const getUserProfile = () => {
   };
 };
 
-export const deactivateUserProfile = () => {
+export const deactivateUserProfile = payload => {
   const token = localStorage.getItem("token");
   return dispatch => {
     callApi(userUrls.USER_PROFILE, {
       method: "DELETE",
-      body: JSON.stringify(),
+      body: JSON.stringify(payload),
       token
     })
       .then(res => {
