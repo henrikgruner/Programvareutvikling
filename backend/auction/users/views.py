@@ -22,6 +22,16 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (IsOwnerOrReadOnly,)
 
 
+class MyProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return UserProfile.objects.filter(user=user)
+
+
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
