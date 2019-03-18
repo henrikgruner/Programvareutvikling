@@ -65,4 +65,4 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
 class AuctionShortSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Auction
-        fields = ("url", "id", "author")
+        fields = ("url", "title", "id", "author")

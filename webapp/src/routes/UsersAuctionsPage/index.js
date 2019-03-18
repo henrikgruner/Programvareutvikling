@@ -32,7 +32,7 @@ class UsersAuctionsPage extends Component {
               return (
                 <span>
                   <UrlWrapper to={`/auctions/${active_auction.id}`}>
-                    {active_auction.url}
+                    {active_auction.title}
                   </UrlWrapper>
                 </span>
               );
@@ -46,7 +46,7 @@ class UsersAuctionsPage extends Component {
               return (
                 <span>
                   <UrlWrapper to={`/auctions/${inactive_auction.id}`}>
-                    {inactive_auction.url}
+                    {inactive_auction.title}
                   </UrlWrapper>
                 </span>
               );
