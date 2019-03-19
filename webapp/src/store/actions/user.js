@@ -3,7 +3,7 @@ import callApi from "../../utils/callApi";
 import { userUrls } from "../../utils/apiUrls";
 
 const setUserProfile = payload => ({
-  type: userTypes.USER_PROFILE,
+  type: userTypes.GET_USER_PROFILE,
   payload: payload
 });
 

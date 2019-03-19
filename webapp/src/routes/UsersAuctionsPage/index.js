@@ -1,39 +1,29 @@
 import React, { Component } from "react";
-
-import AuctionPreview from "../../components/AuctionPreview";
-import callApi from "../../utils/callApi";
-import { Title, UrlWrapper } from "./styles";
+import { connect } from "react-redux";
+import { getUserProfile } from "../../store/actions/user";
+import { Title, StyledLink } from "./styles";
 
 class UsersAuctionsPage extends Component {
-  state = {
-    myprofile: null
-  };
-
   componentDidMount() {
-    callApi("/myprofile/", {})
-      .then(result => {
-        this.setState({ myprofile: result.jsonData });
-      })
-      .catch(err => {
-        console.error("Det skjedde en feil når vi hentet data.... ");
-        throw err;
-      });
+    this.props.getUserProfile();
   }
 
   render() {
+    const { myprofile, error, loading } = this.props;
+
     return (
       <span>
         <Title>Dine auksjoner</Title>
 
         <h3>Aktive auksjoner</h3>
         <span>
-          {this.state.myprofile &&
-            this.state.myprofile[0].active_auctions.map(active_auction => {
+          {myprofile &&
+            myprofile[0].active_auctions.map(active_auction => {
               return (
                 <span>
-                  <UrlWrapper to={`/auctions/${active_auction.id}`}>
+                  <StyledLink to={`/auctions/${active_auction.id}`}>
                     {active_auction.title}
-                  </UrlWrapper>
+                  </StyledLink>
                 </span>
               );
             })}
@@ -41,13 +31,13 @@ class UsersAuctionsPage extends Component {
 
         <h3>Inaktive auksjoner</h3>
         <span>
-          {this.state.myprofile &&
-            this.state.myprofile[0].inactive_auctions.map(inactive_auction => {
+          {myprofile &&
+            myprofile[0].inactive_auctions.map(inactive_auction => {
               return (
                 <span>
-                  <UrlWrapper to={`/auctions/${inactive_auction.id}`}>
+                  <StyledLink to={`/auctions/${inactive_auction.id}`}>
                     {inactive_auction.title}
-                  </UrlWrapper>
+                  </StyledLink>
                 </span>
               );
             })}
@@ -57,4 +47,22 @@ class UsersAuctionsPage extends Component {
   }
 }
 
-export default UsersAuctionsPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserProfile: payload => dispatch(getUserProfile(payload))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    myprofile: state.user.myprofile,
+    loading: state.user.loading,
+    error:
+      state.user.error && state.user.error.response.jsonData.non_field_errors[0]
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UsersAuctionsPage);
