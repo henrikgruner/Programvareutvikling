@@ -2,6 +2,19 @@ import { userTypes } from "./actionTypes";
 import callApi from "../../utils/callApi";
 import { userUrls } from "../../utils/apiUrls";
 
+export const userInit = () => {
+  return {
+    type: userTypes.INIT
+  };
+};
+
+export const userFail = error => {
+  return {
+    type: userTypes.FAIL,
+    error: error
+  };
+};
+
 const setUserProfile = payload => ({
   type: userTypes.GET_USER_PROFILE,
   payload: payload
@@ -9,14 +22,15 @@ const setUserProfile = payload => ({
 
 export const getUserProfile = () => {
   return dispatch => {
+    dispatch(userInit());
     const token = localStorage.getItem("token");
 
     callApi(userUrls.USER_PROFILE, { token })
       .then(res => {
-        dispatch(setUserProfile(res.data));
+        dispatch(setUserProfile(res.jsonData[0]));
       })
       .catch(err => {
-        console.log("Could not get user profile", err);
+        dispatch(userFail(err));
       });
   };
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components/macro";
 import ScrollToTop from "./utils/scrollToTop";
+import PrivateRoute from "./PrivateRoute";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -39,16 +40,32 @@ const App = () => (
         <ContentWrapper>
           <Switch>
             <Route exact path="/" component={FrontPage} />
-            <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
-            <Route exact path="/userauctions" component={UsersAuctionsPage} />
+            <Route
+              path="/profile"
+              render={({ match: { url } }) => (
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path={`${url}/`}
+                    component={ProfilePage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path={`${url}/auctions`}
+                    component={UsersAuctionsPage}
+                  />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              )}
+            />
             <Route
               path="/auctions"
               render={({ match: { url } }) => (
                 <Switch>
                   <Route exact path={`${url}/`} component={FrontPage} />
-                  <Route
+                  <PrivateRoute
                     exact
                     path={`${url}/new`}
                     component={CreateAuctionPage}

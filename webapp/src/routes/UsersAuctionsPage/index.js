@@ -1,26 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUserProfile } from "../../store/actions/user";
 import { Title, StyledLink } from "./styles";
 
 class UsersAuctionsPage extends Component {
-  componentDidMount() {
-    this.props.getUserProfile();
-  }
-
   render() {
-    const { myprofile, error, loading } = this.props;
-
-    return (
-      <span>
+    const { profile, error, loading } = this.props;
+    return loading ? (
+      <span>Loading ...</span>
+    ) : error ? (
+      <div>Det skjedde en feil</div>
+    ) : (
+      <div>
         <Title>Dine auksjoner</Title>
 
-        <h3>Aktive auksjoner</h3>
+        <h3>Dine aktive auksjoner</h3>
         <span>
-          {myprofile &&
-            myprofile[0].active_auctions.map(active_auction => {
+          {profile &&
+            profile.active_auctions.map((active_auction, i) => {
               return (
-                <span>
+                <span key={i}>
                   <StyledLink to={`/auctions/${active_auction.id}`}>
                     {active_auction.title}
                   </StyledLink>
@@ -29,12 +27,12 @@ class UsersAuctionsPage extends Component {
             })}
         </span>
 
-        <h3>Inaktive auksjoner</h3>
+        <h3>Dine tidligere auksjoner</h3>
         <span>
-          {myprofile &&
-            myprofile[0].inactive_auctions.map(inactive_auction => {
+          {profile &&
+            profile.inactive_auctions.map((inactive_auction, i) => {
               return (
-                <span>
+                <span key={i}>
                   <StyledLink to={`/auctions/${inactive_auction.id}`}>
                     {inactive_auction.title}
                   </StyledLink>
@@ -42,27 +40,17 @@ class UsersAuctionsPage extends Component {
               );
             })}
         </span>
-      </span>
+      </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUserProfile: payload => dispatch(getUserProfile(payload))
-  };
-};
-
 const mapStateToProps = state => {
   return {
-    myprofile: state.user.myprofile,
+    profile: state.user.profile,
     loading: state.user.loading,
-    error:
-      state.user.error && state.user.error.response.jsonData.non_field_errors[0]
+    error: state.user.error
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersAuctionsPage);
+export default connect(mapStateToProps)(UsersAuctionsPage);

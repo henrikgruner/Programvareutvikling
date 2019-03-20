@@ -1,6 +1,7 @@
 import { authTypes } from "./actionTypes";
 import callApi from "../../utils/callApi";
 import { authUrls } from "../../utils/apiUrls";
+import { getUserProfile } from "./user";
 
 export const authInit = () => {
   return {
@@ -37,6 +38,7 @@ export const loginUser = payload => {
         localStorage.setItem("expirationDate", expirationDate);
 
         dispatch(authSuccess(token));
+        dispatch(getUserProfile());
       })
       .catch(err => {
         dispatch(authFail(err));
@@ -45,7 +47,7 @@ export const loginUser = payload => {
 };
 
 export const logoutUser = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
   localStorage.removeItem("expirationDate");
   return {
     type: authTypes.LOGOUT

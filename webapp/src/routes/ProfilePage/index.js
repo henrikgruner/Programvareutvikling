@@ -4,20 +4,14 @@ import { connect } from "react-redux";
 import { StyledLink } from "../../components/StyledLink";
 
 class ProfilePage extends Component {
-
-
-
   render() {
     return (
       <div>
         <header>
           <h1>Welcome to the profile page</h1>
-
-
         </header>
-        <StyledLink to={`/userauctions/`}>Mine auksjoner</StyledLink>
+        <StyledLink to={`/profile/auctions/`}>Mine auksjoner</StyledLink>
       </div>
-
     );
   }
 }

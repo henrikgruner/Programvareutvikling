@@ -56,6 +56,10 @@ const callApi = async (
     window.location = `/login/?next=${window.location.pathname}`;
     throw res;
   }
+  if (res.status === 404) {
+    window.location = `/404-page-not-found/`;
+    throw res;
+  }
 
   return parseResponseBody(res).then(rejectOnHttpErrors);
 };

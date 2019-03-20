@@ -6,7 +6,9 @@ export const authTypes = {
 };
 
 export const userTypes = {
-  GET_USER_PROFILE: "GET_USER_PROFILE"
+  INIT: "USER_INIT",
+  FAIL: "USER_FAIL",
+  GET_USER_PROFILE: "USER_GET_PROFILE"
 };
 
 export const auctionTypes = {

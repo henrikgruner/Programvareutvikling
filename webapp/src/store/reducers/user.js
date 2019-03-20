@@ -1,9 +1,9 @@
-import { userTypes } from "../actions/actionTypes";
+import { userTypes, authTypes } from "../actions/actionTypes";
 
 const initalState = {
   error: null,
   loading: false,
-  myprofile: null
+  profile: null
 };
 
 export default function(state = initalState, action) {
@@ -17,7 +17,12 @@ export default function(state = initalState, action) {
         ...state,
         error: null,
         loading: false,
-        myprofile: action.payload
+        profile: action.payload
+      };
+    case authTypes.LOGOUT:
+      return {
+        ...state,
+        profile: null
       };
     default:
       return state;
