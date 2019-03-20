@@ -13,10 +13,7 @@ export const userTypes = {
 
 export const auctionTypes = {
   CREATE_AUCTION: "CREATE_AUCTION",
-  GET_AUCTION: "GET_AUCTION"
-};
-
-export const bidTypes = {
+  GET_AUCTION: "GET_AUCTION",
   UPDATE_BID: "UPDATE_BID",
-  BID: "BID"
+  CREATE_BID: "CREATE_BID"
 };

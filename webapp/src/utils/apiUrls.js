@@ -1,11 +1,6 @@
 export const auctionsUrls = {
-  CREATE_AUCTION: "/auctions/",
-  GET_AUCTION: "/auctions/"
-};
-
-export const bidsUrls = {
-  UPDATE_BID: "/bids/",
-  GET_BID: "/bids/"
+  AUCTIONS: "/auctions/",
+  BIDS: "/bids/"
 };
 
 export const authUrls = {
@@ -15,5 +10,6 @@ export const authUrls = {
 
 export const userUrls = {
   USER_PROFILE: "/me/",
-  DEACTIVATE: "/users/"
+  DELETE_USER: "/users/",
+  USERS: "/users/"
 };
