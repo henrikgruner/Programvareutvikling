@@ -16,7 +16,7 @@ const LoginForm = ({
   handleSubmit,
   isValid,
   loading,
-  apiError,
+  error,
   location,
   authenticated
 }) => {
@@ -32,7 +32,7 @@ const LoginForm = ({
   return (
     <div>
       <Title>Logg inn</Title>
-      {apiError && <div>Brukernavn eller passord er feil ({apiError})</div>}
+      {error && <div>Brukernavn eller passord er feil</div>}
       <Form>
         <Field
           name="username"
@@ -97,8 +97,7 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     authenticated: state.auth.authenticated,
-    apiError:
-      state.auth.error && state.auth.error.response.jsonData.non_field_errors[0]
+    error: state.auth.error
   };
 };
 
