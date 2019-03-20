@@ -22,7 +22,11 @@ export default function(state = initalState, action) {
         loading: false
       };
     case authTypes.LOGOUT:
-      return { ...state, authenticated: false, token: null };
+      return {
+        ...state,
+        authenticated: false,
+        token: null
+      };
     default:
       return state;
   }

@@ -20,21 +20,16 @@ from django.urls import path
 from rest_framework import routers
 
 from auction.auctions.views import AuctionViewSet, BidViewSet
-from auction.users.views import (
-    BaseUserViewSet,
-    GroupViewSet,
-    MyProfileViewSet,
-    UserProfileViewSet,
-)
+from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r"userprofiles", UserProfileViewSet)
-router.register(r"users", BaseUserViewSet)
-router.register(r"groups", GroupViewSet)
+router.register(r"users", UserViewSet)
+# router.register(r"groups", GroupViewSet)
 router.register(r"auctions", AuctionViewSet)
 router.register(r"bids", BidViewSet)
-router.register(r"myprofile", MyProfileViewSet)
+router.register(r"me", MyProfileViewSet, basename="me")
 
 
 # Wire up our API using automatic URL routing.

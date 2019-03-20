@@ -48,12 +48,16 @@ const callApi = async (
       Authorization: token ? "Token " + token : ""
     }),
     redirect: "manual",
-    // IE don't support body equal to null
+    // IE doesn't support body equal to null
     ...(body ? { body } : {})
   });
   const res = await Promise.race([timeoutPromise(50000), fetch(request)]);
   if (res.status === 401) {
     window.location = `/login/?next=${window.location.pathname}`;
+    throw res;
+  }
+  if (res.status === 404) {
+    window.location = `/404-page-not-found/`;
     throw res;
   }
 

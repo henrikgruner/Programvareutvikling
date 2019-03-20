@@ -7,6 +7,7 @@ import { CancelButton } from "../../components/CancelButton";
 import { connect } from "react-redux";
 import { loginUser } from "../../store/actions/auth";
 import { Form, Field, withFormik } from "formik";
+import { Redirect } from "react-router-dom";
 
 const LoginForm = ({
   touched,
@@ -15,11 +16,20 @@ const LoginForm = ({
   handleSubmit,
   isValid,
   loading,
-  apiError
+  apiError,
+  location,
+  authenticated
 }) => {
-  return loading ? (
-    <span>Loading ...</span>
-  ) : (
+  if (loading) {
+    return <span>Loading ...</span>;
+  }
+
+  if (authenticated) {
+    let { from } = location.state || { from: { pathname: "/" } };
+    return <Redirect to={from} />;
+  }
+
+  return (
     <div>
       <Title>Logg inn</Title>
       {apiError && <div>Brukernavn eller passord er feil ({apiError})</div>}
@@ -86,6 +96,7 @@ const LoginPage = withFormik({
 const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
+    authenticated: state.auth.authenticated,
     apiError:
       state.auth.error && state.auth.error.response.jsonData.non_field_errors[0]
   };

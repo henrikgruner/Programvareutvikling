@@ -10,11 +10,43 @@ from .models import UserProfile
 class BaseUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name", "is_staff", "is_active")
-        read_only_fields = ("username", "created", "is_staff","is_active")
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "is_staff",
+            "is_active",
+        )
+        read_only_fields = ("username", "created", "is_staff", "is_active")
 
 
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+class FullUserSerializer(serializers.HyperlinkedModelSerializer):
+    profile = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = (
+            "url",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "is_staff",
+            "is_active",
+            "profile",
+        )
+        read_only_fields = ("username", "created", "is_staff", "is_active")
+
+    def get_profile(self, obj):
+        profile = obj.profile
+        serializer = UserProfileSerializer(
+            profile, context={"request": self.context.get("request")}
+        )
+        return serializer.data
+
+
+class FullUserProfileSerializer(serializers.HyperlinkedModelSerializer):
     active_auctions = serializers.SerializerMethodField()
     inactive_auctions = serializers.SerializerMethodField()
     user = BaseUserSerializer(read_only=True)
@@ -46,6 +78,13 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
             auctions, many=True, context={"request": self.context.get("request")}
         )
         return serializer.data
+
+
+class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ("url", "id", "address", "phone_number", "approved_terms")
+        read_only_fields = ("id",)
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
