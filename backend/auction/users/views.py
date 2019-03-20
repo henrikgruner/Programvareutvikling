@@ -1,14 +1,14 @@
 from django.contrib.auth.models import Group, User
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 
 from .models import UserProfile
 from .permissions import IsOwnerOrReadOnly, IsSameUserOrReadOnly
-from .serializers import BaseUserSerializer, GroupSerializer, UserProfileSerializer
+from .serializers import FullUserProfileSerializer, FullUserSerializer, GroupSerializer
 
 
-class BaseUserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = BaseUserSerializer
+    serializer_class = FullUserSerializer
     permission_classes = (IsSameUserOrReadOnly,)
 
     def destroy(self, request, pk=None, **kwargs):
@@ -18,14 +18,13 @@ class BaseUserViewSet(viewsets.ModelViewSet):
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+    serializer_class = FullUserProfileSerializer
     permission_classes = (IsOwnerOrReadOnly,)
 
 
 class MyProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    serializer_class = FullUserProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         user = self.request.user
