@@ -7,7 +7,9 @@ import { EmailField, PasswordField, TextBoxField } from "../../components/form";
 import { Title } from "./styles";
 import { signupUser } from "../../store/actions/auth";
 import { connect } from "react-redux";
+// eslint-disable-next-line no-unused-vars
 import { equalTo } from "../../utils/validation";
+import { Redirect } from "react-router-dom";
 
 const SignUpForm = ({
   touched,
@@ -16,11 +18,18 @@ const SignUpForm = ({
   handleSubmit,
   isValid,
   loading,
-  apiError
+  error,
+  authenticated
 }) => {
-  return loading ? (
-    <span>Loading ...</span>
-  ) : (
+  if (loading) {
+    return <span>Loading ...</span>;
+  }
+
+  if (authenticated) {
+    return <Redirect to="/" />;
+  }
+
+  return (
     <div>
       <Title>Lag en ny bruker</Title>
       <Form>
@@ -34,6 +43,8 @@ const SignUpForm = ({
         <Field name="password" component={PasswordField} />
         <Field name="passwordConfirm" component={PasswordField} />
       </Form>
+
+      {error && <div>Kunne ikke opprette brukeren</div>}
 
       <SubmitButton
         onClick={handleSubmit}
@@ -99,7 +110,9 @@ const SignUpPage = withFormik({
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    authenticated: state.auth.authenticated,
+    error: state.auth.error
   };
 };
 
