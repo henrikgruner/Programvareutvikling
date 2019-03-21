@@ -1,24 +1,17 @@
 import React, { Component } from "react";
 import AuctionPreview from "../../components/AuctionPreview";
 import { Wrapper, ContentWrapper, AuctionListWrapper } from "./styles.js";
-import callApi from "../../utils/callApi";
 import { SearchField } from "./styles";
+import { connect } from "react-redux";
+import { getAuctions } from "../../store/actions/auction";
 
 class FrontPage extends Component {
   state = {
-    auctions: null,
     search: ""
   };
 
   componentDidMount() {
-    callApi("/auctions/", {})
-      .then(result => {
-        this.setState({ auctions: result.jsonData });
-      })
-      .catch(err => {
-        console.error("Det skjedde en feil når vi hentet data.... ");
-        throw err;
-      });
+    this.props.getAuctions();
   }
 
   updateSearch(event) {
@@ -26,6 +19,18 @@ class FrontPage extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <span>Loading ...</span>;
+    }
+
+    if (this.props.error) {
+      return (
+        <span>
+          Det skjedde en feil når vi hentet siden. Prøv igjen senere ...
+        </span>
+      );
+    }
+
     return (
       <ContentWrapper>
         <Wrapper>
@@ -37,35 +42,49 @@ class FrontPage extends Component {
           />
         </Wrapper>
         <AuctionListWrapper>
-          {this.state.auctions &&
-            this.state.auctions
-              .filter(auction => {
-                return auction.is_active == true;
-              })
-              .filter(auction => {
-                return (
-                  auction.title
-                    .toLowerCase()
-                    .indexOf(this.state.search.toLowerCase()) !== -1
-                );
-              })
-              .map((auction, i) => {
-                return (
-                  <AuctionPreview
-                    title={auction.title}
-                    mainImage={
-                      auction.images.length > 0 ? auction.images[0].image : null
-                    }
-                    highestBid={auction.leading_bid}
-                    id={auction.id}
-                    key={i}
-                  />
-                );
-              })}
+          {this.props.auctions
+            .filter(auction => {
+              return (
+                auction.is_active &&
+                auction.title
+                  .toLowerCase()
+                  .indexOf(this.state.search.toLowerCase()) !== -1
+              );
+            })
+            .map((auction, i) => {
+              return (
+                <AuctionPreview
+                  title={auction.title}
+                  mainImage={
+                    auction.images.length > 0 ? auction.images[0].image : null
+                  }
+                  highestBid={auction.leading_bid}
+                  id={auction.id}
+                  key={i}
+                />
+              );
+            })}
         </AuctionListWrapper>
       </ContentWrapper>
     );
   }
 }
 
-export default FrontPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    getAuctions: payload => dispatch(getAuctions(payload))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    auctions: state.auction.auctions,
+    loading: state.auction.loading,
+    error: state.auction.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FrontPage);

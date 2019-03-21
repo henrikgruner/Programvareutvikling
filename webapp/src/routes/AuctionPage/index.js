@@ -85,8 +85,14 @@ const AuctionForm = ({
             }}
           />
           <NumbersWithTitle
-            label="Slutter om"
-            text={<Countdown date={auction.end_time} />}
+            label={auction.is_active ? "Slutter om" : "Denne auksjonen er"}
+            text={
+              auction.is_active ? (
+                <Countdown date={auction.end_time} />
+              ) : (
+                "Avsluttet"
+              )
+            }
             subtextStyles={{
               fontSize: "30px",
               textAlign: "center",
@@ -94,6 +100,11 @@ const AuctionForm = ({
             }}
           />
         </InfoWrapper>
+        {auction.winner && (
+          <span>
+            Vinneren er {auction.winner.first_name} {auction.winner.last_name}
+          </span>
+        )}
         <div style={{ marginBottom: "2rem" }}>
           Henteaddresse: <b>{auction.pickup_address}</b>
         </div>

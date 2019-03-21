@@ -56,6 +56,27 @@ export const createAuction = payload => {
   };
 };
 
+const setAuctions = payload => ({
+  type: auctionTypes.GET_AUCTIONS,
+  payload: payload
+});
+
+export const getAuctions = () => {
+  return dispatch => {
+    dispatch(auctionInit());
+    const token = localStorage.getItem("token");
+
+    callApi(`${auctionsUrls.AUCTIONS}`, { token })
+      .then(res => {
+        dispatch(setAuctions(res.jsonData));
+      })
+      .catch(err => {
+        dispatch(auctionFail(err));
+        console.log("Could not get auctions", err);
+      });
+  };
+};
+
 export const createBid = payload => {
   return dispatch => {
     dispatch(auctionInit());

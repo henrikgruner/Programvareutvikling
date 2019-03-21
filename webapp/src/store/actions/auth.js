@@ -69,6 +69,7 @@ export const signupUser = payload => {
         localStorage.setItem("expirationDate", expirationDate);
 
         dispatch(authSuccess(token));
+        dispatch(getUserProfile());
       })
       .catch(err => {
         dispatch(authFail(err));

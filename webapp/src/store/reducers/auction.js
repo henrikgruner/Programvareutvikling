@@ -3,7 +3,8 @@ import { auctionTypes } from "../actions/actionTypes";
 const initalState = {
   error: null,
   loading: false,
-  auction: null
+  auction: null,
+  auctions: []
 };
 
 export default function(state = initalState, action) {
@@ -18,6 +19,13 @@ export default function(state = initalState, action) {
         error: null,
         loading: false,
         auction: action.payload
+      };
+    case auctionTypes.GET_AUCTIONS:
+      return {
+        ...state,
+        error: null,
+        loading: false,
+        auctions: action.payload
       };
     default:
       return state;
