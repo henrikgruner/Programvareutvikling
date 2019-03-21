@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
-from ..auctions.models import Auction
+from auction.auctions.models import Auction
 
 
 class UserProfile(models.Model):
@@ -12,11 +13,15 @@ class UserProfile(models.Model):
 
     @property
     def active_auctions(self):
-        return self.user.auctions.filter(is_active=True)
+        return self.user.auctions.filter(end_time__gt=timezone.now())
 
     @property
     def inactive_auctions(self):
-        return self.user.auctions.filter(is_active=False)
+        return self.user.auctions.filter(end_time__lte=timezone.now())
+
+    @property
+    def won_auctions(self):
+        return self.user.won_auctions
 
     def __str__(self):
         return (

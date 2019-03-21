@@ -26,7 +26,6 @@ from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSe
 router = routers.DefaultRouter()
 router.register(r"userprofiles", UserProfileViewSet)
 router.register(r"users", UserViewSet)
-# router.register(r"groups", GroupViewSet)
 router.register(r"auctions", AuctionViewSet)
 router.register(r"bids", BidViewSet)
 router.register(r"me", MyProfileViewSet, basename="me")

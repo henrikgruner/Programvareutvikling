@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import Countdown from "react-countdown-now";
 import { Form, Field, withFormik } from "formik";
-import callApi from "../../utils/callApi";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 
 import { connect } from "react-redux";
-import { updateBid } from "../../store/actions/bids";
-import { getLeadingBid } from "../../store/actions/bids";
-import { getAuction } from "../../store/actions/auction";
-
+import { createBid, getAuction } from "../../store/actions/auction";
+import { StyledLink } from "../../components/StyledLink";
 
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
@@ -21,7 +18,9 @@ import {
   DetailWrapper,
   Title,
   AuctionImage,
-  InfoWrapper
+  InfoWrapper,
+  BidWrapper,
+  AuthRequirementText
 } from "./styles";
 
 const AuctionForm = ({
@@ -31,26 +30,31 @@ const AuctionForm = ({
   handleSubmit,
   isValid,
   img,
-  match
+  match,
+  auction,
+  getAuction,
+  authenticated,
+  loading
 }) => {
   const [initialized, setInitialized] = useState(false);
-  const [auction, setAuction] = useState();
-  // erstattes med get auction
-
   useEffect(() => {
     if (!initialized) {
-      callApi(`/auctions/${match.params.auctionId}/`, {})
-        .then(result => {
-          setAuction(result.jsonData);
-          console.log("Successful fetch :)", result);
-        })
-        .catch(err => {
-          console.error("Det skjedde en feil når vi hentet data.... ");
-          throw err;
-        });
+      getAuction(match.params.auctionId);
       setInitialized(true);
     }
   });
+
+  if (loading) {
+    return <span>Loading ...</span>;
+  }
+
+  if (error) {
+    return (
+      <span>
+        Det skjedde en feil når vi hentet siden. Prøv igjen senere ...
+      </span>
+    );
+  }
 
   return auction ? (
     <ContentWrapper>
@@ -65,8 +69,8 @@ const AuctionForm = ({
           }))}
         />
       ) : (
-          <AuctionImage src={imgPlaceholder} alt="Placeholder" />
-        )}
+        <AuctionImage src={imgPlaceholder} alt="Placeholder" />
+      )}
       <DetailWrapper>
         <Title>{auction.title}</Title>
         <InfoWrapper>
@@ -81,8 +85,14 @@ const AuctionForm = ({
             }}
           />
           <NumbersWithTitle
-            label="Slutter om"
-            text={<Countdown date={auction.end_time} />}
+            label={auction.is_active ? "Slutter om" : "Denne auksjonen er"}
+            text={
+              auction.is_active ? (
+                <Countdown date={auction.end_time} />
+              ) : (
+                "Avsluttet"
+              )
+            }
             subtextStyles={{
               fontSize: "30px",
               textAlign: "center",
@@ -90,56 +100,64 @@ const AuctionForm = ({
             }}
           />
         </InfoWrapper>
-        <div style={{ marginBottom: "2rem", padding: "0 1em" }}>
+        {auction.winner && (
+          <span>
+            Vinneren er {auction.winner.first_name} {auction.winner.last_name}
+          </span>
+        )}
+        <div style={{ marginBottom: "2rem" }}>
           Henteaddresse: <b>{auction.pickup_address}</b>
         </div>
-        <div style={{ marginBottom: "2rem", padding: "0 1em" }}>
-          {auction.description}
-        </div>
-        <span style={{ fontStyle: "italic", marginLeft: "0.5em" }}>
-          Du må øke budet med minst <b>{auction.min_bid_increase} kr</b>
-        </span>
-        <div style={{ margin: "1rem auto" }}>
-          <Form>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Field
-                name="bid"
-                component={TextBoxField}
-                placeholder="Skriv inn ditt bud .."
-              />
-              <span style={{ marginRight: "20px" }} />
-              <SubmitButton
-                onClick={handleSubmit}
-                type="submit"
-                disabled={isSubmitting}
-                valid={isValid}
-                fontSize="1rem"
-                padding="0 2em"
-                height="50px"
-              >
-                Gi bud
-              </SubmitButton>
+        <div style={{ marginBottom: "2rem" }}>{auction.description}</div>
+        {authenticated ? (
+          <BidWrapper>
+            <span style={{ fontStyle: "italic" }}>
+              Du må øke lederbudet med minst{" "}
+              <b>{auction.min_bid_increase} kr</b>
+            </span>
+            <div style={{ margin: "1rem auto" }}>
+              <Form>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Field
+                    name="bid"
+                    component={TextBoxField}
+                    placeholder="Skriv inn ditt bud .."
+                  />
+                  <span style={{ marginRight: "20px" }} />
+                  <SubmitButton
+                    onClick={handleSubmit}
+                    type="submit"
+                    disabled={isSubmitting}
+                    valid={isValid}
+                    fontSize="1rem"
+                    padding="0 2em"
+                    height="50px"
+                  >
+                    Gi bud
+                  </SubmitButton>
+                </div>
+              </Form>
             </div>
-          </Form>
-        </div>
+          </BidWrapper>
+        ) : (
+          <AuthRequirementText>
+            <StyledLink to="/login">
+              Du må logge inn for å by - Logg inn
+            </StyledLink>
+          </AuthRequirementText>
+        )}
       </DetailWrapper>
     </ContentWrapper>
   ) : (
-      <div>Loading...</div>
-    );
+    <div>Loading...</div>
+  );
 };
-
-
-
-
 
 //Kode for å gi bud
 const AuctionPage = withFormik({
   displayName: "AuctionForm",
   validateOnChange: true,
   enableReinitialize: true,
-
-
 
   mapPropsToValues() {
     return {
@@ -149,55 +167,44 @@ const AuctionPage = withFormik({
 
   // What happens when you submit the form
   handleSubmit(values, { setSubmitting, props }) {
-
     var payload = {
       amount: values.bid,
-      auction: `http://127.0.0.1:8000/auctions/${
-        window.location.pathname.split("/")[2] // Vil ha auction.url
-        }/`
+      auction: `http://127.0.0.1:8000/auctions/${props.auction.id}/`
     };
 
-    props.updateBid(payload);
+    props.createBid(payload);
     setSubmitting(false);
   },
 
-
-  //getLeadingBid
-
-  //getBid() {
-
-
-  //},
-
-
-
-
-
-
-
   // Validation of the form
-  validationSchema: props => Yup.object().shape({
-    bid: Yup.number()
-      .typeError("Skriv inn et bud")
-      .required("Skriv inn et bud")
-      .positive("Budet må være positivt")
-      .integer("Budet må være et heltall")
-    //.min(props.auction.min_bid_increase, "Budet må være over budøkningen")
-  })
+  validationSchema: ({ auction: { min_bid_increase, leading_bid } }) =>
+    Yup.object().shape({
+      bid: Yup.number()
+        .typeError("Skriv inn et bud")
+        .required("Skriv inn et bud")
+        .positive("Budet må være positivt")
+        .integer("Budet må være et heltall")
+        .min(leading_bid + min_bid_increase, "Budet må være over budøkningen")
+    })
 })(AuctionForm);
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateBid: payload => dispatch(updateBid(payload))
+    createBid: payload => dispatch(createBid(payload)),
+    getAuction: payload => dispatch(getAuction(payload))
   };
 };
 
 const mapStateToProps = state => {
   return {
-    token: state.token,
-    auction: state.auction
-
+    auction: state.auction.auction,
+    authenticated: state.auth.authenticated,
+    loading: state.auction.loading,
+    error: state.auction.error
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuctionPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuctionPage);

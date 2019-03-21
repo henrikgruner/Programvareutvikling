@@ -1,6 +1,7 @@
-import { userTypes } from "./actionTypes";
 import callApi from "../../utils/callApi";
+import { userTypes } from "./actionTypes";
 import { userUrls } from "../../utils/apiUrls";
+import { logoutUser } from "./auth";
 
 export const userInit = () => {
   return {
@@ -35,19 +36,22 @@ export const getUserProfile = () => {
   };
 };
 
-export const deactivateUserProfile = payload => {
-  const token = localStorage.getItem("token");
+export const deleteUser = payload => {
   return dispatch => {
-    callApi(userUrls.USER_PROFILE, {
+    dispatch(userInit());
+    const token = localStorage.getItem("token");
+    callApi(userUrls.DELETE_USER, {
       method: "DELETE",
       body: JSON.stringify(payload),
       token
     })
       .then(res => {
-        window.history.go(window.location.pathname);
+        window.history.go(window.location.origin);
+        dispatch(logoutUser());
       })
       .catch(err => {
-        console.log("Could not delete user profile", err);
+        console.log("Could not delete user", err);
+        dispatch(userFail(err));
       });
   };
 };

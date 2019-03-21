@@ -40,6 +40,20 @@ class UsersAuctionsPage extends Component {
               );
             })}
         </span>
+
+        <h3>Auksjoner du har vunnet</h3>
+        <span>
+          {profile &&
+            profile.won_auctions.map((inactive_auction, i) => {
+              return (
+                <span key={i}>
+                  <StyledLink to={`/auctions/${inactive_auction.id}`}>
+                    {inactive_auction.title}
+                  </StyledLink>
+                </span>
+              );
+            })}
+        </span>
       </div>
     );
   }

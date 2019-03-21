@@ -1,5 +1,5 @@
-import { authTypes } from "./actionTypes";
 import callApi from "../../utils/callApi";
+import { authTypes } from "./actionTypes";
 import { authUrls } from "../../utils/apiUrls";
 import { getUserProfile } from "./user";
 
@@ -69,6 +69,7 @@ export const signupUser = payload => {
         localStorage.setItem("expirationDate", expirationDate);
 
         dispatch(authSuccess(token));
+        dispatch(getUserProfile());
       })
       .catch(err => {
         dispatch(authFail(err));

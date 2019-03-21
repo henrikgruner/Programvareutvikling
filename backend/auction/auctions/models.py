@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Auction(models.Model):
@@ -8,15 +9,13 @@ class Auction(models.Model):
     author = models.ForeignKey(
         User, default=0, on_delete=models.CASCADE, related_name="auctions"
     )
-    winner = models.ForeignKey(
+    _winner = models.ForeignKey(
         User,
         default=None,
         null=True,
         on_delete=models.CASCADE,
         related_name="won_auctions",
-    )
-    is_active = models.BooleanField(
-        default=True, help_text="If the auction is open or finished"
+        db_column="winner",
     )
     description = models.CharField(max_length=280)
     start_time = models.DateTimeField(auto_now_add=True)
@@ -28,14 +27,35 @@ class Auction(models.Model):
     pickup_address = models.CharField(max_length=200)
 
     @property
+    def is_active(self):
+        """
+        If the auction is open or finished
+        """
+        if timezone.now() > self.end_time:
+            return False
+        return True
+
+    @property
     def leading_bid(self):
         try:
-            bid = self.bids.latest("reg_time").amount
-
+            bid = self.bids.latest("reg_time")
         except Bid.DoesNotExist:
-            bid = self.start_price
-
+            bid = None
         return bid
+
+    @property
+    def winner(self):
+        if self.is_active:
+            return None
+        else:
+            try:
+                winner = self.bids.latest("reg_time").author
+                self._winner = winner
+                self.save()
+
+                return winner
+            except Bid.DoesNotExist:
+                return None
 
     def __str__(self):
         return f"{self.title}, {self.author.get_full_name()}"

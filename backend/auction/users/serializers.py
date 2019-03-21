@@ -1,27 +1,26 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
 
-from ..auctions.serializers import AuctionShortSerializer
+from auction.auctions.serializers import AuctionShortSerializer
+
 from .models import UserProfile
 
-# Serializers define the API representation
+
+class ShortUserProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ("url", "id", "address", "phone_number", "approved_terms")
+        read_only_fields = ("id",)
 
 
-class BaseUserSerializer(serializers.HyperlinkedModelSerializer):
+class ShortUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = (
-            "username",
-            "email",
-            "first_name",
-            "last_name",
-            "is_staff",
-            "is_active",
-        )
-        read_only_fields = ("username", "created", "is_staff", "is_active")
+        fields = ("url", "username", "first_name", "last_name", "email")
+        read_only_fields = ("username",)
 
 
-class FullUserSerializer(serializers.HyperlinkedModelSerializer):
+class DetailUserSerializer(serializers.HyperlinkedModelSerializer):
     profile = serializers.SerializerMethodField()
 
     class Meta:
@@ -34,22 +33,24 @@ class FullUserSerializer(serializers.HyperlinkedModelSerializer):
             "last_name",
             "is_staff",
             "is_active",
+            "date_joined",
             "profile",
         )
-        read_only_fields = ("username", "created", "is_staff", "is_active")
+        read_only_fields = ("username", "date_joined", "is_staff", "is_active")
 
     def get_profile(self, obj):
         profile = obj.profile
-        serializer = UserProfileSerializer(
+        serialized = ShortUserProfileSerializer(
             profile, context={"request": self.context.get("request")}
         )
-        return serializer.data
+        return serialized.data
 
 
-class FullUserProfileSerializer(serializers.HyperlinkedModelSerializer):
+class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
     active_auctions = serializers.SerializerMethodField()
     inactive_auctions = serializers.SerializerMethodField()
-    user = BaseUserSerializer(read_only=True)
+    won_auctions = serializers.SerializerMethodField()
+    user = ShortUserSerializer(read_only=True)
 
     class Meta:
         model = UserProfile
@@ -60,6 +61,7 @@ class FullUserProfileSerializer(serializers.HyperlinkedModelSerializer):
             "address",
             "phone_number",
             "approved_terms",
+            "won_auctions",
             "active_auctions",
             "inactive_auctions",
         )
@@ -67,27 +69,21 @@ class FullUserProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_active_auctions(self, obj):
         auctions = obj.active_auctions
-        serializer = AuctionShortSerializer(
+        serialized = AuctionShortSerializer(
             auctions, many=True, context={"request": self.context.get("request")}
         )
-        return serializer.data
+        return serialized.data
 
     def get_inactive_auctions(self, obj):
         auctions = obj.inactive_auctions
-        serializer = AuctionShortSerializer(
+        serialized = AuctionShortSerializer(
             auctions, many=True, context={"request": self.context.get("request")}
         )
-        return serializer.data
+        return serialized.data
 
-
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ("url", "id", "address", "phone_number", "approved_terms")
-        read_only_fields = ("id",)
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ("url", "name")
+    def get_won_auctions(self, obj):
+        won_auctions = obj.won_auctions
+        serialized = AuctionShortSerializer(
+            won_auctions, many=True, context={"request": self.context.get("request")}
+        )
+        return serialized.data
