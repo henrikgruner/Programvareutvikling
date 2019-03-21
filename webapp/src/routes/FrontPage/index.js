@@ -40,6 +40,9 @@ class FrontPage extends Component {
           {this.state.auctions &&
             this.state.auctions
               .filter(auction => {
+                return auction.is_active == true;
+              })
+              .filter(auction => {
                 return (
                   auction.title
                     .toLowerCase()
