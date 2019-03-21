@@ -15,7 +15,7 @@ export const InfoWrapper = styled.div`
   padding: 40px;
   padding-top: 0;
   ${media.tablet`
-    width: 100%; 
+    width: 100%;
   `};
 `;
 
@@ -38,7 +38,7 @@ export const Title = styled.h1`
 `;
 
 export const DetailWrapper = styled.div`
-  margin-left: 40px;
+  margin-left: 60px;
 
   ${media.tablet`
     margin-left: 0;
@@ -46,4 +46,16 @@ export const DetailWrapper = styled.div`
     flex-direction: column;
     align-items: center;
   `};
+`;
+
+export const AuthRequirementText = styled.div`
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+`;
+
+export const BidWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;

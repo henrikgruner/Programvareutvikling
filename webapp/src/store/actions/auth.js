@@ -1,5 +1,5 @@
-import { authTypes } from "./actionTypes";
 import callApi from "../../utils/callApi";
+import { authTypes } from "./actionTypes";
 import { authUrls } from "../../utils/apiUrls";
 import { getUserProfile } from "./user";
 
