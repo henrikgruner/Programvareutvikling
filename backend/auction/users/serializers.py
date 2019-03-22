@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from auction.auctions.serializers import AuctionShortSerializer
 from rest_auth.registration.serializers import RegisterSerializer
+
 from .models import UserProfile
 
 
@@ -89,16 +90,34 @@ class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
         return serialized.data
 
 
+class RegisterUserProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ("url", "id", "address")
+        read_only_fields = ("id", "url")
+
+
 class UserRegisterSerializer(RegisterSerializer):
 
-    profile = ShortUserProfileSerializer(required=True)
+    first_name = serializers.CharField(max_length=30)
+    last_name = serializers.CharField(max_length=150)
+    address = serializers.CharField(max_length=100)
+    phone_number = serializers.CharField(max_length=20)
+    approved_terms = serializers.BooleanField(required=False)
 
-    class Meta:
-        pass
+    def get_cleaned_data(self):
+        data_dict = super().get_cleaned_data()
+        data_dict["first_name"] = self.validated_data.get("first_name", "")
+        data_dict["last_name"] = self.validated_data.get("last_name", "")
+        data_dict["address"] = self.validated_data.get("address", "")
+        data_dict["phone_number"] = self.validated_data.get("phone_number", "")
+        data_dict["approved_terms"] = self.validated_data.get("approved_terms", "")
+        return data_dict
 
     def custom_signup(self, request, user):
         UserProfile.objects.create(
             user=user,
-            address=request.data["profile.address"],
-            phone_number=request.data["profile.phone_number"]
+            address=self.cleaned_data["address"],
+            phone_number=self.cleaned_data["phone_number"],
+            approved_terms=self.cleaned_data["approved_terms"],
         )
