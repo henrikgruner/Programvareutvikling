@@ -3,7 +3,14 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { CancelButton } from "../../components/CancelButton";
 import { SubmitButton } from "../../components/SubmitButton";
-import { EmailField, PasswordField, TextBoxField } from "../../components/form";
+import {
+  EmailField,
+  PasswordField,
+  TextBoxField,
+  TelBoxField,
+  TextAreaField,
+  CheckBoxField
+} from "../../components/form";
 import { Title } from "./styles";
 import { signupUser } from "../../store/actions/auth";
 import { connect } from "react-redux";
@@ -32,7 +39,23 @@ const SignUpForm = ({
   return (
     <div>
       <Title>Lag en ny bruker</Title>
+      {error && <div>Kunne ikke opprette brukeren. Prøv igjen senere.</div>}
+
       <Form>
+        <div style={{ display: "flex" }}>
+          <Field
+            name="firstName"
+            component={TextBoxField}
+            label="Fornavn"
+            placeholder="Ola Bernad"
+          />
+          <Field
+            name="lastName"
+            component={TextBoxField}
+            label="Etternavn"
+            placeholder="Nordmann"
+          />
+        </div>
         <Field
           name="username"
           component={TextBoxField}
@@ -41,10 +64,29 @@ const SignUpForm = ({
         />
         <Field name="email" component={EmailField} />
         <Field name="password" component={PasswordField} />
-        <Field name="passwordConfirm" component={PasswordField} />
+        <Field
+          name="passwordConfirm"
+          component={PasswordField}
+          label="Gjenta passordet"
+        />
+        <Field
+          name="phoneNumber"
+          component={TelBoxField}
+          label="Telefonnummer"
+          placeholder="Telefonnummer"
+        />
+        <Field
+          name="address"
+          component={TextAreaField}
+          label="Adresse"
+          placeholder="Eksempelveien 10, 0000 Eksempelregion"
+        />
+        <Field
+          name="approvedTerms"
+          component={CheckBoxField}
+          label="Jeg godtar retningslinjene for bruk av Auksjonsbua"
+        />
       </Form>
-
-      {error && <div>Kunne ikke opprette brukeren</div>}
 
       <SubmitButton
         onClick={handleSubmit}
@@ -73,7 +115,12 @@ const SignUpPage = withFormik({
       username: "",
       email: "",
       password: "",
-      passwordConfirm: ""
+      passwordConfirm: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      address: "",
+      approvedTerms: false
     };
   },
 
@@ -83,7 +130,12 @@ const SignUpPage = withFormik({
       username: values.username,
       email: values.email,
       password1: values.password,
-      password2: values.passwordConfirm
+      password2: values.passwordConfirm,
+      first_name: values.firstName,
+      last_name: values.lastName,
+      phone_number: values.phoneNumber,
+      address: values.address,
+      approved_terms: values.approvedTerms
     };
 
     props.signupUser(payload);
@@ -104,7 +156,30 @@ const SignUpPage = withFormik({
 
     passwordConfirm: Yup.string()
       .required("Gjenta passordet ditt")
-      .equalTo(Yup.ref("password"), "Passordene må være like")
+      .equalTo(Yup.ref("password"), "Passordene må være like"),
+
+    firstName: Yup.string("Navnet kan kun inneholde bokstaver")
+      .required("Skriv inn ditt fornavn")
+      .min(2, "Må være lengre enn 2 bokstaver"),
+
+    lastName: Yup.string("Navnet kan kun inneholde bokstaver")
+      .required("Skriv inn ditt etternavn")
+      .min(2, "Må være lengre enn 2 bokstaver"),
+
+    phoneNumber: Yup.string("Skriv inn ett telefonnummer")
+      .matches(
+        /^(0047|\+47|47)?\d{8}$/,
+        "Skriv inn et gyldig norsk telefonnummer"
+      )
+      .required("Skriv inn ett telefonnummer"),
+
+    address: Yup.string("Navnet kan kun inneholde bokstaver")
+      .required("Skriv inn ditt etternavn")
+      .min(2, "Må være lengre enn 2 bokstaver"),
+
+    approvedTerms: Yup.boolean().required(
+      "Du må godta for å kunne bruke denne siden"
+    )
   })
 })(SignUpForm);
 

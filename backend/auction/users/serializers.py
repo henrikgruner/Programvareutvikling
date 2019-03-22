@@ -103,7 +103,7 @@ class UserRegisterSerializer(RegisterSerializer):
     last_name = serializers.CharField(max_length=150)
     address = serializers.CharField(max_length=100)
     phone_number = serializers.CharField(max_length=20)
-    approved_terms = serializers.BooleanField(required=False)
+    approved_terms = serializers.BooleanField()
 
     def get_cleaned_data(self):
         data_dict = super().get_cleaned_data()

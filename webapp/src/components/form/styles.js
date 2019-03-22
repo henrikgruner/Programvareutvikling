@@ -27,6 +27,7 @@ export const StyledTextArea = styled(Textarea)`
   font-size: 1rem;
   width: 15em;
   overflow: hidden;
+  font-family: Raleway, "Helvetica Neue", Arial, sans-serif;
 `;
 
 export const StyledField = styled(Field)`
