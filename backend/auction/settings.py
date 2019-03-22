@@ -90,6 +90,10 @@ REST_FRAMEWORK = {
     ),
 }
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "auction.users.serializers.UserRegisterSerializer"
+}
+
 # Templates ====================================================================
 
 TEMPLATES = [

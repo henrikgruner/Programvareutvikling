@@ -5,12 +5,12 @@ import rootReducer from "./reducers";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 
-const persistConfig = {
+const rootPersistConfig = {
   key: "root",
   storage
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
 

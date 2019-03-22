@@ -4,20 +4,22 @@ import { StyledField } from "./styles";
 
 const PasswordField = ({
   field: { name, onChange, value },
-  form: { touched, errors, handleBlur }
+  form: { touched, errors, handleBlur },
+  label = "Passord",
+  placeholder = "Skriv inn et passord"
 }) => {
   const error = touched[name] && errors[name];
 
   return (
     <div>
       <label>
-        Passord
+        {label}
         <InputValidationFeedback error={error} />
         <StyledField
           type="password"
           name={name}
           value={value}
-          placeholder="Skriv inn et passord"
+          placeholder={placeholder}
           onChange={onChange}
           onBlur={handleBlur}
         />
