@@ -16,6 +16,7 @@ import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
 import UsersAuctionsPage from "./routes/UsersAuctionsPage";
+import DeleteProfilePage from "./routes/DeleteProfilePage";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ const App = () => (
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
+
             <Route
               path="/profile"
               render={({ match: { url } }) => (
@@ -56,6 +58,12 @@ const App = () => (
                     path={`${url}/auctions`}
                     component={UsersAuctionsPage}
                   />
+                  <PrivateRoute
+                    exact
+                    path={`${url}/delete-me`}
+                    component={DeleteProfilePage}
+                  />
+
                   <Route component={NotFoundPage} />
                 </Switch>
               )}

@@ -5,7 +5,6 @@ import { StyledLink } from "../../components/StyledLink";
 
 class ProfilePage extends Component {
   static propTypes = {
-    getUserProfile: PropTypes.func.isRequired,
     user: PropTypes.object
   };
 
@@ -33,6 +32,8 @@ class ProfilePage extends Component {
           <h1>Welcome to the profile page</h1>
         </header>
         {this.renderUser()}
+        <span>Vil du slette brukeren din?</span>
+        <StyledLink to="/profile/delete-me/">Trykk her</StyledLink>
         <span />
       </div>
     );

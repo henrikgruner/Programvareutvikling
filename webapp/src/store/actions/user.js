@@ -36,17 +36,15 @@ export const getUserProfile = () => {
   };
 };
 
-export const deleteUser = payload => {
+export const deleteUser = userId => {
   return dispatch => {
     dispatch(userInit());
     const token = localStorage.getItem("token");
-    callApi(userUrls.DELETE_USER, {
+    callApi(`${userUrls.DELETE_USER}${userId}/`, {
       method: "DELETE",
-      body: JSON.stringify(payload),
       token
     })
       .then(res => {
-        window.history.go(window.location.origin);
         dispatch(logoutUser());
       })
       .catch(err => {

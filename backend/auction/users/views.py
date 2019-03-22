@@ -1,5 +1,6 @@
-from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets
+from django.contrib.auth.models import User
+from rest_framework import permissions, status, viewsets
+from rest_framework.response import Response
 
 from .models import UserProfile
 from .permissions import IsOwnerOrReadOnly, IsSameUserOrReadOnly
@@ -11,9 +12,10 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = DetailUserSerializer
     permission_classes = (IsSameUserOrReadOnly,)
 
-    def destroy(self, request, pk=None, **kwargs):
+    def destroy(self, request, *args, **kwargs):
         request.user.is_active = False
         request.user.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class UserProfileViewSet(viewsets.ModelViewSet):
