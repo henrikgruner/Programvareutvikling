@@ -5,7 +5,7 @@ from django.db import models
 
 class Report(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    reportDescription = models.CharField(max_length=280)
+    report_description = models.CharField(max_length=280)
     auction = models.ForeignKey(
         Auction, default=0, on_delete=models.CASCADE
     )
