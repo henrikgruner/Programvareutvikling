@@ -14,15 +14,17 @@ class ProfilePage extends Component {
   }
 
   renderUser() {
-    const { user } = this.props.user;
+    const user = this.props.user;
     return (
-      user && (
+      this.props.user && (
         <div>
-          <div>Brukernavn: {user.username}</div>
+          <div>Brukernavn: {user.user.username}</div>
           <div>
-            Navn: {user.first_name} {user.last_name}
+            Navn: {user.user.first_name} {user.user.last_name}
           </div>
-          <div>E-mail : {user.email}</div>
+          <div>E-mail : {user.user.email}</div>
+          <div>Telefonnummer : {user.phone_number}</div>
+          <div>Adresse : {user.address}</div>
           <hr />
           <StyledLink to={`/profile/auctions/`}>Mine auksjoner</StyledLink>
         </div>
@@ -34,11 +36,15 @@ class ProfilePage extends Component {
     return (
       <div>
         <header>
-          <h1>Welcome to the profile page</h1>
+          <h1>Velkommen til din profil</h1>
         </header>
         {this.renderUser()}
-        <span>Vil du slette brukeren din?</span>
-        <StyledLink to="/profile/delete-me/">Trykk her</StyledLink>
+        <div>
+          Vil du slette brukeren din?
+          <StyledLink to="/profile/delete-me/"> Trykk her</StyledLink>
+        </div>
+        <span>Vil du endre brukeren din?</span>
+        <StyledLink to="/profile/edit-me/"> Endre profil her</StyledLink>
         <span />
         <span>Vil du endre passord?</span>
         <StyledLink to="/profile/change-password/">Trykk her</StyledLink>

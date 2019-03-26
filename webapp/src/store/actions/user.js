@@ -74,19 +74,43 @@ export const deleteUser = userId => {
   };
 };
 
-export const updateUserProfile = payload => {
-  const token = localStorage.getItem("token");
+export const updateUser = ({ userId, payload }) => {
   return dispatch => {
-    callApi(userUrls.USER_PROFILE, {
-      method: "POST",
+    dispatch(userInit());
+    const token = localStorage.getItem("token");
+    callApi(`${userUrls.USERS}${userId}/`, {
+      method: "PATCH",
       body: JSON.stringify(payload),
       token
     })
       .then(res => {
-        window.history.go(window.location.pathname);
+        window.history.go(-1);
+        getUserProfile();
       })
       .catch(err => {
         console.log("Could not update user profile", err);
+        dispatch(userFail(err));
+      });
+  };
+};
+
+export const updateUserProfile = ({ userId, payload }) => {
+  return dispatch => {
+    dispatch(userInit());
+    const token = localStorage.getItem("token");
+    console.log("hehai", userId, payload);
+    callApi(`${userUrls.USER_PROFILES}${userId}/`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      token
+    })
+      .then(res => {
+        window.history.go(-1);
+        getUserProfile();
+      })
+      .catch(err => {
+        console.log("Could not update user profile", err);
+        dispatch(userFail(err));
       });
   };
 };

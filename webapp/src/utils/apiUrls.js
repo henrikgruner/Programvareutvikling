@@ -16,5 +16,6 @@ export const authUrls = {
 export const userUrls = {
   USER_PROFILE: "/me/",
   DELETE_USER: "/users/",
-  USERS: "/users/"
+  USERS: "/users/",
+  USER_PROFILES: "/userprofiles/"
 };

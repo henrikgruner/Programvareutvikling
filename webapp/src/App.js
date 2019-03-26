@@ -18,6 +18,7 @@ import CreateAuctionPage from "./routes/CreateAuctionPage";
 import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
 import ReportPage from "./routes/ReportPage";
+import EditProfilePage from "./routes/EditProfilePage";
 import StatisticsPage from "./routes/StatisticsPage";
 import ChangePassword from "./routes/ChangePassword";
 
@@ -66,6 +67,11 @@ const App = () => (
                     exact
                     path={`${url}/delete-me`}
                     component={DeleteProfilePage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path={`${url}/edit-me`}
+                    component={EditProfilePage}
                   />
                   <PrivateRoute
                     exact

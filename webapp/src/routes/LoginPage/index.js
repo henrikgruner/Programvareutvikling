@@ -44,6 +44,7 @@ const LoginForm = ({
           name="password"
           component={PasswordField}
           placholder="Passord.."
+          label="Passord"
         />
       </Form>
       <SubmitButton
