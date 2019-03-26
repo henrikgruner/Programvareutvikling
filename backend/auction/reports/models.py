@@ -14,7 +14,7 @@ class Report(models.Model):
     )
 
     def __str__(self):
-        return f"{self.reportDescription}, {self.author.get_full_name()}, {self.auction}"
+        return f"{self.report_description}, {self.author.get_full_name()}, {self.auction}"
 
     class Meta:
         ordering = ("created",)
