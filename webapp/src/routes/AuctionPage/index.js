@@ -34,7 +34,8 @@ const AuctionForm = ({
   auction,
   getAuction,
   authenticated,
-  loading
+  loading,
+  user
 }) => {
   const [initialized, setInitialized] = useState(false);
   useEffect(() => {
@@ -47,6 +48,8 @@ const AuctionForm = ({
   if (loading) {
     return <span>Loading ...</span>;
   }
+
+  const isAuthor = (auction.author === user);
 
   if (error) {
     return (
@@ -109,7 +112,7 @@ const AuctionForm = ({
           Henteaddresse: <b>{auction.pickup_address}</b>
         </div>
         <div style={{ marginBottom: "2rem" }}>{auction.description}</div>
-        {authenticated ? (
+        {authenticated ? (!isAuthor ? (
           <BidWrapper>
             <span style={{ fontStyle: "italic" }}>
               Du må øke lederbudet med minst{" "}
@@ -139,7 +142,7 @@ const AuctionForm = ({
               </Form>
             </div>
           </BidWrapper>
-        ) : (
+        ): (<></>) ): (
           <AuthRequirementText>
             <StyledLink to="/login">
               Du må logge inn for å by - Logg inn
@@ -200,7 +203,8 @@ const mapStateToProps = state => {
     auction: state.auction.auction,
     authenticated: state.auth.authenticated,
     loading: state.auction.loading,
-    error: state.auction.error
+    error: state.auction.error,
+    user: state.user.profile && state.user.profile.user.url
   };
 };
 
