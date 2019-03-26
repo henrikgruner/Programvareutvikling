@@ -80,7 +80,7 @@ const ReportPage = connect(mapStateToProps)(
     handleSubmit(values, { setSubmitting, props }) {
       var report = {
         auction: `http://127.0.0.1:8000/auctions/${values.auction}/`,
-        reportDescription: values.reportDescription,
+        report_description: values.reportDescription,
       };
 
       props.Report(report);
