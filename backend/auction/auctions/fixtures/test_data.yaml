@@ -1,0 +1,166 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$120000$m0x75kwHcwfs$Apav+4hNGQDYtyzfVjagU1m1P0DKyqjQ2ROrVuAyRZY=
+    last_login: 2019-03-21 11:41:51.486294+00:00
+    is_superuser: false
+    username: agent_000
+    first_name: Eivind
+    last_name: Kristensen
+    email: agent_000@example.com
+    is_staff: false
+    is_active: true
+    date_joined: 2019-02-28 13:39:33.739851+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$120000$QUwRx6JAERsn$p9089SaV+4fgSiSjWH3G/oEY7dI7qqfAUd6ZQLE/tMI=
+    last_login: null
+    is_superuser: false
+    username: agent_001
+    first_name: Tove
+    last_name: Kristensen
+    email: agent_001@example.com
+    is_staff: false
+    is_active: true
+    date_joined: 2019-02-28 13:39:34.080946+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$120000$bqBAptnAmpuj$0vQor/N1EwuzTn0LJErgZXWJeBzIuF6abF1VEammOuY=
+    last_login: null
+    is_superuser: false
+    username: agent_002
+    first_name: Karin
+    last_name: Aasen
+    email: agent_002@example.com
+    is_staff: false
+    is_active: true
+    date_joined: 2019-02-28 13:39:34.459927+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$120000$jvFzxNiT3pwJ$RAYCHDyZljf6zYxpy11k3OMYT/xRqKKcIEvKqyoUBx0=
+    last_login: null
+    is_superuser: false
+    username: agent_003
+    first_name: Per
+    last_name: Aas
+    email: agent_003@example.com
+    is_staff: false
+    is_active: true
+    date_joined: 2019-02-28 13:39:34.746189+00:00
+    groups: []
+    user_permissions: []
+- model: users.userprofile
+  pk: 1
+  fields:
+    {
+      user: 1,
+      address: "Ahmedfaret 2, 9799 Lunde",
+      phone_number: 123-555-0000,
+      approved_terms: true,
+    }
+- model: users.userprofile
+  pk: 2
+  fields:
+    {
+      user: 2,
+      address: "Paulsenvollen 94C, 7627 Janne\xF8y",
+      phone_number: 123-555-0001,
+      approved_terms: true,
+    }
+- model: users.userprofile
+  pk: 3
+  fields:
+    {
+      user: 3,
+      address: "Evensenberget 4, 3807 Kristoffersj\xF8en",
+      phone_number: 123-555-0002,
+      approved_terms: true,
+    }
+- model: users.userprofile
+  pk: 4
+  fields:
+    {
+      user: 4,
+      address: "Haugenkroken 9A, 9784 Karisund",
+      phone_number: 123-555-0003,
+      approved_terms: true,
+    }
+- model: auctions.auction
+  pk: 1
+  fields:
+    {
+      created: ! "2019-02-28 13:39:49.405683+00:00",
+      title: Name over term she.,
+      author: 1,
+      winner: null,
+      is_active: true,
+      description: High answer fine day popular.
+        Score poor small reality friend another. Care make rate. Sing woman least manage
+        my party day.,
+      start_time: ! "2019-02-28 13:39:49.405683+00:00",
+      end_time: ! "2019-05-11
+        13:39:22.248063+00:00",
+      start_price: 1808,
+      min_bid_increase: 112,
+      pickup_address: "Mathisenstranda
+        72, 1977 Turidv\xE6r",
+    }
+- model: auctions.auction
+  pk: 2
+  fields:
+    {
+      created: ! "2019-02-28 13:39:49.429592+00:00",
+      title: Term smile guy.,
+      author: 2,
+      winner: null,
+      is_active: true,
+      description: "Guy service so see enter
+        positive significant. Trip away cause analysis side.
+
+        Notice give human cell others kid. Eye record catch pick visit entire.",
+      start_time: ! "2019-02-28
+        13:39:49.429592+00:00",
+      end_time: ! "2019-03-11 13:39:22.248063+00:00",
+      start_price: 2790,
+      min_bid_increase: 204,
+      pickup_address: "Sandvikbakken 3, 5854 Heidistrand",
+    }
+- model: auctions.auction
+  pk: 3
+  fields:
+    { created: ! "2019-02-28 13:39:49.444661+00:00", title: Edge outside her
+        quality., author: 3, winner: null, is_active: true, description: "Chance attorney
+        deep position customer west. Sister official nearly research current someone.
+        Past purpose product response lot.
+
+        Responsibility require statement land. Data eye must guy.", start_time: ! "2019-02-28
+        13:39:49.444661+00:00", end_time: ! "2019-03-11 13:39:22.248063+00:00", start_price: 1196, min_bid_increase: 27, pickup_address: "Brekkeekra 27, 8890 H\xE5vardv\xE5g" }
+- model: auctions.auction
+  pk: 4
+  fields:
+    {
+      created: ! "2019-02-28 13:39:49.467495+00:00",
+      title: Begin send.,
+      author: 4,
+      winner: null,
+      is_active: true,
+      description: Option argue grow picture you often
+        Congress ten. Spring west success result. Analysis without almost physical prevent
+        sense.,
+      start_time: ! "2019-02-28 13:39:49.467495+00:00",
+      end_time: ! "2019-03-11
+        13:39:22.248063+00:00",
+      start_price: 93,
+      min_bid_increase: 38,
+      pickup_address: "Eliassenbr\xE5ten
+        3, 7035 Str\xF8m",
+    }
