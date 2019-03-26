@@ -88,6 +88,7 @@ export const authCheckState = () => {
         dispatch(logoutUser());
       } else {
         dispatch(authSuccess(token));
+        
       }
     }
   };
