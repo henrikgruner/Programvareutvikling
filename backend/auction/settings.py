@@ -57,7 +57,7 @@ THIRD_PARTY_APPS = [
 ]
 
 
-LOCAL_APPS = ["auction.users", "auction.auctions"]
+LOCAL_APPS = ["auction.users", "auction.auctions", "auction.reports"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

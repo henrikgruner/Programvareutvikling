@@ -19,3 +19,7 @@ export const auctionTypes = {
   CREATE_AUCTION: "AUCTION_CREATE_AUCTION",
   CREATE_BID: "AUCTION_CREATE_BID"
 };
+
+export const reportTypes ={
+  REPORT: "CREATE_REPORT"
+}
