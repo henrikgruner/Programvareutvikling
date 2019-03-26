@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { StyledLink } from "../../components/StyledLink";
+import { getUserProfile } from "../../store/actions/user";
 
 class ProfilePage extends Component {
   static propTypes = {
     user: PropTypes.object
   };
+  
+  componentDidMount() {
+    this.props.getUserProfile();
+  }
 
   renderUser() {
     const { user } = this.props.user;
@@ -48,4 +53,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ProfilePage);
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserProfile: payload => dispatch(getUserProfile(payload))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
