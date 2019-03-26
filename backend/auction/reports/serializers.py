@@ -10,7 +10,7 @@ class ReportSerializer(serializers.HyperlinkedModelSerializer):
             "url",
             "id",
             "created",
-            "reportDescription",
+            "report_description",
             # "title",
             "author",
             "auction",
