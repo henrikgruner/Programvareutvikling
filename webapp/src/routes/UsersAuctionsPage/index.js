@@ -21,7 +21,6 @@ class UsersAuctionsPage extends Component {
                 <span key={i}>
                   <StyledLink to={`/auctions/${active_auction.id}`}>
                     {active_auction.title}
-                    <hr />
                   </StyledLink>
                 </span>
               );
