@@ -3,6 +3,10 @@ export const auctionsUrls = {
   BIDS: "/bids/"
 };
 
+export const reportsUrls = {
+  REPORT: "/reports/"
+};
+
 export const authUrls = {
   LOGIN: "/rest-auth/login/",
   SIGNUP: "/rest-auth/registration/"

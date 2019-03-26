@@ -12,6 +12,7 @@ import { StyledLink } from "../../components/StyledLink";
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
 import { SubmitButton } from "../../components/SubmitButton";
+import { CancelButton } from "../../components/CancelButton";
 import NumbersWithTitle from "./NumbersWithTitle";
 import {
   ContentWrapper,
@@ -40,6 +41,7 @@ const AuctionForm = ({
   useEffect(() => {
     if (!initialized) {
       getAuction(match.params.auctionId);
+      document.cookie =`id=${window.location.pathname.split("/")[2]}/`.substring(0,4)
       setInitialized(true);
     }
   });
@@ -147,6 +149,7 @@ const AuctionForm = ({
           </AuthRequirementText>
         )}
       </DetailWrapper>
+      <CancelButton to="/report">Rapportér</CancelButton>
     </ContentWrapper>
   ) : (
     <div>Loading...</div>

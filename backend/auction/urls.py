@@ -21,6 +21,7 @@ from rest_framework import routers
 
 from auction.auctions.views import AuctionViewSet, BidViewSet
 from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSet
+from auction.reports.views import ReportViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -29,6 +30,7 @@ router.register(r"users", UserViewSet)
 router.register(r"auctions", AuctionViewSet)
 router.register(r"bids", BidViewSet)
 router.register(r"me", MyProfileViewSet, basename="me")
+router.register(r"reports", ReportViewSet)
 
 
 # Wire up our API using automatic URL routing.
