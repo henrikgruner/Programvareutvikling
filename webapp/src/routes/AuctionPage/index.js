@@ -42,7 +42,9 @@ const AuctionForm = ({
   useEffect(() => {
     if (!initialized) {
       getAuction(match.params.auctionId);
-      document.cookie =`id=${window.location.pathname.split("/")[2]}/`.substring(0,4)
+      document.cookie = `id=${
+        window.location.pathname.split("/")[2]
+      }/`.substring(0, 4);
       setInitialized(true);
     }
   });
@@ -51,7 +53,7 @@ const AuctionForm = ({
     return <span>Loading ...</span>;
   }
 
-  const isAuthor = (auction.author === user);
+  const isAuthor = auction.author === user;
 
   if (error) {
     return (
@@ -114,37 +116,41 @@ const AuctionForm = ({
           Henteaddresse: <b>{auction.pickup_address}</b>
         </div>
         <div style={{ marginBottom: "2rem" }}>{auction.description}</div>
-        {authenticated ? (!isAuthor ? (
-          <BidWrapper>
-            <span style={{ fontStyle: "italic" }}>
-              Du må øke lederbudet med minst{" "}
-              <b>{auction.min_bid_increase} kr</b>
-            </span>
-            <div style={{ margin: "1rem auto" }}>
-              <Form>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <Field
-                    name="bid"
-                    component={TextBoxField}
-                    placeholder="Skriv inn ditt bud .."
-                  />
-                  <span style={{ marginRight: "20px" }} />
-                  <SubmitButton
-                    onClick={handleSubmit}
-                    type="submit"
-                    disabled={isSubmitting}
-                    valid={isValid}
-                    fontSize="1rem"
-                    padding="0 2em"
-                    height="50px"
-                  >
-                    Gi bud
-                  </SubmitButton>
-                </div>
-              </Form>
-            </div>
-          </BidWrapper>
-        ): (<></>) ): (
+        {authenticated ? (
+          !isAuthor ? (
+            <BidWrapper>
+              <span style={{ fontStyle: "italic" }}>
+                Du må øke lederbudet med minst{" "}
+                <b>{auction.min_bid_increase} kr</b>
+              </span>
+              <div style={{ margin: "1rem auto" }}>
+                <Form>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Field
+                      name="bid"
+                      component={TextBoxField}
+                      placeholder="Skriv inn ditt bud .."
+                    />
+                    <span style={{ marginRight: "20px" }} />
+                    <SubmitButton
+                      onClick={handleSubmit}
+                      type="submit"
+                      disabled={isSubmitting}
+                      valid={isValid}
+                      fontSize="1rem"
+                      padding="0 2em"
+                      height="50px"
+                    >
+                      Gi bud
+                    </SubmitButton>
+                  </div>
+                </Form>
+              </div>
+            </BidWrapper>
+          ) : (
+            <></>
+          )
+        ) : (
           <AuthRequirementText>
             <StyledLink to="/login">
               Du må logge inn for å by - Logg inn

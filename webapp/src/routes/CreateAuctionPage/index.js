@@ -109,7 +109,6 @@ const CreateAuctionPage = connect(mapStateToProps)(
 
     // What happens when you submit the form
     handleSubmit(values, { setSubmitting, props }) {
-
       var payload = {
         title: values.title,
         description: values.description,
@@ -123,8 +122,6 @@ const CreateAuctionPage = connect(mapStateToProps)(
       props.createAuction(payload);
       setSubmitting(false);
     },
-
-
 
     /*
           return callApi("/auctions/", {
@@ -169,13 +166,13 @@ const CreateAuctionPage = connect(mapStateToProps)(
   })(CreateAuctionForm)
 );
 
-
-
 const mapDispatchToProps = dispatch => {
   return {
     createAuction: payload => dispatch(createAuction(payload))
   };
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAuctionPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateAuctionPage);

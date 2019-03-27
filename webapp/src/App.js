@@ -17,7 +17,7 @@ import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
 import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
-import ReportPage from "./routes/ReportPage"
+import ReportPage from "./routes/ReportPage";
 
 export const PageWrapper = styled.div`
   display: flex;
