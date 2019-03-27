@@ -14,12 +14,14 @@ import { logoutUser } from "../../store/actions/auth";
 
 const Header = props => {
   return (
-    <HeaderWrapper {...props}>
+    <HeaderWrapper>
       <CompanyLogoWrapper to="/">
         <CompanyLogo src={logo} alt="Budbua logo" />
         <CompanyLogoText>Auksjonsbua</CompanyLogoText>
       </CompanyLogoWrapper>
-      <SubTitle>Velkommen til Norges største og eldste auksjonsmarked</SubTitle>
+      <SubTitle>
+        Velkommen til Norges største <br /> og eldste auksjonsmarked
+      </SubTitle>
       <AuthLinkWrapper>
         {props.isAuthenticated ? (
           <>
@@ -29,7 +31,9 @@ const Header = props => {
               Logg ut
             </AuthLink>
             <span>|</span>
-            <AuthLink to="/profile">Min profil</AuthLink>
+            <AuthLink to="/profile">
+              Velkommen, {props.user && props.user.first_name + "  \u2699"}
+            </AuthLink>
           </>
         ) : (
           <>
@@ -46,7 +50,8 @@ const Header = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.authenticated
+    isAuthenticated: state.auth.authenticated,
+    user: state.user.profile && state.user.profile.user
   };
 };
 

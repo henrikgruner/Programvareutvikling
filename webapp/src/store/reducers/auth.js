@@ -12,7 +12,13 @@ export default function(state = initalState, action) {
     case authTypes.INIT:
       return { ...state, error: null, loading: true };
     case authTypes.FAIL:
-      return { ...state, error: action.error, loading: false };
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        authenticated: false,
+        token: null
+      };
     case authTypes.LOGIN:
       return {
         ...state,
