@@ -8,21 +8,21 @@ from .models import Auction
 
 
 class CreateAuctionTestCase(APITestCase):
-    fixtures = ["test_data.yaml"]
+    fixtures = ["test_users.yaml", "test_auctions.yaml"]
 
     _test_data = {
-        "title": "Test",
-        "description": "Dette er en test",
-        "end_time": "2019-05-11T13:39:22.00Z",
-        "min_bid_increase": 1,
-        "pickup_location": "Testing 123",
+        "title": "Test auksjon",
+        "description": "Dette er en test auksjon",
+        "end_time": "2019-08-11T13:39:22.00Z",
+        "min_bid_increase": 10,
+        "pickup_location": "Testingvegen 123, 02X109 Kakegalaksen",
     }
 
     def setUp(self):
-        self.user = User.objects.get(pk=1)
+        self.regular_user = User.objects.get(pk=2)
 
     def test_blank_title(self):
-        self.client.force_authenticate(user=self.user)
+        self.client.force_authenticate(user=self.regular_user)
         invalid_data = self._test_data.copy()
         invalid_data["title"] = ""
         url = reverse("auction-list")

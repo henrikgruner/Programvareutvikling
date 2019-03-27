@@ -1,0 +1,83 @@
+- model: auth.User
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$120000$m0x75kwHcwfs$Apav+4hNGQDYtyzfVjagU1m1P0DKyqjQ2ROrVuAyRZY=
+    is_superuser: true
+    username: admin
+    first_name: Admin
+    last_name: Adminsen
+    email: admin@admin.com
+    is_staff: true
+    is_active: true
+    date_joined: "2019-02-28 13:39:33.739851+01:00"
+
+- model: auth.User
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$120000$QUwRx6JAERsn$p9089SaV+4fgSiSjWH3G/oEY7dI7qqfAUd6ZQLE/tMI=
+    is_superuser: false
+    username: vanlig_agent_001
+    first_name: Vanlige Tove
+    last_name: Kristensen
+    email: agent_001@example.com
+    is_staff: false
+    is_active: true
+    date_joined: "2019-02-28 13:39:34.080946+01:00"
+
+- model: auth.User
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$120000$bqBAptnAmpuj$0vQor/N1EwuzTn0LJErgZXWJeBzIuF6abF1VEammOuY=
+    is_superuser: false
+    username: eier_agent_002
+    first_name: Eier Karin
+    last_name: Aasen
+    email: eier_agent_002@example.com
+    is_staff: true
+    is_active: true
+    date_joined: "2019-02-28 13:39:34.459927+01:00"
+
+- model: auth.User
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$120000$jvFzxNiT3pwJ$RAYCHDyZljf6zYxpy11k3OMYT/xRqKKcIEvKqyoUBx0=
+    is_superuser: false
+    username: agent_003
+    first_name: Vanlige Per
+    last_name: Aas
+    email: agent_003@example.com
+    is_staff: false
+    is_active: true
+    date_joined: "2019-02-28 13:39:34.746189+01:00"
+
+- model: users.Userprofile
+  pk: 1
+  fields:
+    user: 1
+    address: "Ahmedfaret 2, 9799 Lunde"
+    phone_number: 111-555-1111
+    approved_terms: true
+
+- model: users.Userprofile
+  pk: 2
+  fields:
+    user: 2
+    address: "Paulsenvollen 94C, 7627 Jannes\xF8y"
+    phone_number: 222-555-2222
+    approved_terms: true
+
+- model: users.Userprofile
+  pk: 3
+  fields:
+    user: 3
+    address: "Evensenberget 4, 3807 Kristoffersj\xF8en"
+    phone_number: 333-555-3333
+    approved_terms: true
+
+- model: users.Userprofile
+  pk: 4
+  fields:
+    user: 4
+    address: "Haugenkroken 9A, 9784 Karisund"
+    phone_number: 444-555-4444
+    approved_terms: true
