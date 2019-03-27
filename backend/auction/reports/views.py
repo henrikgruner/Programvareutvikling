@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 
 from .models import Report
-from .serializers import ReportSerializer
 from .permissions import IsOwnerOrReadOnly
+from .serializers import ReportSerializer
 
 
 class ReportViewSet(viewsets.ModelViewSet):
