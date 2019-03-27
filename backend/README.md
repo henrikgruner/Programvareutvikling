@@ -42,6 +42,13 @@ If you make changes to any `models.py`, you need to run `python manage.py makemi
 
 ### Committing
 
+To fix the codestyle before committing the code, run the following:
+
+```sh
+$ isort -rc auction
+$ black auction
+```
+
 Important note: Since we use the `pre-commit` python package to check and format our files before
 committing, this means that if you ran the line `pre-commit install` in the
 setup, you have to be inside your `venv` to be able to commit (unless you install it globally).

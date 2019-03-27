@@ -1,6 +1,5 @@
-from django.contrib.auth import models
-
 import factory
+from django.contrib.auth import models
 
 from .models import UserProfile
 

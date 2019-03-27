@@ -5,6 +5,8 @@ python:
     - cd backend
     - pip install -r requirements.txt
     - python manage.py test
+    - isort -c -rc auction
+    - black --check auction
   except:
     - /^junk.*$/
 
@@ -13,7 +15,7 @@ npm:
   script:
     - cd webapp
     - npm install
-    - npm run prettier
+    - npm run lint:prettier
     - npm build
   except:
     - /^junk.*$/

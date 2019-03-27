@@ -1,11 +1,10 @@
 from datetime import datetime, timedelta
 from random import randint
 
-from django.contrib.auth.models import User
-
 import factory
 import factory.fuzzy
 import pytz
+from django.contrib.auth.models import User
 
 from .models import Auction
 

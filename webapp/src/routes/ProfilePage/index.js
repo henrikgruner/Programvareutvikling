@@ -8,7 +8,7 @@ class ProfilePage extends Component {
   static propTypes = {
     user: PropTypes.object
   };
-  
+
   componentDidMount() {
     this.props.getUserProfile();
   }
@@ -53,9 +53,12 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => {
-return {
-  getUserProfile: payload => dispatch(getUserProfile(payload))
-};
+  return {
+    getUserProfile: payload => dispatch(getUserProfile(payload))
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfilePage);

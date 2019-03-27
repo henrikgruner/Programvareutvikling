@@ -20,8 +20,8 @@ from django.urls import path
 from rest_framework import routers
 
 from auction.auctions.views import AuctionViewSet, BidViewSet
-from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSet
 from auction.reports.views import ReportViewSet
+from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
