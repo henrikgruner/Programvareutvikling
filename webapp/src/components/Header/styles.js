@@ -45,7 +45,7 @@ export const CompanyLogo = styled.img`
 export const CompanyLogoWrapper = styled(Link)`
   display: flex;
   flex: 2;
-
+  CompanyLogoWrapper.displayName = 'Name';
   &:hover {
     opacity: 0.9;
     text-decoration: none;
