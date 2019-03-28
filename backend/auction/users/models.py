@@ -23,6 +23,10 @@ class UserProfile(models.Model):
     def won_auctions(self):
         return self.user.won_auctions
 
+    @property
+    def bids(self):
+        return self.user.bids
+
     def __str__(self):
         return (
             f"{self.user.get_full_name()} has been a user since {self.user.date_joined}"

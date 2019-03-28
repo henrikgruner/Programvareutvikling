@@ -4,9 +4,11 @@ from .models import Auction, AuctionImage, Bid
 
 
 class BidSerializer(serializers.HyperlinkedModelSerializer):
+    auction_title = serializers.SerializerMethodField()
+
     class Meta:
         model = Bid
-        fields = ("amount", "auction", "author", "reg_time")
+        fields = ("amount", "auction", "author", "reg_time", "auction_title")
         read_only_fields = ("reg_time", "author")
 
     def create(self, validated_data):
@@ -14,6 +16,9 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
             author=self.context.get("request").user, **validated_data
         )
         return bid
+
+    def get_auction_title(self, obj):
+        return obj.auction_title
 
 
 class AuctionImageSerializer(serializers.HyperlinkedModelSerializer):
