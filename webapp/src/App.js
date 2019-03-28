@@ -18,6 +18,7 @@ import CreateAuctionPage from "./routes/CreateAuctionPage";
 import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
 import ReportPage from "./routes/ReportPage";
+import StatisticsPage from "./routes/StatisticsPage";
 import ChangePassword from "./routes/ChangePassword";
 
 export const PageWrapper = styled.div`
@@ -45,6 +46,7 @@ const App = () => (
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/statistics" component={StatisticsPage} />
 
             <Route
               path="/profile"

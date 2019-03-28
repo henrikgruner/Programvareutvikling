@@ -17,7 +17,16 @@ class ShortUserProfileSerializer(serializers.HyperlinkedModelSerializer):
 class ShortUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ("url", "id", "username", "first_name", "last_name", "email")
+        fields = (
+            "url",
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "is_staff",
+            "is_active",
+        )
         read_only_fields = ("username", "id")
 
 

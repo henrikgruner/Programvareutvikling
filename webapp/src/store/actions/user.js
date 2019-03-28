@@ -36,6 +36,26 @@ export const getUserProfile = () => {
   };
 };
 
+const setUsers = payload => ({
+  type: userTypes.GET_ALL,
+  payload: payload
+});
+
+export const getAllUsers = () => {
+  return dispatch => {
+    const token = localStorage.getItem("token");
+
+    callApi(`${userUrls.USERS}`, { token })
+      .then(res => {
+        dispatch(setUsers(res.jsonData));
+      })
+      .catch(err => {
+        dispatch(userFail(err));
+        console.log("Could not get users", err);
+      });
+  };
+};
+
 export const deleteUser = userId => {
   return dispatch => {
     dispatch(userInit());
