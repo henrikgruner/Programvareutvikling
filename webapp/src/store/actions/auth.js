@@ -92,3 +92,47 @@ export const authCheckState = () => {
     }
   };
 };
+
+export const changePassword = payload => {
+  const token = localStorage.getItem("token");
+  return dispatch => {
+    callApi(authUrls.CHANGE_PASSWORD, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      token
+    })
+      .then(res => {
+        window.history.go(window.location.pathname);
+      })
+      .catch(err => {
+        console.log("Could not change password", err);
+      });
+  };
+};
+
+/*
+export function changePassword(formValues, dispatch, props) {
+  const changePasswordUrl = authUrls.CHANGE_PASSWORD;
+  const token = getUserToken(store.getState());
+
+  if (token) {
+    return axios.post(changePasswordUrl, formValues, {
+      headers: {
+        authorization: 'Token ' + token
+      }
+    })
+      .then((response) => {
+        dispatch(notifSend({
+          message: "Password has been changed successfully",
+          kind: "info",
+          dismissAfter: 5000
+        }));
+        // redirect to the route '/profile'
+        history.push("/profile");
+      })
+      .catch((error) => {
+        dispatch(authFail(err));
+      });
+  };
+};
+*/

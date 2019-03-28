@@ -18,6 +18,7 @@ import CreateAuctionPage from "./routes/CreateAuctionPage";
 import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
 import ReportPage from "./routes/ReportPage";
+import ChangePassword from "./routes/ChangePassword";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -63,6 +64,11 @@ const App = () => (
                     exact
                     path={`${url}/delete-me`}
                     component={DeleteProfilePage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path={`${url}/change-password`}
+                    component={ChangePassword}
                   />
                   <Route component={NotFoundPage} />
                 </Switch>

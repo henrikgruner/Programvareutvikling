@@ -9,7 +9,8 @@ export const reportsUrls = {
 
 export const authUrls = {
   LOGIN: "/rest-auth/login/",
-  SIGNUP: "/rest-auth/registration/"
+  SIGNUP: "/rest-auth/registration/",
+  CHANGE_PASSWORD: "/rest-auth/password/change/"
 };
 
 export const userUrls = {

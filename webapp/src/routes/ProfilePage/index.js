@@ -40,6 +40,8 @@ class ProfilePage extends Component {
         <span>Vil du slette brukeren din?</span>
         <StyledLink to="/profile/delete-me/">Trykk her</StyledLink>
         <span />
+        <span>Vil du endre passord?</span>
+        <StyledLink to="/profile/change-password/">Trykk her</StyledLink>
       </div>
     );
   }
