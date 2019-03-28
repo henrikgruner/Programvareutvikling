@@ -173,9 +173,7 @@ const SignUpPage = withFormik({
       )
       .required("Skriv inn ett telefonnummer"),
 
-    address: Yup.string("Navnet kan kun inneholde bokstaver")
-      .required("Skriv inn ditt etternavn")
-      .min(2, "Må være lengre enn 2 bokstaver"),
+    address: Yup.string("").required("Skriv inn din adresse"),
 
     approvedTerms: Yup.boolean().required(
       "Du må godta for å kunne bruke denne siden"
