@@ -1,7 +1,3 @@
-stages:
-  - frontend
-  - backend
-
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
@@ -13,27 +9,26 @@ cache:
   paths:
     - .npm
     - cache/Cypress
-    - node_modules
+    - .pip
 
 npm:
-  stage: frontend
   image: cypress/base:10
   script:
     - cd webapp
     - npm install
     - npm run lint:prettier
     - npm run test:ci
-    - npm build
+    - npm run build
   except:
     - /^junk.*$/
 
 python:
-  stage: backend
   image: python:3.7
   script:
     - apt-get update -q -y
     - cd backend
-    - pip install -r requirements.txt
+    - mkdir -p .pip
+    - pip --cache-dir=.pip install -r requirements.txt
     - python manage.py test
     - isort -c -rc auction
     - black --check auction

@@ -175,8 +175,9 @@ const SignUpPage = withFormik({
 
     address: Yup.string("").required("Skriv inn din adresse"),
 
-    approvedTerms: Yup.boolean().required(
-      "Du må godta for å kunne bruke denne siden"
+    approvedTerms: Yup.boolean().oneOf(
+      [true],
+      "Du må godta retningslinjene for å kunne bruke denne siden"
     )
   })
 })(SignUpForm);

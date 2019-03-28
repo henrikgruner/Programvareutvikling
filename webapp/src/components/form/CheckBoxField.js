@@ -11,6 +11,8 @@ const CheckBoxField = ({
 
   return (
     <div>
+      <InputValidationFeedback error={error} />
+
       <label style={{ display: "flex" }}>
         <StyledField
           type="checkbox"
@@ -20,7 +22,6 @@ const CheckBoxField = ({
         />
         {label}
       </label>
-      <InputValidationFeedback error={error} />
     </div>
   );
 };

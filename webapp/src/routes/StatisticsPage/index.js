@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import AuctionPreview from "../../components/AuctionPreview";
-import { Wrapper, ContentWrapper, AuctionListWrapper } from "./styles.js";
-import { SearchField } from "./styles";
 import { connect } from "react-redux";
 import { getAuctions } from "../../store/actions/auction";
 import { getAllUsers } from "../../store/actions/user";

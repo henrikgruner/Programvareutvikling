@@ -181,23 +181,3 @@ describe("Auction page", () => {
     cy.contains("Du må logge inn for å by");
   });
 });
-
-describe("Authentication", () => {
-  beforeEach(() => {
-    cy.fixture("normal_user").as("normalUser");
-  });
-
-  it("Should be able to login: normal user", function() {
-    // mock this
-    cy.visit("/login");
-    cy.get('input[name="username"]')
-      .type(this.normalUser.username)
-      .should("have.value", this.normalUser.username);
-    cy.get('input[name="password"]')
-      .type(this.normalUser.password)
-      .should("have.value", this.normalUser.password);
-    cy.get("form").submit();
-    cy.location("pathname").should("eq", "/");
-    cy.contains("Vanlige Tove");
-  });
-});
