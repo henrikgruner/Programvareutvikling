@@ -59,3 +59,55 @@ export const BidWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
+export const Wrapper = styled.div`
+  overflow: hidden;
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+`;
+export const BidHistoryButton = styled.button`
+  background: #6dcc18
+  border: 0px solid ${props => (props.valid ? "var(--dark-green)" : "darkgray")};
+  padding: ${props => props.padding};
+  border-radius: 30px;
+  width: ${props => props.width};
+  height: ${props => props.height};
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  &:active {
+  opacity: 0.9;
+  }
+  &:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
+  opacity: 0.9;
+  }
+`;
+export const Modal = styled.div`
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: white
+  background-color: rgba(0,0,0,0.4);
+`;
+export const ModalWrapper = styled.div`
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 25%;
+  height: 50%
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+`;
