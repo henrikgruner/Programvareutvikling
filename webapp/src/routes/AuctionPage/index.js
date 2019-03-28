@@ -115,7 +115,10 @@ const AuctionForm = ({
         <div style={{ marginBottom: "2rem" }}>
           Henteaddresse: <b>{auction.pickup_address}</b>
         </div>
-        <div style={{ marginBottom: "2rem" }}>{auction.description}</div>
+        <div style={{ marginBottom: "2rem" }}>
+          {" "}
+          Beskrivelse: {auction.description}
+        </div>
         {authenticated ? (
           !isAuthor ? (
             <BidWrapper>
@@ -148,7 +151,10 @@ const AuctionForm = ({
               </div>
             </BidWrapper>
           ) : (
-            <></>
+            <>
+              Hvis nåværende lederbud vinner vil vi trekke et gebyr på{" "}
+              <b>{auction.leading_bid * 0.05} kr</b> for auksjonen.
+            </>
           )
         ) : (
           <AuthRequirementText>
