@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:8000/users/2/",
+  "username": "vanlig_agent_001",
+  "email": "agent_001@example.com",
+  "password": "password123",
+  "first_name": "Vanlige Tove",
+  "last_name": "Kristensen",
+  "is_staff": false,
+  "is_active": true,
+  "date_joined": "2019-02-28T12:39:34.080946Z",
+  "profile": {
+    "url": "http://localhost:8000/userprofiles/2/",
+    "id": 2,
+    "address": "Paulsenvollen 94C, 7627 Jannesøy",
+    "phone_number": "222-555-2222",
+    "approved_terms": true
+  }
+}

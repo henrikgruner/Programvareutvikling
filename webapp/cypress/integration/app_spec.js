@@ -88,7 +88,7 @@ describe.skip("Redirect When Not Logged In", () => {
   });
 });
 
-describe("Front page", () => {
+describe.skip("Front page", () => {
   beforeEach(function() {
     // runs once before all tests in the block
     cy.server();
@@ -179,5 +179,25 @@ describe("Auction page", () => {
     cy.contains("3050 kr");
     cy.contains("Norvagvegen 72, 1977 Hunnyvag");
     cy.contains("Du må logge inn for å by");
+  });
+});
+
+describe("Authentication", () => {
+  beforeEach(() => {
+    cy.fixture("normal_user").as("normalUser");
+  });
+
+  it("Should be able to login: normal user", function() {
+    // mock this
+    cy.visit("/login");
+    cy.get('input[name="username"]')
+      .type(this.normalUser.username)
+      .should("have.value", this.normalUser.username);
+    cy.get('input[name="password"]')
+      .type(this.normalUser.password)
+      .should("have.value", this.normalUser.password);
+    cy.get("form").submit();
+    cy.location("pathname").should("eq", "/");
+    cy.contains("Vanlige Tove");
   });
 });

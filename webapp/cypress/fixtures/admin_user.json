@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:8000/users/1/",
+  "username": "admin",
+  "email": "admin@admin.com",
+  "password": "password123",
+  "first_name": "Admin",
+  "last_name": "Adminsen",
+  "is_staff": true,
+  "is_active": true,
+  "date_joined": "2019-02-28T12:39:33.739851Z",
+  "profile": {
+    "url": "http://localhost:8000/userprofiles/1/",
+    "id": 1,
+    "address": "Ahmedfaret 2, 9799 Lunde",
+    "phone_number": "111-555-1111",
+    "approved_terms": true
+  }
+}
