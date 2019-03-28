@@ -17,12 +17,12 @@ import LoginPage from "../routes/LoginPage";
 
 configure({ adapter: new Adapter() });
 
-it('renders', () => {
+it('Renders', () => {
     const div = document.createElement('div');
     ReactDOM.render(<index />, div);
 })
 
-describe('Reducer', () => {
+describe('Test default state reducer', () => {
     it('Default state', () => {
         expect(auth(undefined, { type: 'unexpected' })).toEqual({ loading: false, authenticated: false, error: null, token: null });
     })

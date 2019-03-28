@@ -18,9 +18,5 @@ describe('Header', () => {
         const wrapper = shallow(<Header />);
         expect(wrapper).toMatchSnapshot();
     });
-    it('Rendering header when logged in', () => {
-        const wrapper = shallow(<Header />);
-        // sette state som autentisert, også 
-    });
 });
 
