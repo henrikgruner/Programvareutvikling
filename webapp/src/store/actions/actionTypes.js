@@ -8,7 +8,8 @@ export const authTypes = {
 export const userTypes = {
   INIT: "USER_INIT",
   FAIL: "USER_FAIL",
-  GET_USER_PROFILE: "USER_GET_PROFILE"
+  GET_USER_PROFILE: "USER_GET_PROFILE",
+  GET_ALL: "GET_ALL_USERS"
 };
 
 export const auctionTypes = {

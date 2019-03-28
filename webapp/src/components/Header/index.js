@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../store/actions/auth";
 
 const Header = props => {
+  // const isStaff = props.user && props.user.is_staff === true;
   return (
     <HeaderWrapper>
       <CompanyLogoWrapper to="/">
@@ -34,6 +35,12 @@ const Header = props => {
             <AuthLink to="/profile">
               Velkommen, {props.user && props.user.first_name + "  \u2699"}
             </AuthLink>
+
+            {props.user && props.user.is_staff ? (
+              <AuthLink to="/statistics">statistikk</AuthLink>
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <>

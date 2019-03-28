@@ -3,7 +3,8 @@ import { userTypes, authTypes } from "../actions/actionTypes";
 const initalState = {
   error: null,
   loading: false,
-  profile: null
+  profile: null,
+  users: []
 };
 
 export default function(state = initalState, action) {
@@ -18,6 +19,13 @@ export default function(state = initalState, action) {
         error: null,
         loading: false,
         profile: action.payload
+      };
+    case userTypes.GET_ALL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        users: action.payload
       };
     case authTypes.LOGOUT:
       return {
