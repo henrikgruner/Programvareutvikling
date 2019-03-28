@@ -6,7 +6,7 @@ const initalState = {
   profile: null
 };
 
-export default function (state = initalState, action) {
+export default function(state = initalState, action) {
   switch (action.type) {
     case userTypes.INIT:
       return { ...state, loading: true };

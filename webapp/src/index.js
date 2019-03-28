@@ -22,5 +22,5 @@ ReactDOM.render(
       <App />
     </PersistGate>
   </Provider>,
-  document.getElementById("root") || document.createElement('div') // for testing
+  document.getElementById("root") || document.createElement("div") // for testing
 );
