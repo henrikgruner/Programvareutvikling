@@ -4,7 +4,7 @@ Cypress.on("window:before:load", win => {
   delete win.fetch;
 });
 
-describe.skip("Public Routes Not Crashing", () => {
+describe("Public Routes Not Crashing", () => {
   it("Enter frontpage", () => {
     cy.server();
     cy.fixture("auctions").as("auctionsJson");
@@ -69,7 +69,7 @@ describe.skip("Private Routes Not Crashing ", () => {
   });
 });
 
-describe.skip("Redirect When Not Logged In", () => {
+describe("Redirect When Not Logged In", () => {
   it("Redirect from profile page to login", () => {
     cy.visit("profile");
     cy.url().should("include", "/login");
@@ -88,7 +88,7 @@ describe.skip("Redirect When Not Logged In", () => {
   });
 });
 
-describe.skip("Front page", () => {
+describe("Front page", () => {
   beforeEach(function() {
     // runs once before all tests in the block
     cy.server();
