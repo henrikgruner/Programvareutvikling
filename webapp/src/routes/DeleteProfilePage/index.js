@@ -32,7 +32,7 @@ class DeleteProfilePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    userId: state.user.profile.user.id
+    userId: state.user.profile && state.user.profile.user.id
   };
 };
 
