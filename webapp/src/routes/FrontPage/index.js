@@ -31,6 +31,14 @@ class FrontPage extends Component {
       );
     }
 
+    const filteredAuctions = this.props.auctions.filter(auction => {
+      return (
+        auction.is_active &&
+        auction.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+          -1
+      );
+    });
+
     return (
       <ContentWrapper>
         <Wrapper>
@@ -43,16 +51,8 @@ class FrontPage extends Component {
         </Wrapper>
         <AuctionListWrapper>
           {this.props.auctions.length ? (
-            this.props.auctions
-              .filter(auction => {
-                return (
-                  auction.is_active &&
-                  auction.title
-                    .toLowerCase()
-                    .indexOf(this.state.search.toLowerCase()) !== -1
-                );
-              })
-              .map((auction, i) => {
+            filteredAuctions.length ? (
+              filteredAuctions.map((auction, i) => {
                 return (
                   <AuctionPreview
                     title={auction.title}
@@ -65,6 +65,17 @@ class FrontPage extends Component {
                   />
                 );
               })
+            ) : (
+              <div
+                style={{
+                  marginTop: "2rem",
+                  fontWeight: "bold",
+                  fontStyle: "italic"
+                }}
+              >
+                Ingen resultater for dette søket
+              </div>
+            )
           ) : (
             <div
               style={{
