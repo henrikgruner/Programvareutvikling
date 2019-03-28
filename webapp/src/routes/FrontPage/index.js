@@ -31,6 +31,14 @@ class FrontPage extends Component {
       );
     }
 
+    const filteredAuctions = this.props.auctions.filter(auction => {
+      return (
+        auction.is_active &&
+        auction.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+          -1
+      );
+    });
+
     return (
       <ContentWrapper>
         <Wrapper>
@@ -42,28 +50,43 @@ class FrontPage extends Component {
           />
         </Wrapper>
         <AuctionListWrapper>
-          {this.props.auctions
-            .filter(auction => {
-              return (
-                auction.is_active &&
-                auction.title
-                  .toLowerCase()
-                  .indexOf(this.state.search.toLowerCase()) !== -1
-              );
-            })
-            .map((auction, i) => {
-              return (
-                <AuctionPreview
-                  title={auction.title}
-                  mainImage={
-                    auction.images.length > 0 ? auction.images[0].image : null
-                  }
-                  highestBid={auction.leading_bid}
-                  id={auction.id}
-                  key={i}
-                />
-              );
-            })}
+          {this.props.auctions.length ? (
+            filteredAuctions.length ? (
+              filteredAuctions.map((auction, i) => {
+                return (
+                  <AuctionPreview
+                    title={auction.title}
+                    mainImage={
+                      auction.images.length > 0 ? auction.images[0].image : null
+                    }
+                    highestBid={auction.leading_bid}
+                    id={auction.id}
+                    key={i}
+                  />
+                );
+              })
+            ) : (
+              <div
+                style={{
+                  marginTop: "2rem",
+                  fontWeight: "bold",
+                  fontStyle: "italic"
+                }}
+              >
+                Ingen resultater for dette søket
+              </div>
+            )
+          ) : (
+            <div
+              style={{
+                marginTop: "2rem",
+                fontWeight: "bold",
+                fontStyle: "italic"
+              }}
+            >
+              Det er ingen aktive auksjoner akkurat nå
+            </div>
+          )}
         </AuctionListWrapper>
       </ContentWrapper>
     );

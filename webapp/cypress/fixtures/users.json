@@ -1,0 +1,70 @@
+[
+  {
+    "url": "http://localhost:8000/users/1/",
+    "username": "admin",
+    "email": "admin@admin.com",
+    "first_name": "Admin",
+    "last_name": "Adminsen",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-02-28T12:39:33.739851Z",
+    "profile": {
+      "url": "http://localhost:8000/userprofiles/1/",
+      "id": 1,
+      "address": "Ahmedfaret 2, 9799 Lunde",
+      "phone_number": "111-555-1111",
+      "approved_terms": true
+    }
+  },
+  {
+    "url": "http://localhost:8000/users/2/",
+    "username": "vanlig_agent_001",
+    "email": "agent_001@example.com",
+    "first_name": "Vanlige Tove",
+    "last_name": "Kristensen",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-02-28T12:39:34.080946Z",
+    "profile": {
+      "url": "http://localhost:8000/userprofiles/2/",
+      "id": 2,
+      "address": "Paulsenvollen 94C, 7627 Jannesøy",
+      "phone_number": "222-555-2222",
+      "approved_terms": true
+    }
+  },
+  {
+    "url": "http://localhost:8000/users/3/",
+    "username": "eier_agent_002",
+    "email": "eier_agent_002@example.com",
+    "first_name": "Eier Karin",
+    "last_name": "Aasen",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-02-28T12:39:34.459927Z",
+    "profile": {
+      "url": "http://localhost:8000/userprofiles/3/",
+      "id": 3,
+      "address": "Evensenberget 4, 3807 Kristoffersjøen",
+      "phone_number": "333-555-3333",
+      "approved_terms": true
+    }
+  },
+  {
+    "url": "http://localhost:8000/users/4/",
+    "username": "agent_003",
+    "email": "agent_003@example.com",
+    "first_name": "Vanlige Per",
+    "last_name": "Aas",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-02-28T12:39:34.746189Z",
+    "profile": {
+      "url": "http://localhost:8000/userprofiles/4/",
+      "id": 4,
+      "address": "Haugenkroken 9A, 9784 Karisund",
+      "phone_number": "444-555-4444",
+      "approved_terms": true
+    }
+  }
+]

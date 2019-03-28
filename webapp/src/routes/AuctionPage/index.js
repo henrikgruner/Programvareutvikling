@@ -53,7 +53,7 @@ const AuctionForm = ({
     return <span>Loading ...</span>;
   }
 
-  const isAuthor = auction.author === user;
+  const isAuthor = auction && auction.author === user;
 
   if (error) {
     return (

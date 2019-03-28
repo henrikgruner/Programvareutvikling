@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:8000/auctions/1/",
+  "id": 1,
+  "created": "2019-03-26T09:54:26.846583Z",
+  "title": "Veldig stort badeslott",
+  "author": "http://localhost:8000/users/1/",
+  "winner": null,
+  "is_active": true,
+  "description": "Dette slottet er helt konge og har plass til enda flere små konger og prinsesser. Det store kongeslottet er egnet for 20-30 barn avhengig av alder. Passer for steder med større grupper barn i noenlunde samme alder.",
+  "start_time": "2019-03-26T09:54:26.846757Z",
+  "end_time": "2019-10-11T12:39:22.248063Z",
+  "start_price": 3050,
+  "min_bid_increase": 200,
+  "pickup_address": "Norvagvegen 72, 1977 Hunnyvag",
+  "leading_bid": 3050,
+  "images": [],
+  "bids": []
+}
