@@ -7,9 +7,10 @@ class CreateAuctionTestCase(APITestCase):
     fixtures = ["test_users.yaml", "test_auctions.yaml"]
 
     _test_data = {
-        "title": "Test auksjon",
-        "description": "Dette er en test auksjon",
+        "title": "Testauksjon",
+        "description": "Dette er en testauksjon",
         "end_time": "2019-05-11 13:39:22.248063+00:00",
+        "start_price": 25,
         "min_bid_increase": 10,
         "pickup_location": "Testingvegen 123, 02X109 Kakegalaksen",
     }
