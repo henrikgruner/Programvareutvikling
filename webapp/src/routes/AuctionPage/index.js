@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import * as Yup from "yup";
 import Countdown from "react-countdown-now";
 import { Form, Field, withFormik } from "formik";
@@ -21,7 +21,11 @@ import {
   AuctionImage,
   InfoWrapper,
   BidWrapper,
-  AuthRequirementText
+  AuthRequirementText,
+  Wrapper,
+  BidHistoryButton,
+  Modal,
+  ModalWrapper
 } from "./styles";
 
 const AuctionForm = ({
@@ -42,9 +46,7 @@ const AuctionForm = ({
   useEffect(() => {
     if (!initialized) {
       getAuction(match.params.auctionId);
-      document.cookie = `id=${
-        window.location.pathname.split("/")[2]
-      }/`.substring(0, 4);
+      document.cookie = `id=${match.params.auctionId}`;
       setInitialized(true);
     }
   });
@@ -163,6 +165,34 @@ const AuctionForm = ({
             </StyledLink>
           </AuthRequirementText>
         )}
+        <BidList
+          leadingBid={auction.leading_bid}
+          bidlist={
+            auction &&
+            auction.bids.reverse().map((bid, i) => {
+              const author = bid.author === user;
+              return (
+                <div>
+                  {!author ? (
+                    <span key={i}>
+                      {"Bruker: #" +
+                        `${bid.author}`.split("/")[4] +
+                        " Sum: " +
+                        bid.amount +
+                        ",-"}
+                      <hr />
+                    </span>
+                  ) : (
+                    <span style={{ fontWeight: "bold" }} key={i}>
+                      {"Ditt bud: " + bid.amount + ",-"}
+                      <hr />
+                    </span>
+                  )}
+                </div>
+              );
+            })
+          }
+        />
       </DetailWrapper>
       <CancelButton to="/report">Rapportér</CancelButton>
     </ContentWrapper>
@@ -170,6 +200,41 @@ const AuctionForm = ({
     <div>Loading...</div>
   );
 };
+
+class BidList extends Component {
+  buttonClick() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+  spanClick() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+  render() {
+    window.onclick = function(event) {
+      var modal = document.getElementById("myModal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+    return (
+      <Wrapper>
+        <BidHistoryButton onClick={this.buttonClick}>
+          Se Budhistorikk
+        </BidHistoryButton>
+        <Modal id="myModal">
+          <ModalWrapper>
+            <span style={{ fontWeight: "bold" }}>{`Lederbud: ${
+              this.props.leadingBid
+            }`}</span>
+            <hr />
+            <span>{this.props.bidlist}</span>
+          </ModalWrapper>
+        </Modal>
+      </Wrapper>
+    );
+  }
+}
 
 //Kode for å gi bud
 const AuctionPage = withFormik({
