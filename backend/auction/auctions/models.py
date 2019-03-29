@@ -83,5 +83,9 @@ class Bid(models.Model):
     def __str__(self):
         return f"{self.amount}, {self.reg_time}, {self.author.get_full_name()},  {self.auction.title}"
 
+    @property
+    def auction_title(self):
+        return self.auction.title
+
     class Meta:
         ordering = ("reg_time",)

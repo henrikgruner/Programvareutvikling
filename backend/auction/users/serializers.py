@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, User
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
-from auction.auctions.serializers import AuctionShortSerializer
+from auction.auctions.serializers import AuctionShortSerializer, BidSerializer
 
 from .models import UserProfile
 
@@ -60,6 +60,7 @@ class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
     active_auctions = serializers.SerializerMethodField()
     inactive_auctions = serializers.SerializerMethodField()
     won_auctions = serializers.SerializerMethodField()
+    bids = serializers.SerializerMethodField()
     user = ShortUserSerializer(read_only=True)
 
     class Meta:
@@ -72,6 +73,7 @@ class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
             "phone_number",
             "approved_terms",
             "won_auctions",
+            "bids",
             "active_auctions",
             "inactive_auctions",
         )
@@ -98,6 +100,13 @@ class DetailUserProfileSerializer(serializers.HyperlinkedModelSerializer):
         )
         return serialized.data
 
+    def get_bids(self, obj):
+        bids = obj.bids
+        serialized = BidSerializer(
+            bids, many=True, context={"request": self.context.get("request")}
+        )
+        return serialized.data
+
 
 class RegisterUserProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -107,7 +116,6 @@ class RegisterUserProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserRegisterSerializer(RegisterSerializer):
-
     first_name = serializers.CharField(max_length=30)
     last_name = serializers.CharField(max_length=150)
     address = serializers.CharField(max_length=100)
