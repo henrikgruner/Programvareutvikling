@@ -38,15 +38,24 @@ function rejectOnHttpErrors(response) {
 // The real MVP - Does the talking with the backend API
 const callApi = async (
   url,
-  { method = "GET", body = null, token = null } = {}
+  {
+    method = "GET",
+    body = null,
+    token = null,
+    contentType = "application/json"
+  } = {}
 ) => {
+  var headers = {
+    Accept: "application/json",
+    Authorization: token ? "Token " + token : ""
+  };
+  if (contentType) {
+    headers["Content-Type"] = contentType;
+  }
+
   const request = new Request(`${config.API_URL}${url}`, {
     method,
-    headers: new Headers({
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: token ? "Token " + token : ""
-    }),
+    headers: new Headers(headers),
     redirect: "manual",
     // IE doesn't support body equal to null
     ...(body ? { body } : {})

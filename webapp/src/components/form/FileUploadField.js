@@ -8,7 +8,7 @@ const FileUploadField = ({
   form: { setFieldValue }
 }) => {
   const onSelectImages = pictureFiles => {
-    setFieldValue(name, pictureFiles);
+    setFieldValue("images", pictureFiles);
   };
 
   return (

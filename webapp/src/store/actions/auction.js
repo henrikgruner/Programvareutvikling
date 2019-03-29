@@ -42,7 +42,8 @@ export const createAuction = payload => {
     const token = localStorage.getItem("token");
     callApi(auctionsUrls.AUCTIONS, {
       method: "POST",
-      body: JSON.stringify(payload),
+      body: payload,
+      contentType: null,
       token
     })
       .then(res => {
