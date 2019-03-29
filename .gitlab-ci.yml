@@ -1,21 +1,36 @@
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - .pip
+
+npm:
+  image: cypress/base:10
+  script:
+    - cd webapp
+    - npm install
+    - npm run lint:prettier
+    - npm run test:ci
+    - npm run build
+  except:
+    - /^junk.*$/
+
 python:
   image: python:3.7
   script:
     - apt-get update -q -y
     - cd backend
-    - pip install -r requirements.txt
+    - mkdir -p .pip
+    - pip --cache-dir=.pip install -r requirements.txt
     - python manage.py test
     - isort -c -rc auction
     - black --check auction
-  except:
-    - /^junk.*$/
-
-npm:
-  image: node:11
-  script:
-    - cd webapp
-    - npm install
-    - npm run lint:prettier
-    - npm build
   except:
     - /^junk.*$/

@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:8000/users/3/",
+  "username": "eier_agent_002",
+  "email": "eier_agent_002@example.com",
+  "password": "password123",
+  "first_name": "Eier Karin",
+  "last_name": "Aasen",
+  "is_staff": true,
+  "is_active": true,
+  "date_joined": "2019-02-28T12:39:34.459927Z",
+  "profile": {
+    "url": "http://localhost:8000/userprofiles/3/",
+    "id": 3,
+    "address": "Evensenberget 4, 3807 Kristoffersjøen",
+    "phone_number": "333-555-3333",
+    "approved_terms": true
+  }
+}

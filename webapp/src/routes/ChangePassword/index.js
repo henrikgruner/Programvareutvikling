@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { SubmitButton } from "../../components/SubmitButton";
 import { PasswordField } from "../../components/form";
-import { NewPasswordField } from "../../components/form";
 import { connect } from "react-redux";
 import { changePassword } from "../../store/actions/auth";
 

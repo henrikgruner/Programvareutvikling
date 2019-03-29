@@ -1,13 +1,12 @@
 import React from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import callApi from "../../utils/callApi";
+// eslint-disable-next-line no-unused-vars
 import { equalTo } from "../../utils/validation";
 import { CancelButton } from "../../components/CancelButton";
 import { SubmitButton } from "../../components/SubmitButton";
 import {
   EmailField,
-  PasswordField,
   TextBoxField,
   TelBoxField,
   TextAreaField
