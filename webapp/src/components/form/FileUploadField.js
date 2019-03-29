@@ -21,7 +21,7 @@ const FileUploadField = ({
           withIcon={true}
           buttonText="Last opp bilde(r)"
           onChange={onSelectImages}
-          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+          imgExtension={[".jpeg", ".jpg", ".gif", ".png", ".gif"]}
           withPreview={true}
         />
       </ImageUploaderWrapper>
