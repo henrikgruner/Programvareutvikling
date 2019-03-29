@@ -34,18 +34,21 @@ class ProfilePage extends Component {
   }
 
   renderBids() {
-    return this.props.user.bids
-      .map((bid, i) => (
-        <div>
-          {bid.amount} kr på <b>{bid.auction_title}</b> (
-          {format(new Date(bid.reg_time), "'kl.' HH:mm:ss d. MMMM yyyy", {
-            locale: nb
-          })}
-          )
-          <hr />
-        </div>
-      ))
-      .reverse();
+    if (this.props.user) {
+      return this.props.user.bids
+        .map((bid, i) => (
+          <div>
+            {bid.amount} kr på <b>{bid.auction_title}</b> (
+            {format(new Date(bid.reg_time), "'kl.' HH:mm:ss d. MMMM yyyy", {
+              locale: nb
+            })}
+            )
+            <hr />
+          </div>
+        ))
+        .reverse();
+    }
+    return null;
   }
 
   render() {
