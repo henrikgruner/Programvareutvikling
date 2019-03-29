@@ -28,7 +28,7 @@ SECRET_KEY = "g1m+dgrwkpablx39wf7p^d9j7%w_ms0%49!4zy1u+1y6j=d@l6"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["auksjonsbua-backend.herokuapp.com"]
 
 # Application definition =======================================================
 
@@ -73,6 +73,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 # Django REST Framework ========================================================
@@ -128,6 +129,13 @@ DATABASES = {
         "NAME": MANAGEPY_DIR.path("db.sqlite3")(),
     }
 }
+
+if os.environ.get("PRODUCTION"):
+    import dj_database_url
+
+    DATABASES["default"] = dj_database_url.parse(
+        os.environ["DATABASE_URL"], conn_max_age=600
+    )
 
 
 # Authentication ================================================================
@@ -207,6 +215,11 @@ ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = False
 
 LOGIN_REDIRECT = "/"
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 if "HEROKU" in os.environ:
     # Configure Django App for Heroku.

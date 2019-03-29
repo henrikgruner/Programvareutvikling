@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Auction(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=80)
+    title = models.CharField(max_length=100)
     author = models.ForeignKey(
         User, default=0, on_delete=models.CASCADE, related_name="auctions"
     )
@@ -17,14 +17,14 @@ class Auction(models.Model):
         related_name="won_auctions",
         db_column="winner",
     )
-    description = models.CharField(max_length=280)
+    description = models.CharField(max_length=700)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField()
     start_price = models.PositiveIntegerField(default=0)
     min_bid_increase = models.PositiveIntegerField(
         help_text="How much the bid must increase each time"
     )
-    pickup_address = models.CharField(max_length=200)
+    pickup_address = models.CharField(max_length=300)
 
     @property
     def is_active(self):
