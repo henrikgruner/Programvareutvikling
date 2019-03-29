@@ -68,7 +68,8 @@ export const Wrapper = styled.div`
 `;
 export const BidHistoryButton = styled.button`
   background: #6dcc18
-  border: 0px solid ${props => (props.valid ? "var(--dark-green)" : "darkgray")};
+  border: 0px solid ${props =>
+    props.valid ? "var(--dark-green)" : "darkgray"};
   padding: ${props => props.padding};
   border-radius: 30px;
   width: ${props => props.width};

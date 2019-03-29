@@ -169,19 +169,26 @@ const AuctionForm = ({
           leadingBid={auction.leading_bid}
           bidlist={
             auction &&
-            auction.bids.map((bid, i) => {
+            auction.bids.reverse().map((bid, i) => {
+              const author = bid.author === user;
               return (
-                <span key={i}>
-                  {i +
-                    1 +
-                    ". " +
-                    "Bruker: #" +
-                    `${bid.author}`.split("/")[4] +
-                    " Sum: " +
-                    bid.amount +
-                    ",-"}
-                  <hr />
-                </span>
+                <div>
+                  {!author ? (
+                    <span key={i}>
+                      {"Bruker: #" +
+                        `${bid.author}`.split("/")[4] +
+                        " Sum: " +
+                        bid.amount +
+                        ",-"}
+                      <hr />
+                    </span>
+                  ) : (
+                    <span style={{ fontWeight: "bold" }} key={i}>
+                      {"Ditt bud: " + bid.amount + ",-"}
+                      <hr />
+                    </span>
+                  )}
+                </div>
               );
             })
           }
@@ -227,23 +234,7 @@ class BidList extends Component {
       </Wrapper>
     );
   }
-<<<<<<< HEAD
 }
-=======
-  };
-  return (
-  <Wrapper>
-    <BidHistoryButton onClick = {this.buttonClick}>Se Budhistorikk</BidHistoryButton>
-    <Modal id="myModal">
-      <ModalWrapper>
-        <span style={{ fontWeight: "bold" }}>{`Lederbud: ${this.props.leadingBid}`}</span>
-        <hr/>
-        <span>{(this.props.bidlist).reverse()}</span>
-      </ModalWrapper>
-    </Modal>
-  </Wrapper>
-  );}}
->>>>>>> #56 reversert liste over bud
 
 //Kode for å gi bud
 const AuctionPage = withFormik({
