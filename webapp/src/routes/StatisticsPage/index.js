@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getAuctions } from "../../store/actions/auction";
 import { getAllUsers } from "../../store/actions/user";
 
-class FrontPage extends Component {
+class StatisticsPage extends Component {
   state = {
     search: ""
   };
@@ -34,14 +34,16 @@ class FrontPage extends Component {
       return auction.is_active;
     });
 
-    const filteredUsers = this.props.users.filter(user => {
-      return user.is_active;
-    });
+    const filteredUsers =
+      this.props.users &&
+      this.props.users.filter(user => {
+        return user.is_active;
+      });
 
     return (
       <>
-        Aktive auksjoner {filteredAuctions.length} | Aktive brukere{" "}
-        {filteredUsers.length}
+        Aktive auksjoner {filteredAuctions && filteredAuctions.length} | Aktive
+        brukere {filteredUsers && filteredUsers.length}
       </>
     );
   }
@@ -66,4 +68,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FrontPage);
+)(StatisticsPage);
