@@ -227,7 +227,23 @@ class BidList extends Component {
       </Wrapper>
     );
   }
+<<<<<<< HEAD
 }
+=======
+  };
+  return (
+  <Wrapper>
+    <BidHistoryButton onClick = {this.buttonClick}>Se Budhistorikk</BidHistoryButton>
+    <Modal id="myModal">
+      <ModalWrapper>
+        <span style={{ fontWeight: "bold" }}>{`Lederbud: ${this.props.leadingBid}`}</span>
+        <hr/>
+        <span>{(this.props.bidlist).reverse()}</span>
+      </ModalWrapper>
+    </Modal>
+  </Wrapper>
+  );}}
+>>>>>>> #56 reversert liste over bud
 
 //Kode for å gi bud
 const AuctionPage = withFormik({
