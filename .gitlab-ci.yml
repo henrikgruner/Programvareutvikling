@@ -1,9 +1,11 @@
+stages:
+  - test
+  - deploy
+
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
-# cache using branch name
-# https://gitlab.com/help/ci/caching/index.md
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -12,6 +14,7 @@ cache:
     - .pip
 
 npm:
+  stage: test
   image: cypress/base:10
   script:
     - cd webapp
@@ -19,10 +22,9 @@ npm:
     - npm run lint:prettier
     - npm run test:ci
     - npm run build
-  except:
-    - /^junk.*$/
 
 python:
+  stage: test
   image: python:3.7
   script:
     - apt-get update -q -y
@@ -32,5 +34,16 @@ python:
     - python manage.py test
     - isort -c -rc auction
     - black --check auction
-  except:
-    - /^junk.*$/
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - cd backend
+    - dpl --provider=heroku --app=auksjonsbua-backend --api-key=$HEROKU_API_KEY
+    - cd ../webapp
+    - dpl --provider=heroku --app=auksjonsbua --api-key=$HEROKU_API_KEY
+  only:
+    - prod
