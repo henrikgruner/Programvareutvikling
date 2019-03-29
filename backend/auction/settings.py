@@ -88,6 +88,12 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ),
+    "DEFAULT_PARSER_CLASSES": (
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.MultiPartParser",
+        "rest_framework.parsers.FileUploadParser",
+        "rest_framework.parsers.FormParser",
+    ),
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {

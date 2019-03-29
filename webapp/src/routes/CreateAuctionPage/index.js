@@ -3,11 +3,11 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { createAuction } from "../../store/actions/auction";
-
+import { format } from "date-fns";
 import {
   TextAreaField,
   TextBoxField,
-  //  FileUploadField,
+  FileUploadField,
   DateTimePickerField
 } from "../../components/form";
 import { Title } from "./styles";
@@ -24,7 +24,7 @@ const CreateAuctionForm = ({
   return (
     <div>
       <Title>Legg ut gjenstand for auksjon</Title>
-      <Form>
+      <Form encType="multipart/form-data">
         <Field
           name="title"
           component={TextBoxField}
@@ -61,11 +61,11 @@ const CreateAuctionForm = ({
           label="Sluttid"
           placeholder="Velg når auksjonen skal stenge.."
         />
-        {/* <Field
+        <Field
           name="images"
           component={FileUploadField}
           label="Bilde av gjenstand"
-        /> */}
+        />
       </Form>
       <SubmitButton
         onClick={handleSubmit}
@@ -99,46 +99,35 @@ const CreateAuctionPage = connect(mapStateToProps)(
       return {
         title: "",
         description: "",
-        images: [],
         startprice: "",
         endtime: null,
         pickupaddress: "",
-        minbidincrease: ""
+        minbidincrease: "",
+        images: []
       };
     },
 
     // What happens when you submit the form
     handleSubmit(values, { setSubmitting, props }) {
-      var payload = {
-        title: values.title,
-        description: values.description,
-        start_price: values.startprice,
-        end_time: values.endtime,
-        pickup_address: values.pickupaddress,
-        min_bid_increase: values.minbidincrease,
-        image_1: values.images[0]
-      };
+      var formData = new FormData();
+      formData.append("title", values.title);
+      formData.append("description", values.description);
+      formData.append("start_price", values.startprice);
+      formData.append(
+        "end_time",
+        format(values.endtime, "yyyy-MM-dd HH:mm:ss.uuuuuuZ")
+      );
+      formData.append("pickup_address", values.pickupaddress);
+      formData.append("min_bid_increase", values.minbidincrease);
 
-      props.createAuction(payload);
+      for (let i = 0; i < values.images.length; i++) {
+        formData.append("image_" + i, values.images[i], values.images[i].name);
+      }
+
+      props.createAuction(formData);
       setSubmitting(false);
     },
 
-    /*
-          return callApi("/auctions/", {
-            method: "POST",
-            body: JSON.stringify(submission),
-            token: props.token
-          })
-            .then(() => {
-              setSubmitting(false);
-            })
-            .catch(err => {
-              alert("Det skjedde en feil.... ");
-              setSubmitting(false);
-              throw err;
-            });
-        },
-    */
     // Validation of the form
     validationSchema: Yup.object().shape({
       title: Yup.string()
