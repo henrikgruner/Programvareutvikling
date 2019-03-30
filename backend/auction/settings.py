@@ -28,7 +28,7 @@ SECRET_KEY = "g1m+dgrwkpablx39wf7p^d9j7%w_ms0%49!4zy1u+1y6j=d@l6"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["auksjonsbua-backend.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "auksjonsbua-backend.herokuapp.com"]
 
 # Application definition =======================================================
 
