@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyledButton, WrapperDiv } from "./styles";
 import { connect } from "react-redux";
 import { deleteUser } from "../../store/actions/user";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 class DeleteProfilePage extends Component {
   onDelete = () => {
@@ -14,8 +16,8 @@ class DeleteProfilePage extends Component {
 
   render() {
     return (
-      <div>
-        <header>Ønsker du virkelig å slette brukeren din?</header>
+      <ContentWrapper>
+        <Title>Ønsker du virkelig å slette brukeren din?</Title>
         <WrapperDiv>
           <span>
             I tråd med GDPR vil vi anonymisere all informasjon om deg vi
@@ -25,7 +27,7 @@ class DeleteProfilePage extends Component {
 
           <StyledButton onClick={this.onDelete}>Slett bruker</StyledButton>
         </WrapperDiv>
-      </div>
+      </ContentWrapper>
     );
   }
 }

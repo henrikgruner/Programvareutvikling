@@ -11,12 +11,13 @@ import {
   TextAreaField,
   CheckBoxField
 } from "../../components/form";
-import { Title } from "./styles";
 import { signupUser } from "../../store/actions/auth";
 import { connect } from "react-redux";
 // eslint-disable-next-line no-unused-vars
 import { equalTo } from "../../utils/validation";
 import { Redirect } from "react-router-dom";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const SignUpForm = ({
   touched,
@@ -37,7 +38,7 @@ const SignUpForm = ({
   }
 
   return (
-    <div>
+    <ContentWrapper>
       <Title>Lag en ny bruker</Title>
       {error && <div>Kunne ikke opprette brukeren. Prøv igjen senere.</div>}
 
@@ -98,7 +99,7 @@ const SignUpForm = ({
       </SubmitButton>
 
       <CancelButton to="/">Logg inn</CancelButton>
-    </div>
+    </ContentWrapper>
   );
 };
 

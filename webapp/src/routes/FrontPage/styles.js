@@ -12,16 +12,11 @@ export const AuctionListWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Wrapper = styled.div`
-  padding-top: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
 export const SearchField = styled.input`
   border: 1px solid rgba(0, 0, 0, 0.09);
   border-bottom: 2px solid var(--primary-color);
-  border-radius: 3px;
+  border-top: 1px solid lightgray;
+  border-radius: 15px;
   color: black;
   display: block;
   margin: 0.3em 0 0.5em 0;
@@ -29,6 +24,11 @@ export const SearchField = styled.input`
   resize: none;
   font-family: Raleway, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
-  width: 15em;
+  width: 35em;
   overflow: hidden;
+  margin: 20px auto;
+
+  &:focus {
+    outline: none;
+  }
 `;

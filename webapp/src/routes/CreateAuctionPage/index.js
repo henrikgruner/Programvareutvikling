@@ -10,9 +10,10 @@ import {
   FileUploadField,
   DateTimePickerField
 } from "../../components/form";
-import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const CreateAuctionForm = ({
   touched,
@@ -22,8 +23,8 @@ const CreateAuctionForm = ({
   isValid
 }) => {
   return (
-    <div>
-      <Title>Legg ut gjenstand for auksjon</Title>
+    <ContentWrapper>
+      <Title>Lag ny auksjon</Title>
       <Form encType="multipart/form-data">
         <Field
           name="title"
@@ -76,7 +77,7 @@ const CreateAuctionForm = ({
         Last opp
       </SubmitButton>
       <CancelButton to="/">Avbryt</CancelButton>
-    </div>
+    </ContentWrapper>
   );
 };
 

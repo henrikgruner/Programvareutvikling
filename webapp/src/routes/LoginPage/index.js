@@ -1,13 +1,14 @@
 import React from "react";
 import * as Yup from "yup";
 import { TextBoxField, PasswordField } from "../../components/form";
-import { Title } from "./styles";
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
 import { connect } from "react-redux";
 import { loginUser } from "../../store/actions/auth";
 import { Form, Field, withFormik } from "formik";
 import { Redirect } from "react-router-dom";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const LoginForm = ({
   touched,
@@ -30,7 +31,7 @@ const LoginForm = ({
   }
 
   return (
-    <div>
+    <ContentWrapper>
       <Title>Logg inn</Title>
       {error && <div>Brukernavn eller passord er feil</div>}
       <Form>
@@ -56,7 +57,7 @@ const LoginForm = ({
         Logg inn
       </SubmitButton>
       <CancelButton to="/signup">Registrer deg</CancelButton>
-    </div>
+    </ContentWrapper>
   );
 };
 

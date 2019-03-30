@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAuctions } from "../../store/actions/auction";
 import { getAllUsers } from "../../store/actions/user";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 class StatisticsPage extends Component {
   state = {
@@ -41,10 +43,13 @@ class StatisticsPage extends Component {
       });
 
     return (
-      <>
-        Aktive auksjoner {filteredAuctions && filteredAuctions.length} | Aktive
-        brukere {filteredUsers && filteredUsers.length}
-      </>
+      <ContentWrapper>
+        <Title>Statistikk</Title>
+        <div>
+          Aktive auksjoner {filteredAuctions && filteredAuctions.length}{" "}
+        </div>
+        <div>Aktive brukere {filteredUsers && filteredUsers.length}</div>
+      </ContentWrapper>
     );
   }
 }

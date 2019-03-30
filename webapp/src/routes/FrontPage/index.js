@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import AuctionPreview from "../../components/AuctionPreview";
-import { Wrapper, ContentWrapper, AuctionListWrapper } from "./styles.js";
+import { ContentWrapper, AuctionListWrapper } from "./styles.js";
 import { SearchField } from "./styles";
 import { connect } from "react-redux";
 import { getAuctions } from "../../store/actions/auction";
+import { Title } from "../../components/Title";
 
 class FrontPage extends Component {
   state = {
@@ -41,14 +42,14 @@ class FrontPage extends Component {
 
     return (
       <ContentWrapper>
-        <Wrapper>
-          <SearchField
-            type="text"
-            placeholder="Søk etter auksjoner .."
-            value={this.state.search}
-            onChange={this.updateSearch.bind(this)}
-          />
-        </Wrapper>
+        <SearchField
+          type="text"
+          placeholder="Søk etter auksjoner .."
+          value={this.state.search}
+          onChange={this.updateSearch.bind(this)}
+        />
+        <Title>Aktive auksjoner</Title>
+
         <AuctionListWrapper>
           {this.props.auctions.length ? (
             filteredAuctions.length ? (

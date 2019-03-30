@@ -5,6 +5,8 @@ import { StyledLink } from "../../components/StyledLink";
 import { getUserProfile } from "../../store/actions/user";
 import { format } from "date-fns";
 import nb from "date-fns/locale/nb";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 class ProfilePage extends Component {
   static propTypes = {
@@ -53,10 +55,8 @@ class ProfilePage extends Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <h1>Velkommen til din profil</h1>
-        </header>
+      <ContentWrapper>
+        <Title>Min Side</Title>
         {this.renderUser()}
         <StyledLink to={`/profile/auctions/`}>Mine auksjoner</StyledLink>
         <div />
@@ -67,7 +67,7 @@ class ProfilePage extends Component {
         <StyledLink to="/profile/delete-me/">Slett bruker</StyledLink>
         <h2>Dine bud</h2>
         {this.renderBids()}
-      </div>
+      </ContentWrapper>
     );
   }
 }

@@ -5,6 +5,8 @@ import { SubmitButton } from "../../components/SubmitButton";
 import { PasswordField } from "../../components/form";
 import { connect } from "react-redux";
 import { changePassword } from "../../store/actions/auth";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const ChangePasswordForm = ({
   isSubmitting,
@@ -17,8 +19,8 @@ const ChangePasswordForm = ({
   }
 
   return (
-    <div>
-      <span>Endre passord</span>
+    <ContentWrapper>
+      <Title>Endre passord</Title>
       {error && <div>Kunne ikke endre passord. Prøv igjen senere.</div>}
       <Form>
         <Field name="oldPassword" component={PasswordField} />
@@ -42,7 +44,7 @@ const ChangePasswordForm = ({
       >
         Endre passord
       </SubmitButton>
-    </div>
+    </ContentWrapper>
   );
 };
 

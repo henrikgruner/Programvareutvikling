@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Title, StyledLink } from "./styles";
+import { StyledLink } from "./styles";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 class UsersAuctionsPage extends Component {
   render() {
@@ -10,7 +12,7 @@ class UsersAuctionsPage extends Component {
     ) : error ? (
       <div>Det skjedde en feil</div>
     ) : (
-      <div>
+      <ContentWrapper>
         <Title>Dine auksjoner</Title>
 
         <h3>Dine aktive auksjoner</h3>
@@ -55,7 +57,7 @@ class UsersAuctionsPage extends Component {
               );
             })}
         </span>
-      </div>
+      </ContentWrapper>
     );
   }
 }

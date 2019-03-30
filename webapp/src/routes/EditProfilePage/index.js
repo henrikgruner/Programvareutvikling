@@ -11,9 +11,10 @@ import {
   TelBoxField,
   TextAreaField
 } from "../../components/form";
-import { Title } from "./styles";
 import { connect } from "react-redux";
 import { updateUserProfile, updateUser } from "../../store/actions/user";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const EditProfileForm = ({
   touched,
@@ -23,7 +24,7 @@ const EditProfileForm = ({
   isValid
 }) => {
   return (
-    <div>
+    <ContentWrapper>
       <Title>Endre din profil</Title>
 
       <Form>
@@ -63,7 +64,7 @@ const EditProfileForm = ({
         Lagre
       </SubmitButton>
       <CancelButton to="/profile">Avbryt</CancelButton>
-    </div>
+    </ContentWrapper>
   );
 };
 
