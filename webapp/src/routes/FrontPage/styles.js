@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
+import PageWrapper from "../../components/ContentWrapper";
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled(PageWrapper)`
   overflow: hidden;
   padding-bottom: 60px;
 `;

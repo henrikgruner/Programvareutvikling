@@ -1,5 +1,6 @@
 /* FONTS */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway:500,600");
 
 /* VARIABLES */
 
@@ -34,7 +35,7 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
   background: var(--background-color);
   color: var(--font-color);
   min-height: 100vh;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { media } from "../../utils/mediaQueries";
+import PageWrapper from "../../components/ContentWrapper";
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled(PageWrapper)`
   display: flex;
   padding: 50px;
 
