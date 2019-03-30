@@ -58,7 +58,7 @@ class Auction(models.Model):
                 return None
 
     def __str__(self):
-        return f"{self.title}, {self.author.get_full_name()}"
+        return f"(id {self.id}) {self.title}"
 
     class Meta:
         ordering = ("created",)
@@ -81,7 +81,7 @@ class Bid(models.Model):
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE, related_name="bids")
 
     def __str__(self):
-        return f"{self.amount}, {self.reg_time}, {self.author.get_full_name()},  {self.auction.title}"
+        return f"{self.amount} kr, {self.auction.title}, {self.reg_time}, {self.author.get_full_name()}"
 
     @property
     def auction_title(self):
