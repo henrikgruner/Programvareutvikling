@@ -15,7 +15,6 @@ import SignUpPage from "./routes/SignUpPage";
 import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
-import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
 import ReportPage from "./routes/ReportPage";
 import EditProfilePage from "./routes/EditProfilePage";
@@ -47,11 +46,6 @@ const App = () => (
             render={({ match: { url } }) => (
               <Switch>
                 <PrivateRoute exact path={`${url}/`} component={ProfilePage} />
-                <PrivateRoute
-                  exact
-                  path={`${url}/auctions`}
-                  component={UsersAuctionsPage}
-                />
                 <PrivateRoute
                   exact
                   path={`${url}/delete-me`}

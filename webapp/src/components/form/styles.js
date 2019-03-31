@@ -19,11 +19,11 @@ export const ImageUploaderWrapper = styled.div`
   display: block;
   box-sizing: border-box;
   border-radius: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 `;
 
 export const StyledTextArea = styled(Textarea)`
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   display: block;
   margin: 0.5em 0 1em 0;
@@ -37,7 +37,7 @@ export const StyledTextArea = styled(Textarea)`
 `;
 
 export const StyledField = styled(Field)`
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 50px;
   color: black;
   display: block;
