@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import include
-from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
+from auction.admin import admin_site
 from auction.auctions.views import AuctionViewSet, BidViewSet
 from auction.reports.views import ReportViewSet
 from auction.users.views import MyProfileViewSet, UserProfileViewSet, UserViewSet
@@ -36,7 +36,7 @@ router.register(r"reports", ReportViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin_site.urls),
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("rest-auth/", include("rest_auth.urls")),
