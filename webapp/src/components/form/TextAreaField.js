@@ -13,18 +13,16 @@ const TextAreaField = ({
   return (
     <div>
       <label>
-        {label}
         <InputValidationFeedback error={error} />
-
         <StyledTextArea
           type="textarea"
           name={name}
           id={name}
           onChange={onChange}
           onBlur={handleBlur}
-          placeholder={placeholder}
+          placeholder={label}
           value={value}
-          rows="5"
+          rows="10"
         />
       </label>
     </div>

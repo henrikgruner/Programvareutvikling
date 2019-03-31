@@ -5,10 +5,10 @@ import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
 import { connect } from "react-redux";
 import { loginUser } from "../../store/actions/auth";
-import { Form, Field, withFormik } from "formik";
+import { Field, withFormik } from "formik";
 import { Redirect } from "react-router-dom";
 import { Title } from "../../components/Title";
-import ContentWrapper from "../../components/ContentWrapper";
+import { ContentWrapper, Form } from "./styles";
 
 const LoginForm = ({
   touched,
@@ -33,7 +33,11 @@ const LoginForm = ({
   return (
     <ContentWrapper>
       <Title>Logg inn</Title>
-      {error && <div>Brukernavn eller passord er feil</div>}
+      {error && (
+        <div style={{ textAlign: "center", color: "var(--warning-red)" }}>
+          Brukernavn eller passord er feil
+        </div>
+      )}
       <Form>
         <Field
           name="username"
@@ -48,15 +52,27 @@ const LoginForm = ({
           label="Passord"
         />
       </Form>
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+          flexDirection: "column",
+          width: "330px"
+        }}
       >
-        Logg inn
-      </SubmitButton>
-      <CancelButton to="/signup">Registrer deg</CancelButton>
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+          width="100%"
+        >
+          Logg inn
+        </SubmitButton>
+        <span style={{ margin: "1rem" }}>eller</span>
+        <CancelButton to="/signup">Registrer deg</CancelButton>
+      </div>
     </ContentWrapper>
   );
 };

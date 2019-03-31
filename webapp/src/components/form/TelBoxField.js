@@ -13,14 +13,13 @@ const TelBoxField = ({
   return (
     <div>
       <label>
-        {label}
         <InputValidationFeedback error={error} />
 
         <StyledField
           type="tel"
           name={name}
           value={value}
-          placeholder="Telefonnummer"
+          placeholder={label}
           onChange={onChange}
           onBlur={handleBlur}
         />
