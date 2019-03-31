@@ -4,6 +4,7 @@ import { getAuctions } from "../../store/actions/auction";
 import { getAllUsers } from "../../store/actions/user";
 import { Title } from "../../components/Title";
 import ContentWrapper from "../../components/ContentWrapper";
+import { Wrapper, Statistic, Label } from "./styles";
 
 class StatisticsPage extends Component {
   state = {
@@ -45,10 +46,12 @@ class StatisticsPage extends Component {
     return (
       <ContentWrapper>
         <Title>Statistikk</Title>
-        <div>
-          Aktive auksjoner {filteredAuctions && filteredAuctions.length}{" "}
-        </div>
-        <div>Aktive brukere {filteredUsers && filteredUsers.length}</div>
+        <Wrapper>
+          <Label>Aktive auksjoner </Label>
+          <div>{filteredAuctions && filteredAuctions.length}</div>
+          <Label>Aktive brukere</Label>
+          <div>{filteredUsers && filteredUsers.length}</div>
+        </Wrapper>
       </ContentWrapper>
     );
   }
