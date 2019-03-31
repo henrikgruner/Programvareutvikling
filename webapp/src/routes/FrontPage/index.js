@@ -5,6 +5,7 @@ import { SearchField } from "./styles";
 import { connect } from "react-redux";
 import { getAuctions } from "../../store/actions/auction";
 import { Title } from "../../components/Title";
+import sortBy from "lodash/sortBy";
 
 class FrontPage extends Component {
   state = {
@@ -53,19 +54,25 @@ class FrontPage extends Component {
         <AuctionListWrapper>
           {this.props.auctions.length ? (
             filteredAuctions.length ? (
-              filteredAuctions.map((auction, i) => {
-                return (
-                  <AuctionPreview
-                    title={auction.title}
-                    mainImage={
-                      auction.images.length > 0 ? auction.images[0].image : null
-                    }
-                    highestBid={auction.leading_bid}
-                    id={auction.id}
-                    key={i}
-                  />
-                );
-              })
+              sortBy(filteredAuctions, ({ end_time }) => end_time).map(
+                (auction, i) => {
+                  return (
+                    <AuctionPreview
+                      title={auction.title}
+                      mainImage={
+                        auction.images.length > 0
+                          ? auction.images[0].image
+                          : null
+                      }
+                      highestBid={auction.leading_bid}
+                      id={auction.id}
+                      endTime={auction.end_time}
+                      startBid={auction.start_price}
+                      key={i}
+                    />
+                  );
+                }
+              )
             ) : (
               <div
                 style={{

@@ -1,7 +1,5 @@
 import styled from "styled-components/macro";
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
-import { StyledLink } from "../StyledLink";
-import { media } from "../../utils/mediaQueries";
 
 export const HeaderWrapper = styled.header`
   display: flex;

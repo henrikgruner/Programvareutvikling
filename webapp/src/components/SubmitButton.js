@@ -4,8 +4,8 @@ export const SubmitButton = styled.button.attrs(
   ({ width, height, padding, fontSize }) => ({
     width: width || "auto",
     height: height || "auto",
-    padding: padding || "1.1em 3em",
-    fontSize: fontSize || "1.1em"
+    padding: padding || "0.7em 2.6em",
+    fontSize: fontSize || "1em"
   })
 )`
   background: ${props => (props.valid ? "var(--light-green)" : "gray")};
@@ -16,8 +16,8 @@ export const SubmitButton = styled.button.attrs(
   height: ${props => props.height};
   color: white;
   text-align: center;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
 
   &:active {
     opacity: 0.9;

@@ -10,6 +10,7 @@ export const AuctionListWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 50px;
 `;
 
 export const SearchField = styled.input`
@@ -26,7 +27,7 @@ export const SearchField = styled.input`
   font-size: 1rem;
   width: 35em;
   overflow: hidden;
-  margin: 20px auto;
+  margin: 40px auto 30px auto;
 
   &:focus {
     outline: none;
