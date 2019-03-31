@@ -4,20 +4,21 @@ export const SubmitButton = styled.button.attrs(
   ({ width, height, padding, fontSize }) => ({
     width: width || "auto",
     height: height || "auto",
-    padding: padding || "1.1em 3em",
-    fontSize: fontSize || "1.1em"
+    padding: padding || "0.7em 2.6em",
+    fontSize: fontSize || "1em"
   })
 )`
-  background: ${props => (props.valid ? "var(--light-green)" : "gray")};
-  border: 0px solid ${props => (props.valid ? "var(--dark-green)" : "darkgray")};
+  background: var(--light-green);
+  border: 0px solid var(--dark-green);
   padding: ${props => props.padding};
   border-radius: 30px;
   width: ${props => props.width};
   height: ${props => props.height};
   color: white;
   text-align: center;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  box-sizing: border-box;
 
   &:active {
     opacity: 0.9;

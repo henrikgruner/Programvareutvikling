@@ -13,8 +13,6 @@ const FileUploadField = ({
 
   return (
     <div>
-      <label>{label}</label>
-
       <ImageUploaderWrapper>
         <ImageUploader
           name={name}

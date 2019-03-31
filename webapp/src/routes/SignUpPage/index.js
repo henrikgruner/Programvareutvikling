@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Field, withFormik } from "formik";
+import { Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { CancelButton } from "../../components/CancelButton";
 import { SubmitButton } from "../../components/SubmitButton";
@@ -8,15 +8,15 @@ import {
   PasswordField,
   TextBoxField,
   TelBoxField,
-  TextAreaField,
-  CheckBoxField
+  TextAreaField
 } from "../../components/form";
-import { Title } from "./styles";
 import { signupUser } from "../../store/actions/auth";
 import { connect } from "react-redux";
 // eslint-disable-next-line no-unused-vars
 import { equalTo } from "../../utils/validation";
 import { Redirect } from "react-router-dom";
+import { Title } from "../../components/Title";
+import { ContentWrapper, Form } from "./styles";
 
 const SignUpForm = ({
   touched,
@@ -37,25 +37,28 @@ const SignUpForm = ({
   }
 
   return (
-    <div>
+    <ContentWrapper>
       <Title>Lag en ny bruker</Title>
-      {error && <div>Kunne ikke opprette brukeren. Prøv igjen senere.</div>}
+      {error && (
+        <div style={{ textAlign: "center", color: "var(--warning-red)" }}>
+          Kunne ikke opprette brukeren akkurat nå. <br />
+          Vennligst prøv igjen senere.
+        </div>
+      )}
 
       <Form>
-        <div style={{ display: "flex" }}>
-          <Field
-            name="firstName"
-            component={TextBoxField}
-            label="Fornavn"
-            placeholder="Ola Bernad"
-          />
-          <Field
-            name="lastName"
-            component={TextBoxField}
-            label="Etternavn"
-            placeholder="Nordmann"
-          />
-        </div>
+        <Field
+          name="firstName"
+          component={TextBoxField}
+          label="Fornavn"
+          placeholder="Ola Bernad"
+        />
+        <Field
+          name="lastName"
+          component={TextBoxField}
+          label="Etternavn"
+          placeholder="Nordmann"
+        />
         <Field
           name="username"
           component={TextBoxField}
@@ -81,24 +84,29 @@ const SignUpForm = ({
           label="Adresse"
           placeholder="Eksempelveien 10, 0000 Eksempelregion"
         />
-        <Field
-          name="approvedTerms"
-          component={CheckBoxField}
-          label="Jeg godtar retningslinjene for bruk av Auksjonsbua"
-        />
       </Form>
-
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+          flexDirection: "column",
+          width: "330px"
+        }}
       >
-        Registrer deg
-      </SubmitButton>
-
-      <CancelButton to="/">Logg inn</CancelButton>
-    </div>
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+          width="100%"
+        >
+          Registrer deg
+        </SubmitButton>
+        <span style={{ margin: "1rem" }}>eller</span>
+        <CancelButton to="/login">Logg inn</CancelButton>
+      </div>
+    </ContentWrapper>
   );
 };
 
@@ -120,7 +128,7 @@ const SignUpPage = withFormik({
       lastName: "",
       phoneNumber: "",
       address: "",
-      approvedTerms: false
+      approvedTerms: true
     };
   },
 

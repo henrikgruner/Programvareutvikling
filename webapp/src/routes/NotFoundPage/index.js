@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 class NotFoundPage extends Component {
   render() {
     return (
-      <div>
-        <header>
-          <h1>404 - Page not found</h1>
-        </header>
-      </div>
+      <ContentWrapper>
+        <Title>404 - Page not found</Title>
+      </ContentWrapper>
     );
   }
 }

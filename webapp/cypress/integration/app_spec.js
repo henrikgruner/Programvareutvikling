@@ -78,10 +78,7 @@ describe("Redirect When Not Logged In", () => {
     cy.visit("profile/delete-me");
     cy.url().should("include", "/login");
   });
-  it("Redirect from my auctions page to login", () => {
-    cy.visit("profile/auctions");
-    cy.url().should("include", "/login");
-  });
+
   it("Redirect from report page to login", () => {
     cy.visit("report");
     cy.url().should("include", "/login");

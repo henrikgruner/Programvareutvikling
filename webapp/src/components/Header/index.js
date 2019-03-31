@@ -2,55 +2,65 @@ import React from "react";
 import {
   SubTitle,
   HeaderWrapper,
+  InnerHeaderWrapper,
   CompanyLogoText,
   CompanyLogo,
   CompanyLogoWrapper,
-  AuthLink,
-  AuthLinkWrapper
+  NavLink,
+  CurrentUser,
+  NavLinkWrapper,
+  LogoutButton
 } from "./styles.js";
 import logo from "../../assets/budBuaLogo.png";
 import { connect } from "react-redux";
 import { logoutUser } from "../../store/actions/auth";
 
 const Header = props => {
-  // const isStaff = props.user && props.user.is_staff === true;
   return (
     <HeaderWrapper>
-      <CompanyLogoWrapper to="/">
-        <CompanyLogo src={logo} alt="Budbua logo" />
-        <CompanyLogoText>Auksjonsbua</CompanyLogoText>
-      </CompanyLogoWrapper>
-      <SubTitle>
-        Velkommen til Norges største <br /> og eldste auksjonsmarked
-      </SubTitle>
-      <AuthLinkWrapper>
-        {props.isAuthenticated ? (
-          <>
-            <AuthLink to="/auctions/new">Ny auksjon</AuthLink>
-            <span>|</span>
-            <AuthLink to="/" onClick={props.logoutUser}>
-              Logg ut
-            </AuthLink>
-            <span>|</span>
-            <AuthLink to="/profile">
-              Velkommen, {props.user && props.user.first_name + "  \u2699"}
-            </AuthLink>
+      <InnerHeaderWrapper>
+        <div>
+          <CompanyLogoWrapper to="/">
+            <CompanyLogo src={logo} alt="Budbua logo" />
+            <CompanyLogoText>Auksjonsbua</CompanyLogoText>
+          </CompanyLogoWrapper>
+          <SubTitle>
+            Velkommen til Norges største og eldste auksjonsmarked
+          </SubTitle>
+        </div>
+        <NavLinkWrapper>
+          {props.isAuthenticated ? (
+            <>
+              <NavLink to="/auctions/new">Ny auksjon</NavLink>
+              {props.user && props.user.is_staff && (
+                <NavLink to="/statistics">statistikk</NavLink>
+              )}
+              <NavLink to="/profile">Min side</NavLink>
 
-            {props.user && props.user.is_staff ? (
-              <AuthLink to="/statistics">statistikk</AuthLink>
-            ) : (
-              <></>
-            )}
-          </>
-        ) : (
-          <>
-            <AuthLink to="/login">Logg inn</AuthLink>
-            <span>|</span>
-            <AuthLink to="/signup">Ny bruker</AuthLink>
-          </>
-        )}
-      </AuthLinkWrapper>
-      {props.children}
+              <CurrentUser>
+                <span>Du er logget inn som</span>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    textAlign: "center"
+                  }}
+                >
+                  {props.user && props.user.first_name}
+                </div>
+                <LogoutButton onClick={props.logoutUser}>Logg ut</LogoutButton>
+              </CurrentUser>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">Logg inn</NavLink>
+              <NavLink to="/signup">Ny bruker</NavLink>
+            </>
+          )}
+        </NavLinkWrapper>
+
+        {props.children}
+      </InnerHeaderWrapper>
     </HeaderWrapper>
   );
 };
@@ -70,5 +80,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { pure: false }
 )(Header);

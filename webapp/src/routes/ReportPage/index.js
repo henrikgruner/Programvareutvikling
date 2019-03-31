@@ -6,12 +6,13 @@ import { Report } from "../../store/actions/report";
 
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
-import { Title } from "./styles";
 import { TextAreaField } from "../../components/form";
+import { Title } from "../../components/Title";
+import ContentWrapper from "../../components/ContentWrapper";
 
 const ReportForm = ({ isSubmitting, handleSubmit, isValid }) => {
   return (
-    <div>
+    <ContentWrapper>
       <Title>Rapportér auksjon</Title>
       <Form>
         <Field
@@ -29,7 +30,7 @@ const ReportForm = ({ isSubmitting, handleSubmit, isValid }) => {
         Rapporter
       </SubmitButton>
       <CancelButton to="/">Avbryt</CancelButton>
-    </div>
+    </ContentWrapper>
   );
 };
 

@@ -13,13 +13,12 @@ const PasswordField = ({
   return (
     <div>
       <label>
-        {label}
         <InputValidationFeedback error={error} />
         <StyledField
           type="password"
           name={name}
           value={value}
-          placeholder={placeholder}
+          placeholder={label}
           onChange={onChange}
           onBlur={handleBlur}
         />

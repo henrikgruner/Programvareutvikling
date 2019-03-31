@@ -11,16 +11,15 @@ const TextBoxField = ({
   const error = touched[name] && errors[name];
 
   return (
-    <div>
-      <label>
-        {label}
+    <div style={{ width: "100%" }}>
+      <label style={{ width: "100%" }}>
         <InputValidationFeedback error={error} />
 
         <StyledField
           type="text"
           name={name}
           value={value}
-          placeholder={placeholder}
+          placeholder={label}
           onChange={onChange}
           onBlur={handleBlur}
         />

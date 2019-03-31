@@ -15,7 +15,6 @@ import SignUpPage from "./routes/SignUpPage";
 import AuctionPage from "./routes/AuctionPage";
 import NotFoundPage from "./routes/NotFoundPage";
 import CreateAuctionPage from "./routes/CreateAuctionPage";
-import UsersAuctionsPage from "./routes/UsersAuctionsPage";
 import DeleteProfilePage from "./routes/DeleteProfilePage";
 import ReportPage from "./routes/ReportPage";
 import EditProfilePage from "./routes/EditProfilePage";
@@ -30,82 +29,65 @@ export const PageWrapper = styled.div`
   align-items: center;
 `;
 
-export const ContentWrapper = styled.div`
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  width: 100%;
-  flex: 1 0 auto;
-`;
-
 const App = () => (
   <Router>
     <ScrollToTop>
       <PageWrapper>
         <Header />
-        <ContentWrapper>
-          <Switch>
-            <Route exact path="/" component={FrontPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route exact path="/statistics" component={StatisticsPage} />
 
-            <Route
-              path="/profile"
-              render={({ match: { url } }) => (
-                <Switch>
-                  <PrivateRoute
-                    exact
-                    path={`${url}/`}
-                    component={ProfilePage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path={`${url}/auctions`}
-                    component={UsersAuctionsPage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path={`${url}/delete-me`}
-                    component={DeleteProfilePage}
-                  />
-                  <PrivateRoute
-                    exact
-                    path={`${url}/edit-me`}
-                    component={EditProfilePage}
-                  />
+        <Switch>
+          <Route exact path="/" component={FrontPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={SignUpPage} />
+          <Route exact path="/statistics" component={StatisticsPage} />
 
-                  <PrivateRoute
-                    exact
-                    path={`${url}/change-password`}
-                    component={ChangePassword}
-                  />
+          <Route
+            path="/profile"
+            render={({ match: { url } }) => (
+              <Switch>
+                <PrivateRoute exact path={`${url}/`} component={ProfilePage} />
+                <PrivateRoute
+                  exact
+                  path={`${url}/delete-me`}
+                  component={DeleteProfilePage}
+                />
+                <PrivateRoute
+                  exact
+                  path={`${url}/edit-me`}
+                  component={EditProfilePage}
+                />
 
-                  <Route component={NotFoundPage} />
-                </Switch>
-              )}
-            />
-            <PrivateRoute exact path="/report" component={ReportPage} />
-            <Route
-              path="/auctions"
-              render={({ match: { url } }) => (
-                <Switch>
-                  <Route exact path={`${url}/`} component={FrontPage} />
-                  <PrivateRoute
-                    exact
-                    path={`${url}/new`}
-                    component={CreateAuctionPage}
-                  />
-                  <Route
-                    exact
-                    path={`${url}/:auctionId`}
-                    component={AuctionPage}
-                  />
-                </Switch>
-              )}
-            />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </ContentWrapper>
+                <PrivateRoute
+                  exact
+                  path={`${url}/change-password`}
+                  component={ChangePassword}
+                />
+
+                <Route component={NotFoundPage} />
+              </Switch>
+            )}
+          />
+          <PrivateRoute exact path="/report" component={ReportPage} />
+          <Route
+            path="/auctions"
+            render={({ match: { url } }) => (
+              <Switch>
+                <Route exact path={`${url}/`} component={FrontPage} />
+                <PrivateRoute
+                  exact
+                  path={`${url}/new`}
+                  component={CreateAuctionPage}
+                />
+                <Route
+                  exact
+                  path={`${url}/:auctionId`}
+                  component={AuctionPage}
+                />
+              </Switch>
+            )}
+          />
+          <Route component={NotFoundPage} />
+        </Switch>
         <Footer />
       </PageWrapper>
     </ScrollToTop>

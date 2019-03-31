@@ -1,5 +1,6 @@
 /* FONTS */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway:500,600");
 
 /* VARIABLES */
 
@@ -9,10 +10,10 @@
   --link-color: #0532ff;
   --primary-color: #0532ff;
   --secondary-blue: #1532b2;
-  --light-green: #6dcc18;
+  --light-green: #63b717;
   --dark-green: #5bb20c;
   --warning-red: #ff541e;
-  --page-max-width: 1000px;
+  --page-max-width: 1170px;
 }
 
 /* GLOBAL CSS */
@@ -34,7 +35,7 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
   background: var(--background-color);
   color: var(--font-color);
   min-height: 100vh;

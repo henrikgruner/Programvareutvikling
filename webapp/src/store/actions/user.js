@@ -105,7 +105,6 @@ export const updateUserProfile = ({ userId, payload }) => {
       token
     })
       .then(res => {
-        window.history.go(-1);
         getUserProfile();
       })
       .catch(err => {

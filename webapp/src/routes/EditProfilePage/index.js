@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Field, withFormik } from "formik";
+import { Field, withFormik } from "formik";
 import * as Yup from "yup";
 // eslint-disable-next-line no-unused-vars
 import { equalTo } from "../../utils/validation";
@@ -11,9 +11,10 @@ import {
   TelBoxField,
   TextAreaField
 } from "../../components/form";
-import { Title } from "./styles";
 import { connect } from "react-redux";
 import { updateUserProfile, updateUser } from "../../store/actions/user";
+import { Title } from "../../components/Title";
+import { ContentWrapper, Form } from "./styles";
 
 const EditProfileForm = ({
   touched,
@@ -23,7 +24,7 @@ const EditProfileForm = ({
   isValid
 }) => {
   return (
-    <div>
+    <ContentWrapper>
       <Title>Endre din profil</Title>
 
       <Form>
@@ -54,16 +55,28 @@ const EditProfileForm = ({
         />
       </Form>
 
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+          flexDirection: "column",
+          width: "330px"
+        }}
       >
-        Lagre
-      </SubmitButton>
-      <CancelButton to="/profile">Avbryt</CancelButton>
-    </div>
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+          width="100%"
+        >
+          Lagre endringer
+        </SubmitButton>
+        <span style={{ margin: "1rem" }}>eller</span>
+        <CancelButton to="/profile/">Avbryt</CancelButton>
+      </div>
+    </ContentWrapper>
   );
 };
 

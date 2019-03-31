@@ -11,13 +11,12 @@ const EmailField = ({
   return (
     <div>
       <label>
-        Email
         <InputValidationFeedback error={error} />
         <StyledField
           type="email"
           name={name}
           value={value}
-          placeholder="ola.nordmann@example.com"
+          placeholder="E-mail"
           onChange={onChange}
           onBlur={handleBlur}
         />
