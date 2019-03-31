@@ -25,14 +25,13 @@ const DateTimePickerField = ({
   return (
     <div>
       <label>
-        {label}
         <InputValidationFeedback error={error} />
 
         <DatePicker
           className="dateTimePicker"
           selected={value}
           onChange={handleChange}
-          placeholderText={placeholder}
+          placeholderText={label}
           showTimeSelect
           locale="nb"
           timeFormat="HH:mm"

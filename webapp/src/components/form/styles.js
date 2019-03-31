@@ -19,6 +19,7 @@ export const ImageUploaderWrapper = styled.div`
   display: block;
   box-sizing: border-box;
   border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
 `;
 
 export const StyledTextArea = styled(Textarea)`

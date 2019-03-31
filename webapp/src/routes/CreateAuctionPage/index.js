@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Field, withFormik } from "formik";
+import { Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { createAuction } from "../../store/actions/auction";
@@ -13,7 +13,7 @@ import {
 import { SubmitButton } from "../../components/SubmitButton";
 import { CancelButton } from "../../components/CancelButton";
 import { Title } from "../../components/Title";
-import ContentWrapper from "../../components/ContentWrapper";
+import { ContentWrapper, Form } from "./styles";
 
 const CreateAuctionForm = ({
   touched,
@@ -68,15 +68,27 @@ const CreateAuctionForm = ({
           label="Bilde av gjenstand"
         />
       </Form>
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+          flexDirection: "column",
+          width: "330px"
+        }}
       >
-        Last opp
-      </SubmitButton>
-      <CancelButton to="/">Avbryt</CancelButton>
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+          width="100%"
+        >
+          Lag en auksjon
+        </SubmitButton>
+        <span style={{ margin: "1rem" }}>eller</span>
+        <CancelButton to="/">Avbryt</CancelButton>
+      </div>
     </ContentWrapper>
   );
 };
@@ -139,17 +151,18 @@ const CreateAuctionPage = connect(mapStateToProps)(
 
       startprice: Yup.number()
         .typeError("Fyll inn et tall")
-        .required("Fyll inn en startpris")
+        .required("Sett en startpris")
         .moreThan(-1, "Kan ikke være negativt")
         .integer("Må være et heltall"),
 
-      endtime: Yup.date().required("Må fylle inn slutttid"),
-
+      endtime: Yup.date()
+        .required("Velg en sluttdato for auksjonen")
+        .typeError("Velg en sluttdato for auksjonen"),
       pickupaddress: Yup.string().required("Skriv inn en henteaddresse"),
 
       minbidincrease: Yup.number()
         .typeError("Fyll inn et tall")
-        .required("Fyll inn en minste budøkning, 0 for ingen")
+        .required("Sett en minste budøkning (0 for ingen)")
         .moreThan(-1, "Kan ikke være negativt")
         .integer("Må være et heltall")
     })
