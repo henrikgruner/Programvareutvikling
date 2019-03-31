@@ -12,7 +12,6 @@ import { StyledLink } from "../../components/StyledLink";
 import imgPlaceholder from "../../assets/auction_image_placeholder.png";
 import { TextBoxField } from "../../components/form";
 import { SubmitButton } from "../../components/SubmitButton";
-import { CancelButton } from "../../components/CancelButton";
 import NumbersWithTitle from "./NumbersWithTitle";
 import {
   ContentWrapper,
@@ -25,7 +24,8 @@ import {
   Wrapper,
   BidHistoryButton,
   Modal,
-  ModalWrapper
+  ModalWrapper,
+  Link
 } from "./styles";
 
 const AuctionForm = ({
@@ -67,19 +67,23 @@ const AuctionForm = ({
 
   return auction ? (
     <ContentWrapper>
-      {auction.images.length > 0 ? (
-        <ImageGallery
-          showIndex={true}
-          slideDuration={450}
-          showPlayButton={false}
-          items={auction.images.map(image => ({
-            original: image.image,
-            thumbnail: image.image
-          }))}
-        />
-      ) : (
-        <AuctionImage src={imgPlaceholder} alt="Placeholder" />
-      )}
+      <Link to="/report">Rapportér</Link>
+
+      <div style={{ width: "100%" }}>
+        {auction.images.length > 0 ? (
+          <ImageGallery
+            showIndex={true}
+            slideDuration={450}
+            showPlayButton={false}
+            items={auction.images.map(image => ({
+              original: image.image,
+              thumbnail: image.image
+            }))}
+          />
+        ) : (
+          <AuctionImage src={imgPlaceholder} alt="Placeholder" />
+        )}
+      </div>
       <DetailWrapper>
         <Title>{auction.title}</Title>
         <InfoWrapper>
@@ -134,7 +138,7 @@ const AuctionForm = ({
                     <Field
                       name="bid"
                       component={TextBoxField}
-                      placeholder="Skriv inn ditt bud .."
+                      label="Skriv inn ditt bud .."
                     />
                     <span style={{ marginRight: "20px" }} />
                     <SubmitButton
@@ -145,6 +149,7 @@ const AuctionForm = ({
                       fontSize="1rem"
                       padding="0 2em"
                       height="50px"
+                      width="280px"
                     >
                       Gi bud
                     </SubmitButton>
@@ -194,7 +199,6 @@ const AuctionForm = ({
           }
         />
       </DetailWrapper>
-      <CancelButton to="/report">Rapportér</CancelButton>
     </ContentWrapper>
   ) : (
     <div>Loading...</div>

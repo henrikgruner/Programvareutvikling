@@ -4,7 +4,7 @@ import { getAuctions } from "../../store/actions/auction";
 import { getAllUsers } from "../../store/actions/user";
 import { Title } from "../../components/Title";
 import ContentWrapper from "../../components/ContentWrapper";
-import { Wrapper, Statistic, Label } from "./styles";
+import { Wrapper, Label } from "./styles";
 
 class StatisticsPage extends Component {
   state = {

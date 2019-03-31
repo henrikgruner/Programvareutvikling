@@ -1,14 +1,22 @@
 import styled from "styled-components";
 import { media } from "../../utils/mediaQueries";
 import PageWrapper from "../../components/ContentWrapper";
+import { CancelButton } from "../../components/CancelButton";
 
 export const ContentWrapper = styled(PageWrapper)`
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
   padding: 50px;
 
   ${media.tablet`
     flex-wrap: wrap;
   `};
+`;
+
+export const Link = styled(CancelButton)`
+  position: absolute;
+  top: 150px;
+  right: 50px;
 `;
 
 export const InfoWrapper = styled.div`
@@ -68,9 +76,9 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 export const BidHistoryButton = styled.button`
-  background: #6dcc18
-  border: 0px solid ${props =>
-    props.valid ? "var(--dark-green)" : "darkgray"};
+  background: var(--light-green);
+  padding: 1rem;
+  border: 0px solid ${props => (props.valid ? "var(--dark-green)" : "darkgray")};
   padding: ${props => props.padding};
   border-radius: 30px;
   width: ${props => props.width};
@@ -79,12 +87,12 @@ export const BidHistoryButton = styled.button`
   text-align: center;
   font-size: 1rem;
   &:active {
-  opacity: 0.9;
+    opacity: 0.9;
   }
   &:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.2s;
-  opacity: 0.9;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    opacity: 0.9;
   }
 `;
 export const Modal = styled.div`
