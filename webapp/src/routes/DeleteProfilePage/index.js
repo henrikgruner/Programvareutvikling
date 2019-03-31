@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyledButton, WrapperDiv } from "./styles";
+import { WrapperDiv, DeleteButton } from "./styles";
 import { connect } from "react-redux";
 import { deleteUser } from "../../store/actions/user";
 import { Title } from "../../components/Title";
@@ -9,8 +9,6 @@ class DeleteProfilePage extends Component {
   onDelete = () => {
     if (window.confirm("Er du helt sikker?")) {
       this.props.deleteUser(this.props.userId);
-    } else {
-      this.props.history.push("/profile");
     }
   };
 
@@ -19,13 +17,11 @@ class DeleteProfilePage extends Component {
       <ContentWrapper>
         <Title>Ønsker du virkelig å slette brukeren din?</Title>
         <WrapperDiv>
-          <span>
-            I tråd med GDPR vil vi anonymisere all informasjon om deg vi
-            besitter. Dette inkluderer personlig informasjon, men tidligere
-            auksjoner vil fremdeles være synlige.
-          </span>
-
-          <StyledButton onClick={this.onDelete}>Slett bruker</StyledButton>
+          I tråd med GDPR vil vi anonymisere all informasjon om deg vi besitter
+          dersom du ønsker det. Dette innebærer at vi sletter all personlig
+          informasjon, men at tidligere auksjoner og tidligere bud vil fremdeles
+          være synlige, uten at det er knyttet til deg.
+          <DeleteButton onClick={this.onDelete}>Slett bruker</DeleteButton>
         </WrapperDiv>
       </ContentWrapper>
     );
