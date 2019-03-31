@@ -1,12 +1,13 @@
 import React from "react";
-import { Form, Field, withFormik } from "formik";
+import { Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { SubmitButton } from "../../components/SubmitButton";
 import { PasswordField } from "../../components/form";
 import { connect } from "react-redux";
 import { changePassword } from "../../store/actions/auth";
 import { Title } from "../../components/Title";
-import ContentWrapper from "../../components/ContentWrapper";
+import { ContentWrapper, Form } from "./styles";
+import { CancelButton } from "../../components/CancelButton";
 
 const ChangePasswordForm = ({
   isSubmitting,
@@ -36,14 +37,27 @@ const ChangePasswordForm = ({
         />
       </Form>
 
-      <SubmitButton
-        onClick={handleSubmit}
-        type="submit"
-        disabled={isSubmitting}
-        valid={isValid}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+          flexDirection: "column",
+          width: "330px"
+        }}
       >
-        Endre passord
-      </SubmitButton>
+        <SubmitButton
+          onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmitting}
+          valid={isValid}
+          width="100%"
+        >
+          Endre passord
+        </SubmitButton>
+        <span style={{ margin: "1rem" }}>eller</span>
+        <CancelButton to="/profile/">Avbryt</CancelButton>
+      </div>
     </ContentWrapper>
   );
 };
@@ -58,9 +72,6 @@ const ChangePassword = withFormik({
       old_Password: "",
       new_password1: "",
       new_password2: ""
-      //new_password1
-      //new_password2
-      //old_password
     };
   },
 
