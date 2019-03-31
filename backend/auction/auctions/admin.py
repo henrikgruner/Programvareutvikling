@@ -43,17 +43,20 @@ class BidAdmin(admin.ModelAdmin):
 
 
 class AuctionImageAdmin(admin.ModelAdmin):
-    list_display = ["id", "auction", "image", "image_show"]
+    list_display = ["id", "auction", "image"]
     readonly_fields = ("image_show",)
 
     def image_show(self, obj):
-        return mark_safe(
-            '<img src="{url}" width="{width}" height={height} />'.format(
-                url=obj.image.url,
-                width=obj.image.width / 8,
-                height=obj.image.height / 8,
+        try:
+            return mark_safe(
+                '<img src="{url}" width="{width}" height={height} />'.format(
+                    url=obj.image.url,
+                    width=obj.image.width / 8,
+                    height=obj.image.height / 8,
+                )
             )
-        )
+        except FileNotFoundError:
+            return "Can't show image"
 
 
 admin_site.register(Auction, AuctionAdmin)
