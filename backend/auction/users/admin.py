@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 from auction.admin import admin_site
@@ -16,7 +17,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_filter = ("approved_terms",)
 
 
-class UserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
     inlines = [UserProfileInline]
 
     list_display = [
@@ -33,4 +34,4 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin_site.register(UserProfile, UserProfileAdmin)
-admin_site.register(User, UserAdmin)
+admin_site.register(User, CustomUserAdmin)
