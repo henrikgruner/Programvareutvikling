@@ -4,7 +4,7 @@
 
 Made with React 16.8, Node >= 8 and `create-react-app`.
 
-## Initial setup
+## Setup
 
 Install `node`
 
@@ -13,33 +13,7 @@ $ npm i
 $ npm start
 ```
 
-## Usual development setup to run the webapp
-
-Remember to do the usual git stuff at the start of each session, to keep you in sync with the `master` branch on GitLab. By using the command `npm i` you can install packages the project needs (defined in `package.json`).
-
-In the `webapp` folder:
-
-```sh
-$ npm start
-```
-
-## Git
-
-### Committing
-
-Important note: Since we use the `pre-commit` python package to check and format our files before
-committing, this means that if you ran the line `pre-commit install` in the
-setup, you have to be inside your `venv` to be able to commit (unless you install it globally). (`source ../backend/venv/bin/activate` from the webapp folder).
-
-#### General process
-
-1. `git status`. Check that you're committing what you think you are committing (through IDE or with `git diff` or something)
-2. `git add .`, or `git add example-file.py`, or `git add -A`
-3. `git status`
-4. `git commit -m "#4 a very good commit message"`
-5. `git push`
-6. Get conflict, try to fix but lie down and cry. You can avoid this step by working on
-   your own branch :)
+Now the webapp should be up and running on [localhost:3000](http://localhost:3000/) and should be able to connect if you have set it up yet, if not, go set that up.
 
 ## Available Scripts
 
@@ -67,6 +41,38 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Usual development setup to run the webapp
+
+Remember to do the usual git stuff at the start of each session, to keep you in sync with the `master` branch on GitLab. By using the command `npm i` you can install packages the project needs (defined in `package.json`).
+
+In the `webapp` folder:
+
+```sh
+$ npm start
+```
+
+## Git
+
+### Committing
+
+To fix the codestyle before committing the code, run the following:
+
+```sh
+$ npm run prettier
+```
+
+and check that your console is free off warnings (e.g. unused variables).
+
+### General process
+
+1. `git status`. Check that you're committing what you think you are committing (through IDE or with `git diff` or something)
+2. `git add .`, or `git add example-file.py`, or `git add -A`
+3. `git status`
+4. `git commit -m "#4 a very good commit message"`
+5. `git push`
+6. Get conflict, try to fix but lie down and cry. You can avoid this step by working on
+   your own branch :)
 
 ### Deployment
 

@@ -4,22 +4,27 @@
 
 Made with Python 3.6, Django 2 and Django REST Framework.
 
-## Initial setup
+## Setup
 
 Either create a virtual environment through your IDE (Pycharm has this built in),
 or create it with `virtualenv`.
 
 ```sh
 $ virtualenv -p python3.6 venv
-$ source venv/bin/activate     # or source venv/Scripts/activate (on Windows)
+$ source venv/bin/activate          # or source venv/Scripts/activate (on Windows)
 $ pip install -r requirements.txt
-$ pre-commit install        # (pre-commit uninstall (if need to turn off))
+$ python manage.py migrate          # Sync your database for the first time
+$ python manage.py runserver
 ```
 
-In the same folder as `manage.py`:
+Now the backend should be up and running on [localhost:8000](http://localhost:8000/) and exposing its browsable API.
+
+### Loading fixtures
+
+Creates a superuser, a owner user (staff but not superuser) and two regular users all with the password "password123", in addition to some auctions.
 
 ```sh
-$ python manage.py migrate # Sync your database for the first time
+$ python manage.py loaddata **/fixtures/*.yaml
 ```
 
 ## Usual development setup to run backend
@@ -49,11 +54,7 @@ $ isort -rc auction
 $ black auction
 ```
 
-Important note: Since we use the `pre-commit` python package to check and format our files before
-committing, this means that if you ran the line `pre-commit install` in the
-setup, you have to be inside your `venv` to be able to commit (unless you install it globally).
-
-#### General process
+### General process
 
 1. `git status`. Check that you're committing what you think you are committing (through IDE or with `git diff` or something)
 2. `git add .`, or `git add example-file.py`, or `git add -A`
@@ -61,46 +62,4 @@ setup, you have to be inside your `venv` to be able to commit (unless you instal
 4. `git commit -m "#4 a very good commit message"`
 5. `git push`
 6. Get conflict, try to fix but lie down and cry. You can avoid this step by working on
-   your own branch :)
-
-## Loading fixtures
-
-Use the command `python manage.py shell_plus` to enter the enhanced python shell.
-
-Creates 10 standard users
-
-```python
-from auction.users.factories import UserProfileFactory
-users = UserProfileFactory.create_batch(size=10)
-```
-
-Creates 15 auctions
-
-```python
-from auction.auctions.factories import AuctionFactory
-auctions = AuctionFactory.create_batch(size=15)
-```
-
-Total initialize script:
-
-```python
-from auction.users.factories import UserProfileFactory
-from auction.auctions.factories import AuctionFactory
-users = UserProfileFactory.create_batch(size=10)
-auctions = AuctionFactory.create_batch(size=15)
-```
-
-Scripts I use often
-
-```python
-a = Auction.objects.latest("created")
-for image in a.images.all():
-    print(image.image)
-
-auction = Auction.objects.get(pk=1)
-image_list = auction.images.all()
-
-images = AuctionImage.objects.all()
-images
-
-```
+   your own branch :) (or google it, lots of good resources out there)
