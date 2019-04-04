@@ -55,22 +55,13 @@ $ source venv/bin/activate       # or on Windows: $ source venv/Scripts/activate
 ```sh
 $ pip install -r requirements.txt      # Install the required packages
 $ python manage.py migrate             # Create the tables in the db
+$ python manage.py loaddata **/fixtures/*.yaml  # Fill the db with test data, may skip this.
 $ python manage.py runserver           # Run the development server
 ```
 
 Now the backend should be up and running on [localhost:8000](http://localhost:8000/) and exposing its browsable API.
 
 For more details on the backend, [see our README in the `backend` folder](backend/README.md)
-
-3. Loading fixtures - The database is still empty, so we offer two solutions to quickly fill it with some data for testing purposes. (see below)
-
-###### Loading fixtures
-
-Creates a superuser, a owner user (staff but not superuser) and two regular users all with the password "password123", in addition to some auctions.
-
-```sh
-$ python manage.py loaddata **/fixtures/*.yaml
-```
 
 ### Setting up the webapp
 
@@ -99,7 +90,7 @@ If you login on the webapp with an admin or owner user, you can see the "Statist
 
 ## Tests
 
-### backend
+### Backend
 
 Run the tests with
 
@@ -119,7 +110,7 @@ $ isort -rc auction
 $ black auction
 ```
 
-### webapp
+### Webapp
 
 Run the tests with
 
