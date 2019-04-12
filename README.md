@@ -70,7 +70,7 @@ $ cd webapp           # Enter the correct folder
 $ npm i               # Install the required packages
 $ npm start           # Run the development server
 ```
-Nå som webappen bør være oppe å kjøre på [localhost:3000](http://localhost:3000/) og skal ha muligheten for å koble sammen med backend som allerede har blitt satt opp.
+Nå som webappen bør være oppe å kjøre på [localhost:3000](http://localhost:3000/) skal den ha mulighet for å koble seg sammen med backend, som allerede har blitt satt opp.
 
 For mer detaljer på webapp, se [see our README in the `webapp` folder](webapp/README.md)
 
