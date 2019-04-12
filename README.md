@@ -46,7 +46,7 @@ $ cd backend
 $ virtualenv -p python3.6 venv     # Create a virtual environment
 $ source venv/bin/activate       # or on Windows: $ source venv/Scripts/activate
 ```
-2. Pass på at du er i  `backend` mappen, og deretter installer pakken og kjør utviklingsserveren:
+2. Pass på at du er i  `backend` mappen, og deretter installer pakkene og kjør utviklingsserveren:
 
 
 ```sh
