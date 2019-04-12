@@ -143,7 +143,7 @@ Frontend app (koden kan ikke ha "linting"- errors)
 dpl --provider=heroku --app=<name of frontend app on heroku> --api-key=$HEROKU_API_KEY
 ```
 
-`$HEROKU_API_KEY` is the secret API token connected to your Heroku account, and is set in GitLab's environment variables settings. If this token is not set, the pipeline will not succeed when deploying.
+`$HEROKU_API_KEY` Er den hemmelige API nøkkelen som er knyttet til Heroku brukeren, og er satt i Gitlab "environment variables" instillinger. Hvis denne nøkkelen ikke er satt vil ikke pipelinen være vellykket under deployment. 
 
 ## Bidra
 Hvis du møter på problemer, har noen spørsmål eller ønsker om endringer til applikasjonen er du velkommen til å bidra. Vennligst les vår [contributing guidelines](CONTRIBUTING.md) for å finne ut hvordan man starter opp.
