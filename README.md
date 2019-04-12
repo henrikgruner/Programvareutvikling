@@ -75,7 +75,7 @@ Nå som webappen bør være oppe å kjøre på [localhost:3000](http://localhost
 For mer detaljer på webapp, se [see our README in the `webapp` folder](webapp/README.md)
 
 <b>NB for oppsett på Windows:</b>
-Hvis du allerede har Python 3.6+ med virtualenv og et Node environment oppsatt på din Windows maskin, kjøre prosjektet burde være like lett som vist over. Men hvis du støtet på problemer urelatert til prosjektet, er internett din beste venn, men du kan også opprette en issue hvis du tror det er relatert til å sette opp prosjektet generelt på Windows.
+Hvis du allerede har Python 3.6+ med virtualenv og et Node environment oppsatt på din Windows maskin, burde prosjektet være like lett å kjøre som vist over. Men hvis du støtet på problemer urelatert til prosjektet, er internett din beste venn, men du kan også opprette et issue hvis du tror det er relatert til å sette opp prosjektet generelt på Windows.
 
 
 ## Noen praktiske notater
