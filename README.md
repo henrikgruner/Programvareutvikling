@@ -148,11 +148,11 @@ dpl --provider=heroku --app=<name of frontend app on heroku> --api-key=$HEROKU_A
 ## Bidra
 Hvis du møter på problemer, har noen spørsmål eller ønsker om endringer til applikasjonen er du velkommen til å bidra. Vennligst les vår [contributing guidelines](CONTRIBUTING.md) for å finne ut hvordan man starter opp.
 
-## Laget 
+## Teamet 
 [Sigrid Marita Kvamme](https://github.com/cherrybeans)
 | [Katrine Gjerde](https://gitlab.stud.idi.ntnu.no/katrinjg) | [Henrik Grüner](https://gitlab.stud.idi.ntnu.no/henrgr) | [Viggo Skarby](https://gitlab.stud.idi.ntnu.no/viggosk) | [Martin Kvalheim](https://gitlab.stud.idi.ntnu.no/martkval) | [Håvard Lund](https://gitlab.stud.idi.ntnu.no/haavalu)
 
-## Lisense
+## Lisens
 
 BudBua støtter åpen kildekode og har laget prosjektet tilgjengelig med [MIT license](LICENSE).
 
