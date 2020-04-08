@@ -3,7 +3,7 @@
 # ---------------------------------------- #
 
 # Dependencies --------------------------- #
-django==2.1.5
+django==2.2.10
 djangorestframework==3.9.1
 pillow==5.4.1
 pytz==2018.9
