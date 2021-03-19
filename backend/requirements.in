@@ -4,7 +4,7 @@
 
 # Dependencies --------------------------- #
 django==2.1.5
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 pillow==5.4.1
 pytz==2018.9
 django-environ==0.4.5
