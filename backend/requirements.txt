@@ -4,52 +4,123 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-appdirs==1.4.3            # via black
-aspy.yaml==1.1.2          # via pre-commit
-attrs==18.2.0             # via black
+appdirs==1.4.3
+    # via black
+aspy.yaml==1.1.2
+    # via pre-commit
+attrs==18.2.0
+    # via black
 black==18.9b0
-certifi==2018.11.29       # via requests
-cfgv==1.4.0               # via pre-commit
-chardet==3.0.4            # via requests
-click==7.0                # via black, pip-tools
+    # via -r requirements.in
+certifi==2018.11.29
+    # via requests
+cfgv==1.4.0
+    # via pre-commit
+chardet==3.0.4
+    # via requests
+click==7.0
+    # via
+    #   black
+    #   pip-tools
 coverage==4.5.2
-defusedxml==0.5.0         # via python3-openid
-dj-database-url==0.5.0    # via django-heroku
+    # via -r requirements.in
+defusedxml==0.5.0
+    # via python3-openid
+dj-database-url==0.5.0
+    # via django-heroku
 django-allauth==0.39.0
+    # via -r requirements.in
 django-cors-headers==2.4.0
+    # via -r requirements.in
 django-debug-toolbar==1.11
+    # via -r requirements.in
 django-environ==0.4.5
+    # via -r requirements.in
 django-extensions==2.1.5
+    # via -r requirements.in
 django-heroku==0.3.1
+    # via -r requirements.in
 django-rest-auth==0.9.3
+    # via -r requirements.in
 django==2.1.5
+    # via
+    #   -r requirements.in
+    #   django-allauth
+    #   django-debug-toolbar
+    #   django-heroku
+    #   django-rest-auth
 djangorestframework==3.9.1
+    # via
+    #   -r requirements.in
+    #   django-rest-auth
 factory-boy==2.11.1
-faker==1.0.2              # via factory-boy
+    # via -r requirements.in
+faker==1.0.2
+    # via factory-boy
 gunicorn==19.9.0
-identify==1.2.1           # via pre-commit
-idna==2.8                 # via requests
-importlib-metadata==0.8   # via pre-commit
-importlib-resources==1.0.2  # via pre-commit
+    # via -r requirements.in
+identify==1.2.1
+    # via pre-commit
+idna==2.8
+    # via requests
+importlib-metadata==0.8
+    # via pre-commit
 isort==4.3.9
-nodeenv==1.3.3            # via pre-commit
-oauthlib==3.0.1           # via requests-oauthlib
-pillow==5.4.1
+    # via -r requirements.in
+nodeenv==1.3.3
+    # via pre-commit
+oauthlib==3.0.1
+    # via requests-oauthlib
+pillow==8.1.1
+    # via -r requirements.in
 pip-tools==3.3.2
+    # via -r requirements.in
 pipdeptree==0.13.2
+    # via -r requirements.in
 pre-commit==1.14.3
-psycopg2==2.7.7           # via django-heroku
-python-dateutil==2.8.0    # via faker
-python3-openid==3.1.0     # via django-allauth
+    # via -r requirements.in
+psycopg2==2.7.7
+    # via django-heroku
+python-dateutil==2.8.0
+    # via faker
+python3-openid==3.1.0
+    # via django-allauth
 pytz==2018.9
-pyyaml==3.13              # via aspy.yaml, pre-commit
-requests-oauthlib==1.2.0  # via django-allauth
-requests==2.21.0          # via django-allauth, requests-oauthlib
-six==1.12.0               # via cfgv, django-extensions, django-rest-auth, faker, pip-tools, pre-commit, python-dateutil
-sqlparse==0.2.4           # via django-debug-toolbar
-text-unidecode==1.2       # via faker
-toml==0.10.0              # via black, pre-commit
-urllib3==1.24.1           # via requests
-virtualenv==16.3.0        # via pre-commit
-whitenoise==4.1.2         # via django-heroku
-zipp==0.3.3               # via importlib-metadata
+    # via
+    #   -r requirements.in
+    #   django
+pyyaml==3.13
+    # via
+    #   aspy.yaml
+    #   pre-commit
+requests-oauthlib==1.2.0
+    # via django-allauth
+requests==2.21.0
+    # via
+    #   django-allauth
+    #   requests-oauthlib
+six==1.12.0
+    # via
+    #   cfgv
+    #   django-extensions
+    #   django-rest-auth
+    #   faker
+    #   pip-tools
+    #   pre-commit
+    #   python-dateutil
+sqlparse==0.2.4
+    # via django-debug-toolbar
+text-unidecode==1.2
+    # via faker
+toml==0.10.0
+    # via
+    #   black
+    #   pre-commit
+urllib3==1.24.1
+    # via requests
+virtualenv==16.3.0
+    # via pre-commit
+whitenoise==4.1.2
+    # via django-heroku
+zipp==0.3.3
+    # via importlib-metadata
